@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>panoair | فروشگاه 360</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  
+*{box-sizing:border-box;margin:0;padding:0}
+ body{
+  font-family:'Vazirmatn',Tahoma;
+  background:#f4f4f4;
+  overflow-x:hidden;
+}
+.desktop-menu{
+    display:flex;
+    gap:25px;
+}
+
+.desktop-menu a{
+    color:white;
+    text-decoration:none;
+    font-size:16px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.desktop-menu a:hover{
+    color:#e6b566;
+}
+
+
+.hero{
+  position: relative;
+  z-index: 1;
+}
+
+.header-bar{
+  position:fixed;
+  top:0;
+  right:0;
+  left:0;
+  height:70px;
+
+  background:rgba(0,0,0,.35);
+  backdrop-filter:blur(6px);
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 25px;
+  z-index:99999;
+}
+.logo img{
+  height:148px;
+}
+.shop-btn{
+  background:#e6b566;
+  color:#000;
+  padding:8px 14px;
+  border-radius:20px;
+  font-size:14px;
+  text-decoration:none;
+  font-weight:700;
+}
+
+
+/* ===== HAMBURGER ===== */
+.hamburger{
+  width:28px;height:22px;
+  position:relative;
+  cursor:pointer;
+}
+.hamburger span{
+  position:absolute;
+  width:100%;height:3px;
+  background:#dcad08;
+  border-radius:3px;
+  transition:.4s;
+}
+.hamburger span:nth-child(1){top:0}
+.hamburger span:nth-child(2){top:9px}
+.hamburger span:nth-child(3){top:18px}
+.hamburger.active span:nth-child(1){transform:rotate(45deg);top:9px}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg);top:9px}
+
+/* ===== MENU ===== */
+.menu{
+  position:fixed;
+  top:30px;right:-280px;
+  width:180px;height:100%;
+  background:#5c5757;
+  padding:40px 30px;
+  transition:.4s;
+  z-index:19000;
+}
+.menu.active{right:0}
+.menu a{
+  display:block;
+  color:#fff;
+  text-decoration:none;
+  margin:20px 0;
+  font-size:18px;
+}
+.menu a:hover{color:#e6b566}
+
+/* ===== OVERLAY ===== */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.25);
+  opacity:0;
+  pointer-events:none;
+  transition:.3s;
+  z-index:18000;
+}
+.overlay.active{opacity:1;pointer-events:auto}
+.hero{
+  margin-top:0px;
+  height:70vh;
+  overflow:hidden;
+}
+.hero iframe{
+  width:100%;
+  height:100%;
+  border:none;
+  position:relative;
+  z-index:1;
+}
+
+/* ===== TITLES ===== */
+.projects-title{
+  text-align:center;
+  font-size:28px;
+  font-weight:800;
+  margin:50px 0 20px;
+  color:#1f2a30;
+}
+.projects-title::after{
+  content:"";
+  display:block;
+  width:80px;height:4px;
+  background:#e6b566;
+  margin:12px auto 0;
+  border-radius:2px;
+}
+
+/* ===== PROJECTS ===== */
+.projects{
+  padding:20px 8% 60px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:20px;
+  background:#fff;
+}
+.project-card{
+  text-decoration:none;
+  color:#000;
+  background:#fff;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 3px 8px rgba(0,0,0,.1);
+  transition:.3s;
+  position:relative;
+}
+.project-card:hover{transform:translateY(-4px)}
+.project-card img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+}
+.project-title{
+  display:block;
+  padding:12px;
+  text-align:center;
+  font-weight:700;
+}
+.project-360{
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:.3s;
+}
+.project-360 img{
+  width:100%;height:100%;
+  object-fit:cover;
+  pointer-events:none;
+}
+.project-card:hover .project-360{opacity:1}
+
+/* ===== GALLERY ===== */
+.gallery{
+  padding:20px 8% 80px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:16px;
+  background:#fff;
+}
+.gallery img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:12px;
+  cursor:pointer;
+  transition:.3s;
+}
+.gallery img:hover{transform:scale(1.05)}
+
+/* ===== FOOTER ===== */
+footer{
+  background:#111;
+  color:#fff;
+  text-align:center;
+  padding:30px;
+}
+<style>
+
+/* تمام CSS های سایت */
+
+/* ===== FOOTER ===== */
+footer{
+  background:#111;
+  color:#fff;
+  text-align:center;
+  padding:30px;
+}
+
+/* ===== LIGHTBOX ===== */
+.lightbox{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.9);
+  justify-content:center;
+  align-items:center;
+  z-index:999999;
+}
+
+.lightbox img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:10px;
+}
+
+.close{
+  position:absolute;
+  top:20px;
+  right:30px;
+  color:#fff;
+  font-size:40px;
+  cursor:pointer;
+}
+/* ===== LIGHTBOX ===== */
+
+.lightbox{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.95);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  opacity:0;
+  visibility:hidden;
+
+  transition:.4s;
+
+  z-index:999999;
+}
+
+.lightbox.show{
+  opacity:1;
+  visibility:visible;
+}
+
+.lightbox img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:12px;
+
+  transform:scale(.8);
+  transition:.4s;
+}
+
+.lightbox.show img{
+  transform:scale(1);
+}
+
+.close-lightbox{
+  position:absolute;
+  top:20px;
+  right:30px;
+
+  color:#fff;
+  font-size:45px;
+  cursor:pointer;
+
+  transition:.3s;
+}
+
+.close-lightbox:hover{
+  color:#e6b566;
+  transform:rotate(90deg);
+}
+
+.lightbox-nav{
+  position:absolute;
+  top:50%;
+
+  transform:translateY(-50%);
+
+  color:#fff;
+  font-size:60px;
+
+  cursor:pointer;
+
+  user-select:none;
+
+  padding:20px;
+
+  transition:.3s;
+}
+
+.lightbox-nav:hover{
+  color:#e6b566;
+}
+
+.prev{
+  left:20px;
+}
+
+.next{
+  right:20px;
+}
+</style>
+
+
+</head>
+<script>
+
+const galleryImages =
+document.querySelectorAll('.gallery img');
+
+const lightbox =
+document.getElementById('lightbox');
+
+const lightboxImg =
+document.getElementById('lightbox-img');
+
+const closeBtn =
+document.querySelector('.close-lightbox');
+
+const nextBtn =
+document.querySelector('.next');
+
+const prevBtn =
+document.querySelector('.prev');
+
+let currentIndex = 0;
+
+galleryImages.forEach((img,index)=>{
+
+  img.addEventListener('click',()=>{
+
+    currentIndex=index;
+
+    lightboxImg.src=img.src;
+
+    lightbox.classList.add('show');
+
+  });
+
+});
+
+closeBtn.onclick=()=>{
+  lightbox.classList.remove('show');
+};
+
+lightbox.onclick=(e)=>{
+  if(e.target===lightbox){
+    lightbox.classList.remove('show');
+  }
+};
+
+nextBtn.onclick=()=>{
+
+  currentIndex++;
+
+  if(currentIndex>=galleryImages.length){
+    currentIndex=0;
+  }
+
+  lightboxImg.src=
+  galleryImages[currentIndex].src;
+
+};
+
+prevBtn.onclick=()=>{
+
+  currentIndex--;
+
+  if(currentIndex<0){
+    currentIndex=
+    galleryImages.length-1;
+  }
+
+  lightboxImg.src=
+  galleryImages[currentIndex].src;
+
+};
+
+document.addEventListener('keydown',(e)=>{
+
+  if(e.key==="Escape"){
+    lightbox.classList.remove('show');
+  }
+
+  if(e.key==="ArrowRight"){
+    nextBtn.click();
+  }
+
+  if(e.key==="ArrowLeft"){
+    prevBtn.click();
+  }
+
+});
+
+</script>
+
+<body>
+</style>
+
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header-bar">
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="logo"><img src="logo.png" alt="panoair"></div>
+    <a href="#" class="shop-btn">🛒 فروشگاه 360</a>
+  </div>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</div>
+
+<!-- MENU -->
+<div class="menu" id="menu">
+<a href="index.html">خانه</a>
+  <a href="#projects">تورهای مجازی</a>
+  <a href="#gallery">گالری عکس</a>
+  <a href="#contact">تماس با ما</a>
+  <a href="#about">درباره ما</a>
+
+</div>
+<div class="overlay" id="overlay"></div>
+
+<!-- HERO -->
+<div class="hero">
+<iframe src="heder.html"></iframe>
+
+</div>
+
+<h2 class="projects-title">پروژه‌های تور مجازی</h2>
+
+<section class="projects" id="projects">
+  <a class="project-card" href="https://kosarhos.semums.ac.ir/uploads/kosarfinal/index.html" target="_blank">
+    <img src="images/01.jpg">
+    <div class="project-360"><img src="360sample/01.jpg"></div>
+    <span class="project-title">بیمارستان کوثر سمنان</span>
+</a>
+    <a class="project-card" href="vitara/index.html" target="_blank">
+    <img src="images/02.jpg">
+    <div class="project-360"><img src="360sample/01.jpg"></div>
+    <span class="project-title">سوزوکی ویتارا</span>
+</a>
+    <a class="project-card" href="https://kosarhos.semums.ac.ir/uploads/kosarfinal/index.html" target="_blank">
+    <img src="images/01.jpg">
+    <div class="project-360"><img src="360sample/01.jpg"></div>
+    <span class="project-title">بیمارستان کوثر سمنان</span>
+  </a>
+    <a class="project-card" href="https://kosarhos.semums.ac.ir/uploads/kosarfinal/index.html" target="_blank">
+    <img src="images/01.jpg">
+    <div class="project-360"><img src="360sample/01.jpg"></div>
+    <span class="project-title">بیمارستان کوثر سمنان</span>
+  </a>
+    <a class="project-card" href="https://kosarhos.semums.ac.ir/uploads/kosarfinal/index.html" target="_blank">
+    <img src="images/01.jpg">
+    <div class="project-360"><img src="360sample/01.jpg"></div>
+    <span class="project-title">بیمارستان کوثر سمنان</span>
+</a>
+    <a class="project-card" href="https://kosarhos.semums.ac.ir/uploads/kosarfinal/index.html" target="_blank">
+    <img src="images/01.jpg">
+    <div class="project-360"><img src="360sample/01.jpg"></div>
+    <span class="project-title">بیمارستان کوثر سمنان</span>
+</a>
+
+    <a class="project-card" href="https://kosarhos.semums.ac.ir/uploads/kosarfinal/index.html" target="_blank">
+    <img src="images/01.jpg">
+    <div class="project-360"><img src="360sample/01.jpg"></div>
+    <span class="project-title">بیمارستان کوثر سمنان</span>
+  </a>
+    <a class="project-card" href="https://kosarhos.semums.ac.ir/uploads/kosarfinal/index.html" target="_blank">
+    <img src="images/01.jpg">
+    <div class="project-360"><img src="360sample/01.jpg"></div>
+    <span class="project-title">بیمارستان کوثر سمنان</span>
+</a>
+    <a class="project-card" href="https://kosarhos.semums.ac.ir/uploads/kosarfinal/index.html" target="_blank">
+    <img src="images/01.jpg">
+    <div class="project-360"><img src="360sample/01.jpg"></div>
+    <span class="project-title">بیمارستان کوثر سمنان</span>
+</a>
+    <a class="project-card" href="https://kosarhos.semums.ac.ir/uploads/kosarfinal/index.html" target="_blank">
+    <img src="images/01.jpg">
+    <div class="project-360"><img src="360sample/01.jpg"></div>
+    <span class="project-title">بیمارستان کوثر سمنان</span>
+ </a>
+    <a class="project-card" href="https://kosarhos.semums.ac.ir/uploads/kosarfinal/index.html" target="_blank">
+    <img src="images/01.jpg">
+    <div class="project-360"><img src="360sample/01.jpg"></div>
+    <span class="project-title">بیمارستان کوثر سمنان</span>
+</a>
+    <a class="project-card" href="https://kosarhos.semums.ac.ir/uploads/kosarfinal/index.html" target="_blank">
+    <img src="images/01.jpg">
+    <div class="project-360"><img src="360sample/01.jpg"></div>
+    <span class="project-title">بیمارستان کوثر سمنان</span>
+ </a>
+</section>
+<h2 class="projects-title" id="gallery">گالری تصاویر</h2>
+
+<section class="gallery">
+  <img src="images/gallery/01.jpg">
+  <img src="images/gallery/02.jpg">
+  <img src="images/gallery/03.jpg">
+  <img src="images/gallery/04.jpg">
+  <img src="images/gallery/01.jpg">
+  <img src="images/gallery/02.jpg">
+  <img src="images/gallery/03.jpg">
+  <img src="images/gallery/04.jpg">
+    <img src="images/gallery/01.jpg">
+  <img src="images/gallery/02.jpg">
+  <img src="images/gallery/03.jpg">
+  <img src="images/gallery/04.jpg">
+  <img src="images/gallery/01.jpg">
+  <img src="images/gallery/02.jpg">
+  <img src="images/gallery/03.jpg">
+  <img src="images/gallery/04.jpg">
+    <img src="images/gallery/01.jpg">
+  <img src="images/gallery/02.jpg">
+  <img src="images/gallery/03.jpg">
+  <img src="images/gallery/04.jpg">
+  <img src="images/gallery/01.jpg">
+  <img src="images/gallery/02.jpg">
+  <img src="images/gallery/03.jpg">
+  <img src="images/gallery/04.jpg">
+</section>
+</section>
+
+<div id="lightbox" class="lightbox">
+  <span class="close">&times;</span>
+
+  <span class="prev">&#10094;</span>
+
+  <img id="lightbox-img">
+
+  <span class="next">&#10095;</span>
+</div>
+
+<footer id="contact">
+<section id="about" class="about">
+  <h2>درباره ما</h2>
+
+  <p>
+  پانواِیر ارائه دهنده خدمات تور مجازی ۳۶۰ درجه،
+  عکاسی پانوراما، تولید محتوای دیجیتال و فروشگاه مجازی است.
+  </p>
+</section>
+<footer id="contact">
+  <h2>تماس با ما</h2>
+  <p>📞 09128317349<br>🌐 panoair.ir</p>
+</footer>
+
+<script>
+const burger=document.getElementById('hamburger');
+const menu=document.getElementById('menu');
+const overlay=document.getElementById('overlay');
+
+burger.onclick=()=>{
+  burger.classList.toggle('active');
+  menu.classList.toggle('active');
+  overlay.classList.toggle('active');
+};
+overlay.onclick=()=>{
+  burger.classList.remove('active');
+  menu.classList.remove('active');
+  overlay.classList.remove('active');
+};
+</script>
+<script>
+
+
+</body>
+</html>

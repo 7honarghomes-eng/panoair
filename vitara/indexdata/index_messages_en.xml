@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<krpano>
+
+<!-- ************************ -->
+<!--         Messages         -->
+<!-- ************************ -->
+
+  <data name="en_project_title"><![CDATA[New Project]]></data>
+
+
+
+  <data name="en_pano9_title"><![CDATA[in_equi]]></data>
+  <data name="en_spotpoint13_tooltip"><![CDATA[Bugle]]></data>
+  <data name="en_spotpoint15_tooltip"><![CDATA[start]]></data>
+
+
+
+
+
+
+  <data name="en_contextmenuopenwebsitelabel1"><![CDATA[7honar]]></data>
+  <data name="en_contextmenuwebsiteurl1"><![CDATA[http://www.7honar.co]]></data>
+  <data name="en_contextmenuopenwebsitelabel2"><![CDATA[7honarghomes@gmail   -   009809128317349]]></data>
+  <data name="en_contextmenuwebsiteurl2"><![CDATA[]]></data>
+  <data name="en_contextmenuopenFsLabel"><![CDATA[Enter Fullscreen]]></data>
+  <data name="en_contextmenucloseFsLabel"><![CDATA[Exit Fullscreen]]></data>
+  <data name="en_contextmenunormallabel"><![CDATA[Normal View]]></data>
+  <data name="en_contextmenufisheyelabel"><![CDATA[Fisheye View]]></data>
+  <data name="en_contextmenuarchitecturallabel"><![CDATA[Architectural View]]></data>
+  <data name="en_contextmenustereographiclabel"><![CDATA[Stereographic View]]></data>
+  <data name="en_contextmenupanninilabel"><![CDATA[Pannini View]]></data>
+  <data name="en_contextmenulittleplanetlabel"><![CDATA[Little Planet View]]></data>
+  <data name="en_contextmenufisheyeballlabel"><![CDATA[Fisheye Ball View]]></data>
+  <data name="en_CirclesControlBarzoomInTip"><![CDATA[Zoom in]]></data>
+  <data name="en_CirclesControlBarzoomOutTip"><![CDATA[Zoom out]]></data>
+  <data name="en_CirclesControlBarmoveLeftTip"><![CDATA[Move left]]></data>
+  <data name="en_CirclesControlBarmoveRightTip"><![CDATA[Move right]]></data>
+  <data name="en_CirclesControlBarmoveUpTip"><![CDATA[Move up]]></data>
+  <data name="en_CirclesControlBarmoveDownTip"><![CDATA[Move down]]></data>
+  <data name="en_CirclesControlBardisplayHelpTip"><![CDATA[Show help screen]]></data>
+  <data name="en_CirclesControlBarhideHelpTip"><![CDATA[Hide help screen]]></data>
+  <data name="en_CirclesControlBardisplayControlsTip"><![CDATA[Show controls]]></data>
+  <data name="en_CirclesControlBarhideControlsTip"><![CDATA[Hide controls]]></data>
+
+
+
+
+
+</krpano>
