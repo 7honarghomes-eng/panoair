@@ -1,0 +1,1065 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<krpano version="1.18"
+        onstart="startup"
+        logkey="false"
+        bgcolor="#ffffff"
+        projectfloorplanurl=""
+        projecttitleid="project_title"
+        projectdescriptionid="project_description">
+
+
+  <security cors="">
+    <!--
+    <crossdomainxml url="http://RESSOURCES_URL/crossdomain.xml" />
+    -->
+    <allowdomain domain="*" />
+  </security>
+
+  <krpano tour_firststartactiondone="false" />
+  <events name="startbehavioursevents" onxmlcomplete="startbehavioursxmlcompleteaction();" keep="true"/>
+
+  <include url="%FIRSTXML%/heder_skin.xml"/>
+  <include url="%FIRSTXML%/heder_core.xml"/>
+  <include url="%FIRSTXML%/heder_messages_en.xml"/>
+
+  <action name="startup">
+
+    if (skipintro !== null, skipintroaction(); );
+    if (s !== null, if (startscene === null, set(startscene, get(s));); );
+    if (startscene === null,
+      set(startscene, pano26);
+    );
+    mainloadscene(get(startscene));
+    if (h !== null,
+      if (v !== null,
+        if (f !== null,
+          lookat(get(h), get(v), get(f));
+         ,
+          lookat(get(h), get(v));
+        );
+      );
+    );
+  </action>
+
+
+
+
+  
+  
+
+
+<scene name="pano26"
+       heading="0"
+       thumburl="%FIRSTXML%/pano_26/thumbnail.jpg"
+       backgroundsound=""
+       backgroundsoundloops="0"
+       titleid="pano26_title"
+       descriptionid="pano26_description"
+       multires="false"
+       planar="false"
+       full360="true"
+       seen="false">
+
+
+    <autorotate horizon="0.000000" tofov="90.000000" waittime="1" speed="5"/>
+
+    <panoview h="0.000000" v="0.000000" fov="90.000000" hmin="-180" hmax="180" vmin="-90" vmax="90" fovmax="90" />
+
+    <view fisheye="0"
+          limitview="range"
+          hlookatmin="-180"
+          hlookatmax="180"
+          vlookatmin="-90"
+          vlookatmax="90"
+          maxpixelzoom="1.0"
+          fovmax="90"
+          fov="90.000000"
+          hlookat="0.000000"
+          vlookat="0.000000"/>
+
+    <preview url="%FIRSTXML%/pano_26/preview.jpg" type="CUBESTRIP" striporder="FRBLUD"/>
+
+    <image type="CUBE" devices="desktop">
+      <front url="pano_26/html5/0.jpg"/>
+      <right url="pano_26/html5/1.jpg"/>
+      <back  url="pano_26/html5/2.jpg"/>
+      <left  url="pano_26/html5/3.jpg"/>
+      <up    url="pano_26/html5/4.jpg"/>
+      <down  url="pano_26/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="html5">
+      <front url="pano_26/html5/0.jpg"/>
+      <right url="pano_26/html5/1.jpg"/>
+      <back  url="pano_26/html5/2.jpg"/>
+      <left  url="pano_26/html5/3.jpg"/>
+      <up    url="pano_26/html5/4.jpg"/>
+      <down  url="pano_26/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="tablet">
+      <front url="pano_26/tablet/0.jpg"/>
+      <right url="pano_26/tablet/1.jpg"/>
+      <back  url="pano_26/tablet/2.jpg"/>
+      <left  url="pano_26/tablet/3.jpg"/>
+      <up    url="pano_26/tablet/4.jpg"/>
+      <down  url="pano_26/tablet/5.jpg"/>
+    </image>
+    <image type="CUBE" devices="mobile">
+      <front url="pano_26/mobile/0.jpg"/>
+      <right url="pano_26/mobile/1.jpg"/>
+      <back  url="pano_26/mobile/2.jpg"/>
+      <left  url="pano_26/mobile/3.jpg"/>
+      <up    url="pano_26/mobile/4.jpg"/>
+      <down  url="pano_26/mobile/5.jpg"/>
+    </image>
+
+
+
+
+  <action name="setzorder2onstandardspots">
+    if (device.html5,
+      ifnot (device.desktop,
+
+
+      );
+    );
+  </action>
+
+
+</scene>
+
+
+  
+  
+
+
+<scene name="pano12"
+       heading="0"
+       thumburl="%FIRSTXML%/taghbostan_12/thumbnail.jpg"
+       backgroundsound=""
+       backgroundsoundloops="0"
+       titleid="pano12_title"
+       descriptionid=""
+       multires="false"
+       planar="false"
+       full360="true"
+       seen="false">
+
+
+    <autorotate horizon="0.000000" tofov="90.000000" waittime="1" speed="5"/>
+
+    <panoview h="0.000000" v="0.000000" fov="90.000000" hmin="-180" hmax="180" vmin="-90" vmax="90" fovmax="90" />
+
+    <view fisheye="0"
+          limitview="range"
+          hlookatmin="-180"
+          hlookatmax="180"
+          vlookatmin="-90"
+          vlookatmax="90"
+          maxpixelzoom="1.0"
+          fovmax="90"
+          fov="90.000000"
+          hlookat="0.000000"
+          vlookat="0.000000"/>
+
+    <preview url="%FIRSTXML%/taghbostan_12/preview.jpg" type="CUBESTRIP" striporder="FRBLUD"/>
+
+    <image type="CUBE" devices="desktop">
+      <front url="taghbostan_12/html5/0.jpg"/>
+      <right url="taghbostan_12/html5/1.jpg"/>
+      <back  url="taghbostan_12/html5/2.jpg"/>
+      <left  url="taghbostan_12/html5/3.jpg"/>
+      <up    url="taghbostan_12/html5/4.jpg"/>
+      <down  url="taghbostan_12/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="html5">
+      <front url="taghbostan_12/html5/0.jpg"/>
+      <right url="taghbostan_12/html5/1.jpg"/>
+      <back  url="taghbostan_12/html5/2.jpg"/>
+      <left  url="taghbostan_12/html5/3.jpg"/>
+      <up    url="taghbostan_12/html5/4.jpg"/>
+      <down  url="taghbostan_12/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="tablet">
+      <front url="taghbostan_12/tablet/0.jpg"/>
+      <right url="taghbostan_12/tablet/1.jpg"/>
+      <back  url="taghbostan_12/tablet/2.jpg"/>
+      <left  url="taghbostan_12/tablet/3.jpg"/>
+      <up    url="taghbostan_12/tablet/4.jpg"/>
+      <down  url="taghbostan_12/tablet/5.jpg"/>
+    </image>
+    <image type="CUBE" devices="mobile">
+      <front url="taghbostan_12/mobile/0.jpg"/>
+      <right url="taghbostan_12/mobile/1.jpg"/>
+      <back  url="taghbostan_12/mobile/2.jpg"/>
+      <left  url="taghbostan_12/mobile/3.jpg"/>
+      <up    url="taghbostan_12/mobile/4.jpg"/>
+      <down  url="taghbostan_12/mobile/5.jpg"/>
+    </image>
+
+
+
+<lensflare name="LENS24" set="DEFAULT" visible="false" ath="140.229728" atv="-38.793063" devices="flash" />
+
+  <action name="hidepanolensflares" devices="flash">
+    set(lensflare[LENS24].visible, false);
+  </action>
+  <action name="showpanolensflares" devices="flash">
+    set(lensflare[LENS24].visible, true);
+  </action>
+
+
+  <action name="showpanospotsaction">
+    if (tour_displayspots,
+    );
+  </action>
+  <action name="hidepanospotsaction">
+  </action>
+
+
+  <action name="setzorder2onstandardspots">
+    if (device.html5,
+      ifnot (device.desktop,
+
+
+      );
+    );
+  </action>
+
+
+</scene>
+
+
+  
+  
+
+
+<scene name="pano10"
+       heading="0"
+       thumburl="%FIRSTXML%/azad1_10/thumbnail.jpg"
+       backgroundsound=""
+       backgroundsoundloops="0"
+       titleid="pano10_title"
+       descriptionid=""
+       multires="false"
+       planar="false"
+       full360="true"
+       seen="false">
+
+
+    <autorotate horizon="0.000000" tofov="90.000000" waittime="1" speed="5"/>
+
+    <panoview h="0.000000" v="0.000000" fov="90.000000" hmin="-180" hmax="180" vmin="-90" vmax="90" fovmax="90" />
+
+    <view fisheye="0"
+          limitview="range"
+          hlookatmin="-180"
+          hlookatmax="180"
+          vlookatmin="-90"
+          vlookatmax="90"
+          maxpixelzoom="1.0"
+          fovmax="90"
+          fov="90.000000"
+          hlookat="0.000000"
+          vlookat="0.000000"/>
+
+    <preview url="%FIRSTXML%/azad1_10/preview.jpg" type="CUBESTRIP" striporder="FRBLUD"/>
+
+    <image type="CUBE" devices="desktop">
+      <front url="azad1_10/html5/0.jpg"/>
+      <right url="azad1_10/html5/1.jpg"/>
+      <back  url="azad1_10/html5/2.jpg"/>
+      <left  url="azad1_10/html5/3.jpg"/>
+      <up    url="azad1_10/html5/4.jpg"/>
+      <down  url="azad1_10/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="html5">
+      <front url="azad1_10/html5/0.jpg"/>
+      <right url="azad1_10/html5/1.jpg"/>
+      <back  url="azad1_10/html5/2.jpg"/>
+      <left  url="azad1_10/html5/3.jpg"/>
+      <up    url="azad1_10/html5/4.jpg"/>
+      <down  url="azad1_10/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="tablet">
+      <front url="azad1_10/tablet/0.jpg"/>
+      <right url="azad1_10/tablet/1.jpg"/>
+      <back  url="azad1_10/tablet/2.jpg"/>
+      <left  url="azad1_10/tablet/3.jpg"/>
+      <up    url="azad1_10/tablet/4.jpg"/>
+      <down  url="azad1_10/tablet/5.jpg"/>
+    </image>
+    <image type="CUBE" devices="mobile">
+      <front url="azad1_10/mobile/0.jpg"/>
+      <right url="azad1_10/mobile/1.jpg"/>
+      <back  url="azad1_10/mobile/2.jpg"/>
+      <left  url="azad1_10/mobile/3.jpg"/>
+      <up    url="azad1_10/mobile/4.jpg"/>
+      <down  url="azad1_10/mobile/5.jpg"/>
+    </image>
+
+
+
+<lensflare name="LENS22" set="DEFAULT" visible="false" ath="107.173433" atv="-33.103437" devices="flash" />
+
+  <action name="hidepanolensflares" devices="flash">
+    set(lensflare[LENS22].visible, false);
+  </action>
+  <action name="showpanolensflares" devices="flash">
+    set(lensflare[LENS22].visible, true);
+  </action>
+
+
+  <action name="showpanospotsaction">
+    if (tour_displayspots,
+    );
+  </action>
+  <action name="hidepanospotsaction">
+  </action>
+
+
+  <action name="setzorder2onstandardspots">
+    if (device.html5,
+      ifnot (device.desktop,
+
+
+      );
+    );
+  </action>
+
+
+</scene>
+
+
+  
+  
+
+
+<scene name="pano11"
+       heading="0"
+       thumburl="%FIRSTXML%/sort1_11/thumbnail.jpg"
+       backgroundsound=""
+       backgroundsoundloops="0"
+       titleid="pano11_title"
+       descriptionid=""
+       multires="false"
+       planar="false"
+       full360="true"
+       seen="false">
+
+
+    <autorotate horizon="0.000000" tofov="90.000000" waittime="1" speed="5"/>
+
+    <panoview h="0.000000" v="0.000000" fov="90.000000" hmin="-180" hmax="180" vmin="-90" vmax="90" fovmax="90" />
+
+    <view fisheye="0"
+          limitview="range"
+          hlookatmin="-180"
+          hlookatmax="180"
+          vlookatmin="-90"
+          vlookatmax="90"
+          maxpixelzoom="1.0"
+          fovmax="90"
+          fov="90.000000"
+          hlookat="0.000000"
+          vlookat="0.000000"/>
+
+    <preview url="%FIRSTXML%/sort1_11/preview.jpg" type="CUBESTRIP" striporder="FRBLUD"/>
+
+    <image type="CUBE" devices="desktop">
+      <front url="sort1_11/html5/0.jpg"/>
+      <right url="sort1_11/html5/1.jpg"/>
+      <back  url="sort1_11/html5/2.jpg"/>
+      <left  url="sort1_11/html5/3.jpg"/>
+      <up    url="sort1_11/html5/4.jpg"/>
+      <down  url="sort1_11/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="html5">
+      <front url="sort1_11/html5/0.jpg"/>
+      <right url="sort1_11/html5/1.jpg"/>
+      <back  url="sort1_11/html5/2.jpg"/>
+      <left  url="sort1_11/html5/3.jpg"/>
+      <up    url="sort1_11/html5/4.jpg"/>
+      <down  url="sort1_11/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="tablet">
+      <front url="sort1_11/tablet/0.jpg"/>
+      <right url="sort1_11/tablet/1.jpg"/>
+      <back  url="sort1_11/tablet/2.jpg"/>
+      <left  url="sort1_11/tablet/3.jpg"/>
+      <up    url="sort1_11/tablet/4.jpg"/>
+      <down  url="sort1_11/tablet/5.jpg"/>
+    </image>
+    <image type="CUBE" devices="mobile">
+      <front url="sort1_11/mobile/0.jpg"/>
+      <right url="sort1_11/mobile/1.jpg"/>
+      <back  url="sort1_11/mobile/2.jpg"/>
+      <left  url="sort1_11/mobile/3.jpg"/>
+      <up    url="sort1_11/mobile/4.jpg"/>
+      <down  url="sort1_11/mobile/5.jpg"/>
+    </image>
+
+
+
+<lensflare name="LENS23" set="DEFAULT" visible="false" ath="-4.906801" atv="-8.275859" devices="flash" />
+
+  <action name="hidepanolensflares" devices="flash">
+    set(lensflare[LENS23].visible, false);
+  </action>
+  <action name="showpanolensflares" devices="flash">
+    set(lensflare[LENS23].visible, true);
+  </action>
+
+
+  <action name="showpanospotsaction">
+    if (tour_displayspots,
+    );
+  </action>
+  <action name="hidepanospotsaction">
+  </action>
+
+
+  <action name="setzorder2onstandardspots">
+    if (device.html5,
+      ifnot (device.desktop,
+
+
+      );
+    );
+  </action>
+
+
+</scene>
+
+
+  
+  
+
+
+<scene name="pano13"
+       heading="0"
+       thumburl="%FIRSTXML%/tarikhane_13/thumbnail.jpg"
+       backgroundsound=""
+       backgroundsoundloops="0"
+       titleid="pano13_title"
+       descriptionid=""
+       multires="false"
+       planar="false"
+       full360="true"
+       seen="false">
+
+
+    <autorotate horizon="0.000000" tofov="90.000000" waittime="1" speed="5"/>
+
+    <panoview h="0.000000" v="0.000000" fov="90.000000" hmin="-180" hmax="180" vmin="-90" vmax="90" fovmax="90" />
+
+    <view fisheye="0"
+          limitview="range"
+          hlookatmin="-180"
+          hlookatmax="180"
+          vlookatmin="-90"
+          vlookatmax="90"
+          maxpixelzoom="1.0"
+          fovmax="90"
+          fov="90.000000"
+          hlookat="0.000000"
+          vlookat="0.000000"/>
+
+    <preview url="%FIRSTXML%/tarikhane_13/preview.jpg" type="CUBESTRIP" striporder="FRBLUD"/>
+
+    <image type="CUBE" devices="desktop">
+      <front url="tarikhane_13/html5/0.jpg"/>
+      <right url="tarikhane_13/html5/1.jpg"/>
+      <back  url="tarikhane_13/html5/2.jpg"/>
+      <left  url="tarikhane_13/html5/3.jpg"/>
+      <up    url="tarikhane_13/html5/4.jpg"/>
+      <down  url="tarikhane_13/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="html5">
+      <front url="tarikhane_13/html5/0.jpg"/>
+      <right url="tarikhane_13/html5/1.jpg"/>
+      <back  url="tarikhane_13/html5/2.jpg"/>
+      <left  url="tarikhane_13/html5/3.jpg"/>
+      <up    url="tarikhane_13/html5/4.jpg"/>
+      <down  url="tarikhane_13/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="tablet">
+      <front url="tarikhane_13/tablet/0.jpg"/>
+      <right url="tarikhane_13/tablet/1.jpg"/>
+      <back  url="tarikhane_13/tablet/2.jpg"/>
+      <left  url="tarikhane_13/tablet/3.jpg"/>
+      <up    url="tarikhane_13/tablet/4.jpg"/>
+      <down  url="tarikhane_13/tablet/5.jpg"/>
+    </image>
+    <image type="CUBE" devices="mobile">
+      <front url="tarikhane_13/mobile/0.jpg"/>
+      <right url="tarikhane_13/mobile/1.jpg"/>
+      <back  url="tarikhane_13/mobile/2.jpg"/>
+      <left  url="tarikhane_13/mobile/3.jpg"/>
+      <up    url="tarikhane_13/mobile/4.jpg"/>
+      <down  url="tarikhane_13/mobile/5.jpg"/>
+    </image>
+
+
+
+
+  <action name="setzorder2onstandardspots">
+    if (device.html5,
+      ifnot (device.desktop,
+
+
+      );
+    );
+  </action>
+
+
+</scene>
+
+
+  
+  
+
+
+<scene name="pano14"
+       heading="0"
+       thumburl="%FIRSTXML%/vitara1_14/thumbnail.jpg"
+       backgroundsound=""
+       backgroundsoundloops="0"
+       titleid="pano14_title"
+       descriptionid=""
+       multires="false"
+       planar="false"
+       full360="true"
+       seen="false">
+
+
+    <autorotate horizon="3.600000" tofov="90.000000" waittime="1" speed="5"/>
+
+    <panoview h="-60.000000" v="3.600000" fov="90.000000" hmin="-180" hmax="180" vmin="-90" vmax="90" fovmax="90" />
+
+    <view fisheye="0"
+          limitview="range"
+          hlookatmin="-180"
+          hlookatmax="180"
+          vlookatmin="-90"
+          vlookatmax="90"
+          maxpixelzoom="1.0"
+          fovmax="90"
+          fov="90.000000"
+          hlookat="-60.000000"
+          vlookat="3.600000"/>
+
+    <preview url="%FIRSTXML%/vitara1_14/preview.jpg" type="CUBESTRIP" striporder="FRBLUD"/>
+
+    <image type="CUBE" devices="desktop">
+      <front url="vitara1_14/html5/0.jpg"/>
+      <right url="vitara1_14/html5/1.jpg"/>
+      <back  url="vitara1_14/html5/2.jpg"/>
+      <left  url="vitara1_14/html5/3.jpg"/>
+      <up    url="vitara1_14/html5/4.jpg"/>
+      <down  url="vitara1_14/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="html5">
+      <front url="vitara1_14/html5/0.jpg"/>
+      <right url="vitara1_14/html5/1.jpg"/>
+      <back  url="vitara1_14/html5/2.jpg"/>
+      <left  url="vitara1_14/html5/3.jpg"/>
+      <up    url="vitara1_14/html5/4.jpg"/>
+      <down  url="vitara1_14/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="tablet">
+      <front url="vitara1_14/tablet/0.jpg"/>
+      <right url="vitara1_14/tablet/1.jpg"/>
+      <back  url="vitara1_14/tablet/2.jpg"/>
+      <left  url="vitara1_14/tablet/3.jpg"/>
+      <up    url="vitara1_14/tablet/4.jpg"/>
+      <down  url="vitara1_14/tablet/5.jpg"/>
+    </image>
+    <image type="CUBE" devices="mobile">
+      <front url="vitara1_14/mobile/0.jpg"/>
+      <right url="vitara1_14/mobile/1.jpg"/>
+      <back  url="vitara1_14/mobile/2.jpg"/>
+      <left  url="vitara1_14/mobile/3.jpg"/>
+      <up    url="vitara1_14/mobile/4.jpg"/>
+      <down  url="vitara1_14/mobile/5.jpg"/>
+    </image>
+
+
+
+
+  <action name="setzorder2onstandardspots">
+    if (device.html5,
+      ifnot (device.desktop,
+
+
+      );
+    );
+  </action>
+
+
+</scene>
+
+
+  
+  
+
+
+<scene name="pano80"
+       heading="0"
+       thumburl="%FIRSTXML%/pano_80/thumbnail.jpg"
+       backgroundsound=""
+       backgroundsoundloops="0"
+       titleid="pano80_title"
+       descriptionid=""
+       multires="false"
+       planar="false"
+       full360="true"
+       seen="false">
+
+
+    <autorotate horizon="0.000000" tofov="90.000000" waittime="1" speed="5"/>
+
+    <panoview h="0.000000" v="0.000000" fov="90.000000" hmin="-180" hmax="180" vmin="-90" vmax="90" fovmax="90" />
+
+    <view fisheye="0"
+          limitview="range"
+          hlookatmin="-180"
+          hlookatmax="180"
+          vlookatmin="-90"
+          vlookatmax="90"
+          maxpixelzoom="1.0"
+          fovmax="90"
+          fov="90.000000"
+          hlookat="0.000000"
+          vlookat="0.000000"/>
+
+    <preview url="%FIRSTXML%/pano_80/preview.jpg" type="CUBESTRIP" striporder="FRBLUD"/>
+
+    <image type="CUBE" devices="desktop">
+      <front url="pano_80/html5/0.jpg"/>
+      <right url="pano_80/html5/1.jpg"/>
+      <back  url="pano_80/html5/2.jpg"/>
+      <left  url="pano_80/html5/3.jpg"/>
+      <up    url="pano_80/html5/4.jpg"/>
+      <down  url="pano_80/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="html5">
+      <front url="pano_80/html5/0.jpg"/>
+      <right url="pano_80/html5/1.jpg"/>
+      <back  url="pano_80/html5/2.jpg"/>
+      <left  url="pano_80/html5/3.jpg"/>
+      <up    url="pano_80/html5/4.jpg"/>
+      <down  url="pano_80/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="tablet">
+      <front url="pano_80/tablet/0.jpg"/>
+      <right url="pano_80/tablet/1.jpg"/>
+      <back  url="pano_80/tablet/2.jpg"/>
+      <left  url="pano_80/tablet/3.jpg"/>
+      <up    url="pano_80/tablet/4.jpg"/>
+      <down  url="pano_80/tablet/5.jpg"/>
+    </image>
+    <image type="CUBE" devices="mobile">
+      <front url="pano_80/mobile/0.jpg"/>
+      <right url="pano_80/mobile/1.jpg"/>
+      <back  url="pano_80/mobile/2.jpg"/>
+      <left  url="pano_80/mobile/3.jpg"/>
+      <up    url="pano_80/mobile/4.jpg"/>
+      <down  url="pano_80/mobile/5.jpg"/>
+    </image>
+
+
+
+
+  <action name="setzorder2onstandardspots">
+    if (device.html5,
+      ifnot (device.desktop,
+
+
+      );
+    );
+  </action>
+
+
+</scene>
+
+
+  
+  
+
+
+<scene name="pano9"
+       heading="0"
+       thumburl="%FIRSTXML%/ala_9/thumbnail.jpg"
+       backgroundsound=""
+       backgroundsoundloops="0"
+       titleid="pano9_title"
+       descriptionid=""
+       multires="false"
+       planar="false"
+       full360="true"
+       seen="false">
+
+
+    <autorotate horizon="-1.350000" tofov="90.000000" waittime="1" speed="5"/>
+
+    <panoview h="45.450000" v="-1.350000" fov="90.000000" hmin="-180" hmax="180" vmin="-90" vmax="90" fovmax="90" />
+
+    <view fisheye="0"
+          limitview="range"
+          hlookatmin="-180"
+          hlookatmax="180"
+          vlookatmin="-90"
+          vlookatmax="90"
+          maxpixelzoom="1.0"
+          fovmax="90"
+          fov="90.000000"
+          hlookat="45.450000"
+          vlookat="-1.350000"/>
+
+    <preview url="%FIRSTXML%/ala_9/preview.jpg" type="CUBESTRIP" striporder="FRBLUD"/>
+
+    <image type="CUBE" devices="desktop">
+      <front url="ala_9/html5/0.jpg"/>
+      <right url="ala_9/html5/1.jpg"/>
+      <back  url="ala_9/html5/2.jpg"/>
+      <left  url="ala_9/html5/3.jpg"/>
+      <up    url="ala_9/html5/4.jpg"/>
+      <down  url="ala_9/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="html5">
+      <front url="ala_9/html5/0.jpg"/>
+      <right url="ala_9/html5/1.jpg"/>
+      <back  url="ala_9/html5/2.jpg"/>
+      <left  url="ala_9/html5/3.jpg"/>
+      <up    url="ala_9/html5/4.jpg"/>
+      <down  url="ala_9/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="tablet">
+      <front url="ala_9/tablet/0.jpg"/>
+      <right url="ala_9/tablet/1.jpg"/>
+      <back  url="ala_9/tablet/2.jpg"/>
+      <left  url="ala_9/tablet/3.jpg"/>
+      <up    url="ala_9/tablet/4.jpg"/>
+      <down  url="ala_9/tablet/5.jpg"/>
+    </image>
+    <image type="CUBE" devices="mobile">
+      <front url="ala_9/mobile/0.jpg"/>
+      <right url="ala_9/mobile/1.jpg"/>
+      <back  url="ala_9/mobile/2.jpg"/>
+      <left  url="ala_9/mobile/3.jpg"/>
+      <up    url="ala_9/mobile/4.jpg"/>
+      <down  url="ala_9/mobile/5.jpg"/>
+    </image>
+
+
+
+
+  <action name="setzorder2onstandardspots">
+    if (device.html5,
+      ifnot (device.desktop,
+
+
+      );
+    );
+  </action>
+
+
+</scene>
+
+
+  
+  
+
+
+<scene name="pano82"
+       heading="0"
+       thumburl="%FIRSTXML%/pano_82/thumbnail.jpg"
+       backgroundsound=""
+       backgroundsoundloops="0"
+       titleid="pano82_title"
+       descriptionid=""
+       multires="false"
+       planar="false"
+       full360="true"
+       seen="false">
+
+
+    <autorotate horizon="-7.200000" tofov="90.000000" waittime="1" speed="5"/>
+
+    <panoview h="-86.000000" v="-7.200000" fov="90.000000" hmin="-180" hmax="180" vmin="-90" vmax="90" fovmax="90" />
+
+    <view fisheye="0"
+          limitview="range"
+          hlookatmin="-180"
+          hlookatmax="180"
+          vlookatmin="-90"
+          vlookatmax="90"
+          maxpixelzoom="1.0"
+          fovmax="90"
+          fov="90.000000"
+          hlookat="-86.000000"
+          vlookat="-7.200000"/>
+
+    <preview url="%FIRSTXML%/pano_82/preview.jpg" type="CUBESTRIP" striporder="FRBLUD"/>
+
+    <image type="CUBE" devices="desktop">
+      <front url="pano_82/html5/0.jpg"/>
+      <right url="pano_82/html5/1.jpg"/>
+      <back  url="pano_82/html5/2.jpg"/>
+      <left  url="pano_82/html5/3.jpg"/>
+      <up    url="pano_82/html5/4.jpg"/>
+      <down  url="pano_82/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="html5">
+      <front url="pano_82/html5/0.jpg"/>
+      <right url="pano_82/html5/1.jpg"/>
+      <back  url="pano_82/html5/2.jpg"/>
+      <left  url="pano_82/html5/3.jpg"/>
+      <up    url="pano_82/html5/4.jpg"/>
+      <down  url="pano_82/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="tablet">
+      <front url="pano_82/tablet/0.jpg"/>
+      <right url="pano_82/tablet/1.jpg"/>
+      <back  url="pano_82/tablet/2.jpg"/>
+      <left  url="pano_82/tablet/3.jpg"/>
+      <up    url="pano_82/tablet/4.jpg"/>
+      <down  url="pano_82/tablet/5.jpg"/>
+    </image>
+    <image type="CUBE" devices="mobile">
+      <front url="pano_82/mobile/0.jpg"/>
+      <right url="pano_82/mobile/1.jpg"/>
+      <back  url="pano_82/mobile/2.jpg"/>
+      <left  url="pano_82/mobile/3.jpg"/>
+      <up    url="pano_82/mobile/4.jpg"/>
+      <down  url="pano_82/mobile/5.jpg"/>
+    </image>
+
+
+
+
+  <action name="setzorder2onstandardspots">
+    if (device.html5,
+      ifnot (device.desktop,
+
+
+      );
+    );
+  </action>
+
+
+</scene>
+
+
+  
+  
+
+
+<scene name="pano89"
+       heading="0"
+       thumburl="%FIRSTXML%/pano_89/thumbnail.jpg"
+       backgroundsound=""
+       backgroundsoundloops="0"
+       titleid="pano89_title"
+       descriptionid=""
+       multires="false"
+       planar="false"
+       full360="true"
+       seen="false">
+
+
+    <autorotate horizon="0.000000" tofov="90.000000" waittime="1" speed="5"/>
+
+    <panoview h="0.000000" v="0.000000" fov="90.000000" hmin="-180" hmax="180" vmin="-90" vmax="90" fovmax="90" />
+
+    <view fisheye="0"
+          limitview="range"
+          hlookatmin="-180"
+          hlookatmax="180"
+          vlookatmin="-90"
+          vlookatmax="90"
+          maxpixelzoom="1.0"
+          fovmax="90"
+          fov="90.000000"
+          hlookat="0.000000"
+          vlookat="0.000000"/>
+
+    <preview url="%FIRSTXML%/pano_89/preview.jpg" type="CUBESTRIP" striporder="FRBLUD"/>
+
+    <image type="CUBE" devices="desktop">
+      <front url="pano_89/html5/0.jpg"/>
+      <right url="pano_89/html5/1.jpg"/>
+      <back  url="pano_89/html5/2.jpg"/>
+      <left  url="pano_89/html5/3.jpg"/>
+      <up    url="pano_89/html5/4.jpg"/>
+      <down  url="pano_89/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="html5">
+      <front url="pano_89/html5/0.jpg"/>
+      <right url="pano_89/html5/1.jpg"/>
+      <back  url="pano_89/html5/2.jpg"/>
+      <left  url="pano_89/html5/3.jpg"/>
+      <up    url="pano_89/html5/4.jpg"/>
+      <down  url="pano_89/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="tablet">
+      <front url="pano_89/tablet/0.jpg"/>
+      <right url="pano_89/tablet/1.jpg"/>
+      <back  url="pano_89/tablet/2.jpg"/>
+      <left  url="pano_89/tablet/3.jpg"/>
+      <up    url="pano_89/tablet/4.jpg"/>
+      <down  url="pano_89/tablet/5.jpg"/>
+    </image>
+    <image type="CUBE" devices="mobile">
+      <front url="pano_89/mobile/0.jpg"/>
+      <right url="pano_89/mobile/1.jpg"/>
+      <back  url="pano_89/mobile/2.jpg"/>
+      <left  url="pano_89/mobile/3.jpg"/>
+      <up    url="pano_89/mobile/4.jpg"/>
+      <down  url="pano_89/mobile/5.jpg"/>
+    </image>
+
+
+
+<lensflare name="LENS93" set="DEFAULT" visible="false" ath="-178.179520" atv="-14.354458" devices="flash" />
+
+  <action name="hidepanolensflares" devices="flash">
+    set(lensflare[LENS93].visible, false);
+  </action>
+  <action name="showpanolensflares" devices="flash">
+    set(lensflare[LENS93].visible, true);
+  </action>
+
+
+  <action name="showpanospotsaction">
+    if (tour_displayspots,
+    );
+  </action>
+  <action name="hidepanospotsaction">
+  </action>
+
+
+  <action name="setzorder2onstandardspots">
+    if (device.html5,
+      ifnot (device.desktop,
+
+
+      );
+    );
+  </action>
+
+
+</scene>
+
+
+  
+  
+
+
+<scene name="pano91"
+       heading="0"
+       thumburl="%FIRSTXML%/pano_91/thumbnail.jpg"
+       backgroundsound=""
+       backgroundsoundloops="0"
+       titleid="pano91_title"
+       descriptionid=""
+       multires="false"
+       planar="false"
+       full360="true"
+       seen="false">
+
+
+    <autorotate horizon="0.000000" tofov="90.000000" waittime="1" speed="5"/>
+
+    <panoview h="0.000000" v="0.000000" fov="90.000000" hmin="-180" hmax="180" vmin="-90" vmax="90" fovmax="90" />
+
+    <view fisheye="0"
+          limitview="range"
+          hlookatmin="-180"
+          hlookatmax="180"
+          vlookatmin="-90"
+          vlookatmax="90"
+          maxpixelzoom="1.0"
+          fovmax="90"
+          fov="90.000000"
+          hlookat="0.000000"
+          vlookat="0.000000"/>
+
+    <preview url="%FIRSTXML%/pano_91/preview.jpg" type="CUBESTRIP" striporder="FRBLUD"/>
+
+    <image type="CUBE" devices="desktop">
+      <front url="pano_91/html5/0.jpg"/>
+      <right url="pano_91/html5/1.jpg"/>
+      <back  url="pano_91/html5/2.jpg"/>
+      <left  url="pano_91/html5/3.jpg"/>
+      <up    url="pano_91/html5/4.jpg"/>
+      <down  url="pano_91/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="html5">
+      <front url="pano_91/html5/0.jpg"/>
+      <right url="pano_91/html5/1.jpg"/>
+      <back  url="pano_91/html5/2.jpg"/>
+      <left  url="pano_91/html5/3.jpg"/>
+      <up    url="pano_91/html5/4.jpg"/>
+      <down  url="pano_91/html5/5.jpg"/>
+    </image>
+
+    <image type="CUBE" devices="tablet">
+      <front url="pano_91/tablet/0.jpg"/>
+      <right url="pano_91/tablet/1.jpg"/>
+      <back  url="pano_91/tablet/2.jpg"/>
+      <left  url="pano_91/tablet/3.jpg"/>
+      <up    url="pano_91/tablet/4.jpg"/>
+      <down  url="pano_91/tablet/5.jpg"/>
+    </image>
+    <image type="CUBE" devices="mobile">
+      <front url="pano_91/mobile/0.jpg"/>
+      <right url="pano_91/mobile/1.jpg"/>
+      <back  url="pano_91/mobile/2.jpg"/>
+      <left  url="pano_91/mobile/3.jpg"/>
+      <up    url="pano_91/mobile/4.jpg"/>
+      <down  url="pano_91/mobile/5.jpg"/>
+    </image>
+
+
+
+
+  <action name="setzorder2onstandardspots">
+    if (device.html5,
+      ifnot (device.desktop,
+
+
+      );
+    );
+  </action>
+
+
+</scene>
+
+
+
+
+
+</krpano>
+
