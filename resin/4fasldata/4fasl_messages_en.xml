@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<krpano>
+
+<!-- ************************ -->
+<!--         Messages         -->
+<!-- ************************ -->
+
+  <data name="en_project_title"><![CDATA[New Project]]></data>
+
+
+
+  <data name="en_pano52_title"><![CDATA[summer]]></data>
+
+
+  <data name="en_pano55_title"><![CDATA[paiiz]]></data>
+
+
+  <data name="en_pano10_title"><![CDATA[winter]]></data>
+
+
+
+
+
+
+  <data name="en_togglebuttonfirsttooltip"><![CDATA[winter]]></data>
+  <data name="en_togglebuttonsecondtooltip"><![CDATA[]]></data>
+  <data name="en_togglebutton1firsttooltip"><![CDATA[summer]]></data>
+  <data name="en_togglebutton1secondtooltip"><![CDATA[]]></data>
+  <data name="en_togglebutton2firsttooltip"><![CDATA[paizz]]></data>
+  <data name="en_togglebutton2secondtooltip"><![CDATA[]]></data>
+  <data name="en_contextmenuopenwebsitelabel1"><![CDATA[حسن حمزه -09128317349]]></data>
+  <data name="en_contextmenuwebsiteurl1"><![CDATA[https://www.instagram.com/panoair/]]></data>
+  <data name="en_contextmenuopenwebsitelabel2"><![CDATA[info.panoair.ir]]></data>
+  <data name="en_contextmenuwebsiteurl2"><![CDATA[http://www.info.panoair.ir]]></data>
+  <data name="en_contextmenuopenFsLabel"><![CDATA[Enter Fullscreen]]></data>
+  <data name="en_contextmenucloseFsLabel"><![CDATA[Exit Fullscreen]]></data>
+  <data name="en_logowebsiteurl"><![CDATA[]]></data>
+  <data name="en_logotooltipText"><![CDATA[Open website]]></data>
+  <data name="en_prevnexttheme2prevSceneTip"><![CDATA[Previous Scene]]></data>
+  <data name="en_prevnexttheme2nextSceneTip"><![CDATA[Next Scene]]></data>
+  <data name="en_controlBar_classicsoundsOnTip"><![CDATA[Start sounds]]></data>
+  <data name="en_controlBar_classicsoundsOffTip"><![CDATA[Stop sounds]]></data>
+
+
+
+
+
+
+
+
+
+
+
+</krpano>

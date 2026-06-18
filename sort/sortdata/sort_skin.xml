@@ -1,0 +1,1662 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<krpano version="1.18">
+
+    
+  <!-- Spot Style - Default Point Spot Style 1 -->
+  <style name="IconDefaultPointSpotStyle1"
+         url="%FIRSTXML%/spots/hotspot_animated_user_defaultpoint0.png"
+         visible="false"
+         frame="0"
+         lastframe="19"
+         framewidth="64"
+         frameheight="64"
+         stopspotsequence="false"
+         onloaded="setdefaultanimatedspotframe();startspotanimation(0.1);"
+         onhover="onhoverIconDefaultPointSpotStyle1"
+         onover="onoverIconDefaultPointSpotStyle1"
+         onout="onoutIconDefaultPointSpotStyle1"
+         />
+  <action name="onhoverIconDefaultPointSpotStyle1">
+    showtooltip('hotspot');
+  </action>
+  <action name="onoverIconDefaultPointSpotStyle1">
+
+
+pauseautorotation(forcehotspot);
+
+  </action>
+  <action name="onoutIconDefaultPointSpotStyle1">
+    hideTooltip();
+
+
+resumeautorotation(forcehotspot);
+
+  </action>
+
+
+
+
+  <!-- unsupported kind of display : PointMap -->
+
+
+  <!-- ******************* -->
+  <!-- Classic Control Bar -->
+  <!-- ******************* -->
+
+  <krpano theme2barbuilt="false" theme2backgroundwidthwhenclosed="0" theme2backgroundwidthwhenopened="0" theme2IsOpened="false" />
+  <events name="theme2events" onxmlcomplete="theme2buildMenuBar();" keep="true"/>
+  <action name="theme2buildMenuBar">
+    ifnot (theme2barbuilt, theme2buildMenu(); set(theme2barbuilt, true););
+  </action>
+
+  <action name="theme2buildMenu">
+    
+    set(theme2button_pos, 20);
+
+    set(layer[theme2btn_hidecontrols].x, get(theme2button_pos));
+    set(layer[theme2btn_showcontrols].x, get(theme2button_pos));
+    inc(theme2button_pos, 36);
+    add(theme2backgroundwidthwhenclosed, get(theme2button_pos), 20);
+
+
+
+    if (device.desktop,
+      set(layer[theme2btn_display_help].x, get(theme2button_pos));
+      set(layer[theme2btn_close_help  ].x, get(theme2button_pos));
+      inc(theme2button_pos, 36);
+    );
+
+    if (device.fullscreensupport,
+      set(layer[theme2btn_openfs ].x, get(theme2button_pos));
+      set(layer[theme2btn_closefs].x, get(theme2button_pos));
+      inc(theme2button_pos, 36);
+    );
+
+
+    set(layer[theme2btn_display_floorplan].x, get(theme2button_pos));
+    set(layer[theme2btn_hide_floorplan   ].x, get(theme2button_pos));
+    inc(theme2button_pos, 36);
+
+
+    set(layer[theme2btn_autorotate_on ].x, get(theme2button_pos));
+    set(layer[theme2btn_autorotate_off].x, get(theme2button_pos));
+    inc(theme2button_pos, 36);
+
+
+    set(layer[theme2btn_sound_on ].x, get(theme2button_pos));
+    set(layer[theme2btn_sound_off].x, get(theme2button_pos));
+    inc(theme2button_pos, 36);
+
+
+    if (device.desktop,
+      set(layer[theme2btn_ctrlmode_drag_to].x, get(theme2button_pos));
+      set(layer[theme2btn_ctrlmode_move_to].x, get(theme2button_pos));
+      inc(theme2button_pos, 36);
+    );
+
+
+
+    if (device.desktop,
+        set(layer[theme2btn_right].x, get(theme2button_pos));
+        inc(theme2button_pos, 36);
+        set(layer[theme2btn_left].x, get(theme2button_pos));
+        inc(theme2button_pos, 36);
+    );
+    if (device.desktop,
+        set(layer[theme2btn_down].x, get(theme2button_pos));
+        inc(theme2button_pos, 36);
+        set(layer[theme2btn_up].x, get(theme2button_pos));
+        inc(theme2button_pos, 36);
+    );
+    if (device.desktop,
+        set(layer[theme2btn_out].x, get(theme2button_pos));
+        inc(theme2button_pos, 36);
+        set(layer[theme2btn_in].x, get(theme2button_pos));
+        inc(theme2button_pos, 36);
+    );
+    if (scene.count GT 1,
+        set(layer[theme2btn_next_pano].x, get(theme2button_pos));
+        inc(theme2button_pos, 36);
+        set(layer[theme2btn_prev_pano].x, get(theme2button_pos));
+        inc(theme2button_pos, 36);
+      );
+
+    inc(theme2button_pos, 20);
+
+    set(theme2backgroundwidthwhenopened, get(theme2button_pos));
+    
+    
+    add(theme2VerifyVisibility, 20, 20);
+    if(theme2backgroundwidthwhenopened == 20,
+      set(theme2backgroundwidthwhenopened, 0);
+    );
+
+	
+	
+  </action>
+
+	<events name="theme2StartTourEvents" onTourStart="theme2CallOnStartTour();" keep="true" />
+
+	<action name="theme2CallOnStartTour">
+		
+		set(layer[theme2menu_controlbar_bg_img].width, get(theme2button_pos));
+		set(layer[theme2menu_controlbar_bg].width, get(theme2button_pos));
+		theme2showMenuControls();
+	</action>
+
+  <style name="theme2_btn_style"
+         keep="true"
+         alpha="0.8"
+         edge="right" align="right"
+         width="36" height="36"
+         zorder="2"
+         onover="theme2ctrlbaronoveraction();"
+         onout="theme2ctrlbaronoutaction();"
+	onhover="showTooltip('plugin', theme2menuTooltipStyle, bottom);"
+         />
+  <action name="theme2ctrlbaronoveraction">
+    tween(alpha,1,0.1,easeoutquad);
+    tween(y,-2,0.1,easeoutquad);
+  </action>  
+  <action name="theme2ctrlbaronoutaction">
+    tween(alpha,0.8);
+    tween(y,0,0.1,easeoutquad);
+    hideTooltip();
+  </action>
+
+  <layer name="theme2menu_controlbar_bg_img"
+         keep="true"
+         align="bottom"
+         x="0" y="10"
+         url="%FIRSTXML%/graphics/classiccontrolbar/footer.png"
+         zorder="0"
+         width="40"
+         height="40"
+         scale9grid="10|10|80|80"
+         visible="false"
+         />
+  <layer name="theme2menu_controlbar_bg"
+         keep="true"
+         align="bottom"
+         x="0" y="10"
+         type="container"
+         zorder="1"
+         width="40"
+         height="40"
+         visible="false"
+         alpha="1.0"
+         >
+
+
+
+    <layer name="theme2btn_ctrlmode_move_to"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_move_to.png"
+            style="theme2_btn_style"
+            tooltip="controlBar_classicctrlmodeMoveTip"
+            onclick="setControlModeMoveTo();
+"
+            visible="false"
+            devices="desktop"
+            />
+    <layer name="theme2btn_ctrlmode_drag_to"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_drag_to.png"
+            style="theme2_btn_style"
+            tooltip="controlBar_classicctrlmodeDragTip"
+            onclick="setControlModeDragTo();
+"
+            visible="false"
+            devices="desktop"
+            />
+
+    <layer name="theme2btn_in"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_zoom_in.png"
+            ondown="set(fov_moveforce, -1);
+"
+            onup="set(fov_moveforce, 0);
+"
+            style="theme2_btn_style"
+            tooltip="controlBar_classiczoomInTip"
+            devices="desktop"
+            visible="false"
+            />
+    <layer name="theme2btn_out"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_zoom_out.png"
+            ondown="set(fov_moveforce, +1);
+"
+            onup="set(fov_moveforce, 0);
+"
+            style="theme2_btn_style"
+            tooltip="controlBar_classiczoomOutTip"
+            devices="desktop"
+            visible="false"
+            />
+
+    <layer name="theme2btn_left"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_move_left.png"
+            ondown="set(hlookat_moveforce, -1);
+"
+            onup="set(hlookat_moveforce, 0);
+"
+            style="theme2_btn_style"
+            tooltip="controlBar_classicmoveLeftTip"
+            devices="desktop"
+            visible="false"
+            />
+    <layer name="theme2btn_right"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_move_right.png"
+            ondown="set(hlookat_moveforce, +1);
+"
+            onup="set(hlookat_moveforce, 0);
+"
+            style="theme2_btn_style"
+            tooltip="controlBar_classicmoveRightTip"
+            devices="desktop"
+            visible="false"
+            />
+
+    <layer name="theme2btn_up"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_move_up.png"
+            ondown="set(vlookat_moveforce, -1);
+"
+            onup="set(vlookat_moveforce, 0);
+"
+            style="theme2_btn_style"
+            tooltip="controlBar_classicmoveUpTip"
+            devices="desktop"
+            visible="false"
+            />
+    <layer name="theme2btn_down"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_move_down.png"
+            ondown="set(vlookat_moveforce, +1);
+"
+            onup="set(vlookat_moveforce, 0);
+"
+            style="theme2_btn_style"
+            tooltip="controlBar_classicmoveDownTip"
+            devices="desktop"
+            visible="false"
+            />
+
+
+    <layer name="theme2btn_sound_on"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_start_sound.png"
+            onclick="playTourSounds();
+"
+            style="theme2_btn_style"
+            visible="false"
+            tooltip="controlBar_classicsoundsOnTip"
+            />
+    <layer name="theme2btn_sound_off"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_stop_sound.png"
+            onclick="stopTourSounds();
+"
+            style="theme2_btn_style"
+            visible="false"
+            tooltip="controlBar_classicsoundsOffTip"
+            />
+
+
+    <layer name="theme2btn_prev_pano"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_previous_scene.png"
+            onclick="loadPreviousScene();
+"
+            style="theme2_btn_style"
+            tooltip="controlBar_classicprevSceneTip"
+            visible="false"
+            />
+    <layer name="theme2btn_next_pano"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_next_scene.png"
+            onclick="loadNextScene();
+"
+            style="theme2_btn_style"
+            tooltip="controlBar_classicnextSceneTip"
+            visible="false"
+            />
+
+
+    <layer name="theme2btn_display_floorplan"
+           url="%FIRSTXML%/graphics/classiccontrolbar/btn_floorplan.png"
+           onclick="showFloorplan();
+"
+           style="theme2_btn_style"
+           visible="false"
+           tooltip="controlBar_classicdisplayFloorplanTip"
+           />
+    <layer name="theme2btn_hide_floorplan"
+           url="%FIRSTXML%/graphics/classiccontrolbar/btn_floorplan.png"
+           onclick="hideFloorplan();
+"
+           style="theme2_btn_style"
+           visible="false"
+           tooltip="controlBar_classichideFloorplanTip"
+           />
+
+
+    <layer name="theme2btn_openfs"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_enter_fs.png"
+            onclick="enterFullscreen();
+"
+            style="theme2_btn_style"
+            devices="fullscreensupport"
+            visible="false"
+            tooltip="controlBar_classicopenFsTip"
+            />
+    <layer name="theme2btn_closefs"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_close_fs.png"
+            onclick="exitFullscreen();
+"
+            style="theme2_btn_style"
+            visible="false"
+            devices="fullscreensupport"
+            tooltip="controlBar_classiccloseFsTip"
+            />
+
+    <layer name="theme2btn_autorotate_on"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_start_autorotation.png"
+            onclick="resumeautorotation();
+"
+            style="theme2_btn_style"
+            visible="false"
+            tooltip="controlBar_classicautorotateOnTip"
+            />
+    <layer name="theme2btn_autorotate_off"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_stop_autorotation.png"
+            onclick="pauseautorotation();
+"
+            style="theme2_btn_style"
+            visible="false"
+            tooltip="controlBar_classicautorotateOffTip"
+            />
+
+
+
+    <layer name="theme2btn_display_help"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_help.png"
+            onclick="theme2displayHelp();"
+            style="theme2_btn_style"
+            devices="desktop"
+            visible="false"
+            tooltip="controlBar_classicdisplayHelpTip"
+            />
+    <layer name="theme2btn_close_help"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_help.png"
+            onclick="theme2closeHelp();"
+            style="theme2_btn_style"
+            visible="false"
+            devices="desktop"
+            tooltip="controlBar_classichideHelpTip"
+            />
+
+
+
+    <layer name="theme2btn_hidecontrols"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_hide_controls.png"
+            style="theme2_btn_style"
+            onclick="theme2hideMenuControls();hideTourControls();
+"
+            visible="false"
+            tooltip="controlBar_classichideControlsTip"
+            />
+    <layer name="theme2btn_showcontrols"
+            url="%FIRSTXML%/graphics/classiccontrolbar/btn_show_controls.png"
+            style="theme2_btn_style"
+            onclick="theme2showMenuControls();showTourControls();
+"
+            tooltip="controlBar_classicdisplayControlsTip"
+            visible="false"
+            />
+  </layer>
+
+
+
+	<events name="theme2controlmodechangedevent" 
+		oncontrolmodechanged="theme2updateControlModeButtons();" 
+		keep="true" />
+	<action name="theme2HideControlModeButtons">
+		set(layer[theme2btn_ctrlmode_move_to].visible, false);
+		set(layer[theme2btn_ctrlmode_drag_to].visible, false);
+	</action>
+	<action name="theme2ShowControlModeButtons">
+		if (tour_controlmodemousetype == "moveto",
+			set(layer[theme2btn_ctrlmode_drag_to].visible, true);
+			set(layer[theme2btn_ctrlmode_move_to].visible, false);
+		,
+			set(layer[theme2btn_ctrlmode_move_to].visible, true);
+			set(layer[theme2btn_ctrlmode_drag_to].visible, false);
+		);
+	</action>
+	<action name="theme2updateControlModeButtons">
+	if (device.desktop,
+		set(theme2DisplayControlModeButtons, false);
+		if (theme2IsOpened, set(theme2DisplayControlModeButtons, true););
+		if (theme2DisplayControlModeButtons,
+			theme2ShowControlModeButtons();
+		,
+			theme2HideControlModeButtons();
+		);
+	,
+		theme2HideControlModeButtons();
+	);
+	</action>
+
+
+  <action name="theme2hideMenuControls">
+    set(theme2IsOpened, false);
+    set(layer[theme2btn_hidecontrols].visible, false);
+    set(layer[theme2btn_showcontrols].visible, true);
+    theme2updateFullscreenButtons();
+
+    theme2updateSoundButtons();
+
+    if (scene.count GT 1,
+    set(layer[theme2btn_prev_pano].visible, false);
+    set(layer[theme2btn_next_pano].visible, false);
+    );
+    theme2updateAutorotationButtons();
+
+
+    set(layer[theme2btn_up].visible  , false);
+    set(layer[theme2btn_down].visible, false);
+    set(layer[theme2btn_right].visible, false);
+    set(layer[theme2btn_left].visible , false);
+    set(layer[theme2btn_in].visible , false);
+    set(layer[theme2btn_out].visible, false);
+
+    theme2updateFloorplanButtons();
+
+    theme2updateControlModeButtons();
+
+
+    theme2updateHelpButtons();
+
+
+    if(theme2backgroundwidthwhenclosed == 0,
+      set(layer[theme2menu_controlbar_bg_img].visible, false);
+      set(layer[theme2menu_controlbar_bg].visible, false);
+    ,
+      set(layer[theme2menu_controlbar_bg_img].visible, true);
+      set(layer[theme2menu_controlbar_bg].visible, true);
+    );
+    tween(layer[theme2menu_controlbar_bg_img].width , get(theme2backgroundwidthwhenclosed));
+    tween(layer[theme2menu_controlbar_bg].width , get(theme2backgroundwidthwhenclosed));
+    tween(layer[theme2menu_controlbar_bg_img].alpha, 0.8);
+  </action>
+  <action name="theme2showMenuControls">
+    set(theme2IsOpened, true);
+    set(layer[theme2btn_hidecontrols].visible, true);
+    set(layer[theme2btn_showcontrols].visible, false);
+    if(theme2backgroundwidthwhenopened == 0,
+      set(layer[theme2menu_controlbar_bg_img].visible, false);
+      set(layer[theme2menu_controlbar_bg].visible, false);
+    ,
+      set(layer[theme2menu_controlbar_bg_img].visible, true);
+      set(layer[theme2menu_controlbar_bg].visible, true);
+    );
+    tween(layer[theme2menu_controlbar_bg_img].alpha, 0.8);
+    tween(layer[theme2menu_controlbar_bg_img].width, get(theme2backgroundwidthwhenopened), 0.5, easeOutQuad, theme2showMenuButtons(););
+    tween(layer[theme2menu_controlbar_bg].width, get(theme2backgroundwidthwhenopened), 0.5, easeOutQuad, theme2showMenuButtons(););
+  </action>
+  <action name="theme2showMenuButtons">
+    if (device.desktop,
+    set(layer[theme2btn_up].visible  , true);
+    set(layer[theme2btn_down].visible, true);
+    );
+    if (device.desktop,
+    set(layer[theme2btn_right].visible, true);
+    set(layer[theme2btn_left].visible , true);
+    );
+    if (device.desktop,
+    set(layer[theme2btn_in].visible , true);
+    set(layer[theme2btn_out].visible, true);
+    );
+
+    theme2updateFloorplanButtons();
+
+    theme2updateControlModeButtons();
+
+
+    theme2updateHelpButtons();
+
+
+    theme2updateFullscreenButtons();
+
+    theme2updateSoundButtons();
+
+    if (scene.count GT 1,
+      set(layer[theme2btn_prev_pano].visible, true);
+      set(layer[theme2btn_next_pano].visible, true);
+    );
+    theme2updateAutorotationButtons();
+
+
+  </action>
+
+  <layer name="theme2helpScreen" align="center" keep="true" onclick="theme2closeHelp();" url="%FIRSTXML%/graphics/classiccontrolbar/help_screen_bg.png" visible="false" zorder="97" height="10%" width="prop" alpha="0.8" />
+
+  <layer name="theme2helpScreenFg" align="center" keep="true" onclick="theme2closeHelp();" displayed="false" 
+         url="%FIRSTXML%/graphics/classiccontrolbar/help_screen_fg.png" 
+         alpha="0.8" 
+         height="50%" 
+         width="prop" 
+         zorder="98"
+         visible="false" />
+  <action name="theme2displayHelp">
+    set(layer[theme2helpScreenFg].displayed,true);
+    set(layer[theme2helpScreen].visible,true);
+    tween(layer[theme2helpScreen].height, 50%, 1, easeOutQuad,
+      set(layer[theme2helpScreenFg].visible,true);
+    );
+    theme2updateHelpButtons();
+  </action>
+  <action name="theme2closeHelp">
+    set(layer[theme2helpScreenFg].displayed,false);
+    set(layer[theme2helpScreenFg].visible,false);
+    tween(layer[theme2helpScreen].height, 10%, 1, easeOutQuad,
+      set(layer[theme2helpScreen].visible,false);
+    );
+    theme2updateHelpButtons();
+  </action>
+	<action name="theme2HideHelpButtons">
+		set(layer[theme2btn_display_help].visible, false);
+		set(layer[theme2btn_close_help].visible, false);
+	</action>
+	<action name="theme2ShowHelpButtons">
+		if (layer[theme2helpScreenFg].displayed,
+			set(layer[theme2btn_close_help].visible, true);
+			set(layer[theme2btn_display_help].visible, false);
+		,
+			set(layer[theme2btn_display_help].visible, true);
+			set(layer[theme2btn_close_help].visible, false);
+		);
+	</action>
+	<action name="theme2updateHelpButtons">
+	if (device.desktop,
+		set(theme2DisplayHelpButtons, false);
+		if (theme2IsOpened, set(theme2DisplayHelpButtons, true););
+		if (theme2DisplayHelpButtons,
+			theme2ShowHelpButtons();
+		,
+			theme2HideHelpButtons();
+		);
+	,
+		theme2HideHelpButtons();
+	);
+	</action>
+
+
+	<events name="theme2DisplayFloorPlanEvents" 
+		onshowtourfloorplan="theme2updateFloorplanButtons();" 
+		onhidetourfloorplan="theme2updateFloorplanButtons();" 
+		keep="true" />
+	<action name="theme2HideFloorplanButtons">
+		set(layer[theme2btn_display_floorplan].visible, false);
+		set(layer[theme2btn_hide_floorplan].visible, false);
+	</action>
+	<action name="theme2ShowFloorplanButtons">
+		if (tour_displayfloorplan,
+			set(layer[theme2btn_hide_floorplan].visible, true);
+			set(layer[theme2btn_display_floorplan].visible, false);
+		,
+			set(layer[theme2btn_display_floorplan].visible, true);
+			set(layer[theme2btn_hide_floorplan].visible, false);
+		);
+	</action>
+	<action name="theme2updateFloorplanButtons">
+		set(theme2DisplayFloorplanButtons, false);
+		if (theme2IsOpened, set(theme2DisplayFloorplanButtons, true););
+		if (theme2DisplayFloorplanButtons,
+			theme2ShowFloorplanButtons();
+		,
+			theme2HideFloorplanButtons();
+		);
+	</action>
+
+
+	<events name="theme2menufullscreenchangeevent"
+		onenterfullscreen="theme2updateFullscreenButtons();"
+		onexitfullscreen="theme2updateFullscreenButtons();"
+		keep="true"/>
+	<action name="theme2HideFullscreenButtons">
+		set(layer[theme2btn_openfs].visible , false);
+		set(layer[theme2btn_closefs].visible, false);
+	</action>
+	<action name="theme2ShowFullscreenButtons">
+		if (device.fullscreensupport,
+			if(tour_fullscreen,
+				set(layer[theme2btn_openfs].visible , false);
+				set(layer[theme2btn_closefs].visible, true);
+			,
+				set(layer[theme2btn_openfs].visible ,true);
+				set(layer[theme2btn_closefs].visible,false);
+			);
+		,
+			theme2HideFullscreenButtons();
+		);
+	</action>
+	<action name="theme2updateFullscreenButtons">
+		set(theme2DisplayFullscreenButtons, false);
+		if (theme2IsOpened, set(theme2DisplayFullscreenButtons, true););
+		if (theme2DisplayFullscreenButtons,
+			theme2ShowFullscreenButtons();
+		,
+			theme2HideFullscreenButtons();
+		);
+	</action>
+
+	<events name="theme2AutorotationEvents"
+		onstartautorotation="theme2updateAutorotationButtons();"
+		onresumeautorotation="theme2updateAutorotationButtons();"
+		onstopautorotation="theme2updateAutorotationButtons();"
+		onpauseautorotation="theme2updateAutorotationButtons();"
+		keep="true"/>
+	<action name="theme2HideAutorotationButtons">
+		set(layer[theme2btn_autorotate_off].visible, false);
+		set(layer[theme2btn_autorotate_on].visible , false);
+	</action>
+	<action name="theme2ShowAutorotationButtons">
+		if(autorotate.enabled == false,
+			set(layer[theme2btn_autorotate_off].visible, false);
+			set(layer[theme2btn_autorotate_on].visible , true);
+		,
+			set(layer[theme2btn_autorotate_off].visible, true);
+			set(layer[theme2btn_autorotate_on].visible , false);
+		);
+	</action>
+	<action name="theme2updateAutorotationButtons">
+		set(theme2DisplayAutorotationButtons, false);
+		if (theme2IsOpened, set(theme2DisplayAutorotationButtons, true););
+		if (theme2DisplayAutorotationButtons,
+			theme2ShowAutorotationButtons();
+		,
+			theme2HideAutorotationButtons();
+		);
+	</action>
+
+
+	<events name="theme2playstopsoundsevent" 
+		playtoursoundsevent="theme2updateSoundButtons();" 
+		stoptoursoundsevent="theme2updateSoundButtons();" 
+		keep="true" />
+	<action name="theme2HideSoundButtons">
+		set(layer[theme2btn_sound_off].visible, false);
+		set(layer[theme2btn_sound_on].visible , false);
+	</action>
+	<action name="theme2ShowSoundButtons">
+		if (tour_soundson == false,
+			set(layer[theme2btn_sound_off].visible, false);
+			set(layer[theme2btn_sound_on].visible , true);
+		,
+			set(layer[theme2btn_sound_off].visible, true);
+			set(layer[theme2btn_sound_on].visible , false);
+		);
+	</action>
+	<action name="theme2updateSoundButtons">
+		set(theme2DisplaySoundButtons, false);
+		if (theme2IsOpened, set(theme2DisplaySoundButtons, true););
+		if (theme2DisplaySoundButtons,
+			theme2ShowSoundButtons();
+		,
+			theme2HideSoundButtons();
+		);
+	</action>
+
+
+
+<layer name="theme2menuTooltipStyle"
+	keep="true"
+	enabled="false"
+	capture="false"
+	url="%FIRSTXML%/graphics/textfield.swf"
+	align="center"
+	background="false"
+	border="false"
+	textshadow="1" textshadowrange="4.0" textshadowangle="45" textshadowcolor="0x000000" textshadowalpha="1"
+	css="color:#e6e6e6;font-family:Helvetica;font-weight:bold;font-size:14px;text-align:left;"
+	height="20"
+	autoheight="true"
+	autowidth="auto"
+	selectable="false"
+	zorder="0"
+	visible="false"
+	html=""
+	padding="2"
+	xoffset="0"
+	yoffset="0"
+	edge="bottom"
+	/>
+
+
+  <!-- ************* -->
+  <!-- Panorama Menu -->
+  <!-- ************* -->
+
+<ptplugin name="panoramaMenu" engine="kolorMenu">
+	<settings>
+		<option name="position" value="topleft" type="string" />
+		<option name="orientation" value="horizontal" type="string" />
+		<option name="sub_orientation" value="vertical" type="string" />
+		<option name="margin_x" value="5" type="int" />
+		<option name="margin_y" value="5" type="int" />
+		<option name="background_color" value="b3b3b3" type="string" />
+		<option name="background_alpha" value="1" type="float" />
+		<option name="item_spacer" value="5" type="int" />
+		<option name="border_radius" value="7" type="int" />
+		<option name="full_size" value="false" type="bool" />
+		<option name="use_out_effect" value="true" type="bool" />
+		<option name="item_out_border_radius" value="7" type="int" />
+		<option name="item_hover_border_radius" value="7" type="int" />
+		<option name="item_out_border_width" value="0" type="int" />
+		<option name="item_hover_border_width" value="0" type="int" />
+		<option name="item_out_bg_color" value="b3b3b3" type="string" />
+		<option name="item_out_bg_alpha" value="1" type="float" />
+		<option name="item_out_font_color" value="ffffff" type="string" />
+		<option name="item_out_font_family" value="Arial" type="string" />
+		<option name="item_out_font_size" value="14" type="int" />
+		<option name="item_out_font_weight" value="normal" type="string" />
+		<option name="item_out_font_style" value="normal" type="string" />
+		<option name="item_out_font_decoration" value="normal" type="string" />
+		<option name="use_hover_effect" value="true" type="bool" />
+		<option name="item_hover_bg_color" value="d7d7d7" type="string" />
+		<option name="item_hover_bg_alpha" value="1" type="float" />
+		<option name="item_hover_font_color" value="ffffff" type="string" />
+		<option name="item_hover_font_family" value="Arial" type="string" />
+		<option name="item_hover_font_size" value="14" type="int" />
+		<option name="item_hover_font_weight" value="normal" type="string" />
+		<option name="item_hover_font_style" value="normal" type="string" />
+		<option name="item_hover_font_decoration" value="normal" type="string" />
+		<option name="text_align" value="right" type="string" />
+		<option name="item_thumb_max_width" value="200" type="int" />
+		<option name="item_thumb_max_height" value="100" type="int" />
+		<option name="zorder" value="3" type="int" />
+	</settings>
+	<internaldata>
+				<group name="group_1"
+						titleID="panogroup55_title"
+						thumbnail=""
+						subMenu="false"
+						cssClass="panogroup55"> 
+
+				
+				
+						<item name="group_1_item_1"
+							action="invokeKrFunction('mainloadscene', 'pano42')"
+								titleID="pano42_title"
+								thumbnail=""
+							cssClass="pano42">
+						
+						
+						</item>
+					
+						<option name="background_color" value="808080" type="string" />
+						<option name="background_alpha" value="1" type="float" />
+				
+				</group>
+				<group name="group_2"
+						titleID="panogroup49_title"
+						thumbnail=""
+						subMenu="false"
+						cssClass="panogroup49"> 
+
+				
+				
+						<item name="group_2_item_1"
+							action="invokeKrFunction('mainloadscene', 'pano36')"
+								titleID="pano36_title"
+								thumbnail=""
+							cssClass="pano36">
+						
+						
+						</item>
+					
+						<option name="background_color" value="808080" type="string" />
+						<option name="background_alpha" value="1" type="float" />
+				
+				</group>
+				<group name="group_3"
+						titleID="panogroup50_title"
+						thumbnail=""
+						subMenu="false"
+						cssClass="panogroup50"> 
+
+				
+				
+						<item name="group_3_item_1"
+							action="invokeKrFunction('mainloadscene', 'pano37')"
+								titleID="pano37_title"
+								thumbnail=""
+							cssClass="pano37">
+						
+						
+						</item>
+					
+						<option name="background_color" value="808080" type="string" />
+						<option name="background_alpha" value="1" type="float" />
+				
+				</group>
+				<group name="group_4"
+						titleID="panogroup51_title"
+						thumbnail=""
+						subMenu="false"
+						cssClass="panogroup51"> 
+
+				
+				
+						<item name="group_4_item_1"
+							action="invokeKrFunction('mainloadscene', 'pano38')"
+								titleID="pano38_title"
+								thumbnail=""
+							cssClass="pano38">
+						
+						
+						</item>
+					
+						<option name="background_color" value="808080" type="string" />
+						<option name="background_alpha" value="1" type="float" />
+				
+				</group>
+				<group name="group_5"
+						titleID="panogroup52_title"
+						thumbnail=""
+						subMenu="false"
+						cssClass="panogroup52"> 
+
+				
+				
+						<item name="group_5_item_1"
+							action="invokeKrFunction('mainloadscene', 'pano39')"
+								titleID="pano39_title"
+								thumbnail=""
+							cssClass="pano39">
+						
+						
+						</item>
+					
+						<option name="background_color" value="808080" type="string" />
+						<option name="background_alpha" value="1" type="float" />
+				
+				</group>
+				<group name="group_6"
+						titleID="panogroup57_title"
+						thumbnail=""
+						subMenu="false"
+						cssClass="panogroup57"> 
+
+				
+				
+						<item name="group_6_item_1"
+							action="invokeKrFunction('mainloadscene', 'pano44')"
+								titleID="pano44_title"
+								thumbnail=""
+							cssClass="pano44">
+						
+						
+						</item>
+					
+						<option name="background_color" value="808080" type="string" />
+						<option name="background_alpha" value="1" type="float" />
+				
+				</group>
+				<group name="group_7"
+						titleID="panogroup58_title"
+						thumbnail=""
+						subMenu="false"
+						cssClass="panogroup58"> 
+
+				
+				
+						<item name="group_7_item_1"
+							action="invokeKrFunction('mainloadscene', 'pano45')"
+								titleID="pano45_title"
+								thumbnail=""
+							cssClass="pano45">
+						
+						
+						</item>
+					
+						<option name="background_color" value="808080" type="string" />
+						<option name="background_alpha" value="1" type="float" />
+				
+				</group>
+	</internaldata>
+</ptplugin>
+
+<action name="kolorMenuJsReady-panoramaMenu">
+	set(ptplugin[panoramaMenu].jsready, true);
+</action>
+
+<action name="showKolorMenu-panoramaMenu">
+	
+	ifnot(ptplugin[panoramaMenu].isOpen,
+		set(ptplugin[panoramaMenu].isOpen, true);
+		js(openKolorMenu(panoramaMenu));
+	,
+		if(ptplugin[panoramaMenu].jsready,
+			js(invokePluginFunction(panoramaMenu, showKolorMenu));
+		);
+	);
+</action>
+
+<action name="hideKolorMenu-panoramaMenu">
+	if(ptplugin[panoramaMenu].jsready,
+		js(invokePluginFunction(panoramaMenu, hideKolorMenu));
+	);
+</action>
+
+
+<events name="kolorMenuEvents-panoramaMenu" 
+	keep="true"
+	
+	
+	onTourStart="showKolorMenu-panoramaMenu();"
+/>
+
+  <!-- **************************** -->
+  <!-- Thumbnails Stack : panoramas -->
+  <!-- **************************** -->
+
+  <krpano stackThumbsallpanoramasIsOpen="false" stackThumbsallpanoramasFirstLoad="true" />
+
+  <events name="stackThumbsallpanoramasEvents"
+          onnewpano="stackThumbsallpanoramasClose(0);"
+          onTourStart="stackThumbsallpanoramasBuild();"
+          hidetourcontrols="stackThumbsallpanoramasHide();"
+          showtourcontrols="stackThumbsallpanoramasShow();"
+          hidetourthumbnails="stackThumbsallpanoramasHide();"
+          showtourthumbnails="stackThumbsallpanoramasShow();"
+          keep="true"/>
+
+  <layer name="stackThumbsallpanoramasMainLayer" type="container" zorder="4" width="1" height="1" alpha="1" keep="true" x="0" y="0" visible="true" align="topleft" />
+
+  <action name="stackThumbsallpanoramasHide">
+    set(hstcstackThumbsallpanoramasi-wait,30);
+    for (set(hstcstackThumbsallpanoramasi, 0), hstcstackThumbsallpanoramasi LT scene.count, inc(hstcstackThumbsallpanoramasi),
+      if(hstcstackThumbsallpanoramasi-wait == hstcstackThumbsallpanoramasi,
+        add(hstcstackThumbsallpanoramasi-wait, 30);
+        wait(0);
+      );
+      txtadd(thumbname,'stackThumbsallpanoramas_', get(hstcstackThumbsallpanoramasi));
+      txtadd(thumbnameimg, get(thumbname), '_img');
+      set(layer[get(thumbname)].visible, false);
+      set(layer[get(thumbnameimg)].visible, false);
+    );
+  </action>
+  <action name="stackThumbsallpanoramasShow">
+  if (tour_displaythumbnails, 
+    set(sstcstackThumbsallpanoramasi-wait,30);
+    for (set(sstcstackThumbsallpanoramasi, 0), sstcstackThumbsallpanoramasi LT scene.count, inc(sstcstackThumbsallpanoramasi),
+      if(sstcstackThumbsallpanoramasi-wait == sstcstackThumbsallpanoramasi,
+        add(sstcstackThumbsallpanoramasi-wait, 30);
+        wait(0);
+      );
+      txtadd(thumbname,'stackThumbsallpanoramas_', get(sstcstackThumbsallpanoramasi));
+      txtadd(thumbnameimg, get(thumbname), '_img');
+      set(layer[get(thumbname)].visible, true);
+      set(layer[get(thumbnameimg)].visible, true);
+    );
+  );
+  </action>
+
+  <action name="stackThumbsallpanoramasMagnify">
+    tween(layer[%1].alpha,  1.0, 0.3, easeInQuad);
+    tween(layer[%1].scale, 1.05, 0.3, easeInQuad);
+    tween(layer[get(layer[%1].thumbborder)].alpha,  1.0, 0.3, easeInQuad);
+    tween(layer[get(layer[%1].thumbborder)].scale, 1.05, 0.3, easeInQuad);
+    set(layer[get(layer[%1].thumbborder)].bgborder, '2 0xffffff 1');
+  </action>
+
+  <action name="stackThumbsallpanoramasLies">
+    tween(layer[%1].alpha, 0.8, 0.3, easeInQuad);
+    tween(layer[%1].scale, 1.0, 0.3, easeInQuad);
+    tween(layer[get(layer[%1].thumbborder)].alpha, 0.8, 0.3, easeInQuad);
+    tween(layer[get(layer[%1].thumbborder)].scale, 1.0, 0.3, easeInQuad);
+    set(layer[get(layer[%1].thumbborder)].bgborder, '2 0xffffff 0.2');
+  </action>
+
+
+<krpano stackThumbsallpanoramasBuilt="false"/>
+
+  <action name="stackThumbsallpanoramasBuild">
+    ifnot (stackThumbsallpanoramasBuilt,
+    set(bststackThumbsallpanoramasi-wait,30);
+    for (set(bststackThumbsallpanoramasi, 0), bststackThumbsallpanoramasi LT scene.count, inc(bststackThumbsallpanoramasi),
+      if(bststackThumbsallpanoramasi-wait == bststackThumbsallpanoramasi,
+        add(bststackThumbsallpanoramasi-wait, 30);
+        wait(0);
+      );
+
+        copy(thumburl, scene[get(bststackThumbsallpanoramasi)].thumburl);
+        txtadd(thumbname,'stackThumbsallpanoramas_', get(bststackThumbsallpanoramasi));
+        txtadd(thumbnameimg, get(thumbname), '_img');
+
+        addplugin(get(thumbname));
+        addplugin(get(thumbnameimg));
+        set(layer[get(thumbnameimg)].parent, "stackThumbsallpanoramasMainLayer");
+        set(layer[get(thumbname)].parent, get(thumbnameimg));
+        set(layer[get(thumbnameimg)].url   , get(thumburl));
+        set(layer[get(thumbname)].type, 'container');
+        set(layer[get(thumbnameimg)].keep  , true);
+        set(layer[get(thumbname)].keep  , true);
+        set(layer[get(thumbnameimg)].align , topleft);
+        set(layer[get(thumbname)].align , topleft);
+        set(layer[get(thumbnameimg)].edge  , center);
+
+        set(layer[get(thumbnameimg)].width , 50);
+        set(layer[get(thumbnameimg)].height, 25);
+        set(layer[get(thumbname)].width , 50);
+        set(layer[get(thumbname)].height, 25);
+
+        set(layer[get(thumbnameimg)].alpha , 0.8);
+        set(layer[get(thumbnameimg)].visible , false);
+        set(layer[get(thumbname)].alpha , 0.8);
+        set(layer[get(thumbname)].visible , false);
+
+        if (bststackThumbsallpanoramasi GE 4, set(reali, 4), set(reali, get(bststackThumbsallpanoramasi)));
+
+        mul(layer[get(thumbnameimg)].x, get(reali),3);
+        mul(layer[get(thumbnameimg)].y, get(reali),3);
+
+        add(closedthumboffsetx, 10, 25);
+        add(layer[get(thumbnameimg)].x, get(closedthumboffsetx));
+
+        add(closedthumboffsety, 10, 12);
+        add(layer[get(thumbnameimg)].y, get(closedthumboffsety));
+
+        copy(layer[get(thumbnameimg)].xsmall, layer[get(thumbnameimg)].x);
+        copy(layer[get(thumbnameimg)].ysmall, layer[get(thumbnameimg)].y);
+
+        add(layer[get(thumbnameimg)].zorder, 0, bststackThumbsallpanoramasi);
+        add(layer[get(thumbname)].zorder, 0, bststackThumbsallpanoramasi);
+        set(layer[get(thumbname)].bgborder, '2 0xffffff 0.2');
+
+          set(layer[get(thumbnameimg)].tooltip,get(scene[get(bststackThumbsallpanoramasi)].titleid));
+        set(layer[get(thumbnameimg)].thumbborder, get(thumbname));
+        set(layer[get(thumbnameimg)].thumbpos, get(bststackThumbsallpanoramasi));
+        set(layer[get(thumbnameimg)].linkedpano, get(scene[get(bststackThumbsallpanoramasi)].name) );
+        set(layer[get(thumbnameimg)].onclick, stackThumbsallpanoramasOpen() );
+      );
+
+      set(stackThumbsallpanoramasBuilt, true);
+
+      stackThumbsallpanoramasShow();
+
+      
+    );
+  </action>
+
+  <action name="stackThumbsallpanoramasOpenThumb">
+    if(%3 != NEXT,
+      set(pos,0);
+      copy(curpos, layer[%1].thumbpos);
+      set(xdst, 0);
+      set(ydst, 0);
+    );
+    if (pos LT curpos,
+      inc(pos);
+
+        inc(ydst, 60);
+        if (ishtml5,
+          sub(ymax, stageheight, 50);
+         ,
+          sub(ymax, area.pixelheight, 50);
+        );
+        dec(ymax, 30);
+        if(ydst GT ymax,
+          inc(xdst, 110);
+          set(ydst,0);
+        );
+
+      stackThumbsallpanoramasOpenThumb(%1,%2,NEXT);
+     ,
+      set(openthumboffsetx, 50);
+      add(openthumboffsetx, 10);
+      add(xdst, get(openthumboffsetx));
+
+      set(openthumboffsety, 25);
+      add(openthumboffsety, 10);
+      add(ydst, get(openthumboffsety));
+
+      tween(layer[%1].x, get(xdst) );
+      tween(layer[%1].y, get(ydst) );
+      tween(layer[%1].width , 100);
+      tween(layer[%1].height, 50);
+      tween(layer[%2].width , 100);
+      tween(layer[%2].height, 50);
+    );
+  </action>
+
+  <action name="stackThumbsallpanoramasOpen">
+    set(oststackThumbsallpanoramasi-wait,30);
+    for (set(oststackThumbsallpanoramasi, 0), oststackThumbsallpanoramasi LT scene.count, inc(oststackThumbsallpanoramasi),
+    if(oststackThumbsallpanoramasi-wait == oststackThumbsallpanoramasi,
+      add(oststackThumbsallpanoramasi-wait, 30);
+      wait(0);
+    );
+      txtadd(thumbname,'stackThumbsallpanoramas_',get(oststackThumbsallpanoramasi));
+      txtadd(thumbnameimg, get(thumbname), '_img');
+      stackThumbsallpanoramasOpenThumb(get(thumbnameimg), get(thumbname));
+      set(layer[get(thumbnameimg)].onover, stackThumbsallpanoramasMagnify(get(name)); );
+      set(layer[get(thumbnameimg)].onout, stackThumbsallpanoramasLies(get(name)); hideTooltip(); );
+      set(layer[get(thumbnameimg)].onhover, showTooltip('plugin'); );
+      set(layer[get(thumbnameimg)].onclick, stackThumbsallpanoramasLies(get(name)); stackThumbsallpanoramasClose(0); mainloadscene(get(linkedpano)); );
+    );
+    
+    set(stackThumbsallpanoramasIsOpen, true);
+  </action>
+
+  <action name="stackThumbsallpanoramasClose">
+    if (stackThumbsallpanoramasIsOpen,
+    set(cststackThumbsallpanoramasi-wait,30);
+    for (set(cststackThumbsallpanoramasi, 0), cststackThumbsallpanoramasi LT scene.count, inc(cststackThumbsallpanoramasi),
+      if(cststackThumbsallpanoramasi-wait == cststackThumbsallpanoramasi,
+        add(cststackThumbsallpanoramasi-wait, 30);
+        wait(0);
+      );
+      txtadd(thumbname,'stackThumbsallpanoramas_', get(cststackThumbsallpanoramasi));
+      txtadd(thumbnameimg, get(thumbname), '_img');
+      stackThumbsallpanoramasCloseThumb(get(thumbnameimg), get(thumbname));
+    );
+    
+    set(stackThumbsallpanoramasIsOpen, false);
+    );
+  </action>
+  <action name="stackThumbsallpanoramasCloseThumb">
+    tween(layer[%1].x, get(layer[%1].xsmall));
+    tween(layer[%1].y, get(layer[%1].ysmall));
+    tween(layer[%1].width, 50);
+    tween(layer[%1].height, 25);
+    tween(layer[%2].width, 50);
+    tween(layer[%2].height, 25);
+    set(layer[%1].alpha, 0.8);
+    set(layer[%1].onover, '');
+    set(layer[%1].onout, '');
+    set(layer[%1].onhover, '');hideTooltip();
+    set(layer[%1].onclick, stackThumbsallpanoramasOpen() );
+  </action>
+
+
+
+<!-- ************ -->
+<!-- Context Menu -->
+<!-- ************ -->
+  <contextmenu fullscreen="false" versioninfo="false" touch="true">
+    <item name="website1" onclick="getmessage(urltoopen,contextmenuwebsiteurl1);openurl(get(urltoopen),_blank);" />
+    <item name="website2" onclick="getmessage(urltoopen,contextmenuwebsiteurl2);openurl(get(urltoopen),_blank);" />
+    <item name="fullscreenentry" onclick="enterFullscreen();
+" separator="true"/>
+  </contextmenu>
+
+  <events name="contextmenuevents" keep="true" onenterfullscreen="updateContextMenu" onexitfullscreen="updateContextMenu" onxmlcomplete="updateContextMenu"/>
+  <action name="updateContextMenu">
+    getmessage(contextmenu.item[website1].caption, contextmenuopenwebsitelabel1);
+    getmessage(contextmenu.item[website2].caption, contextmenuopenwebsitelabel2);
+    if (device.fullscreensupport,
+      if(tour_fullscreen,
+        getmessage(contextmenu.item[fullscreenentry].caption, contextmenucloseFsLabel);
+        set(contextmenu.item[fullscreenentry].onclick, exitFullscreen();
+);
+       ,
+        getmessage(contextmenu.item[fullscreenentry].caption, contextmenuopenFsLabel);
+        set(contextmenu.item[fullscreenentry].onclick, enterFullscreen();
+);
+      );
+     ,
+      set(contextmenu.item[fullscreenentry].visible, false);
+    );
+  </action>
+
+
+  <!-- FLOORPLAN -->
+  <action name="hideFloorplan">set(tour_displayfloorplan, false);events.dispatch(onhidetourfloorplan);</action>
+  <action name="showFloorplan">set(tour_displayfloorplan, true); events.dispatch(onshowtourfloorplan);</action>
+
+
+  <!-- Hide / Show Controls -->
+  <action name="hideTourControls">set(tour_displaycontrols, false);events.dispatch(hidetourcontrols);</action>
+  <action name="showTourControls">set(tour_displaycontrols, true); events.dispatch(showtourcontrols);</action>
+
+
+  <!-- Sounds Management -->
+  <plugin name="soundinterface"
+          preload="true"
+          url="%SWFPATH%/graphics/soundinterface.swf"
+          alturl="%FIRSTXML%/graphics/soundinterface.js"
+          rootpath="%$videos_sounds_path%/sounds"
+          backgroundsound=""
+          backgroundsoundloops="0"
+          bgsound="false"
+          bgsoundpaused="false"
+          volumeinitialized="false"
+          started="true"
+          keep="true"/>
+  <events name="soundmanagementevents"
+          onnewpano="if(plugin[soundinterface].started,playbackgroundsound(););"
+          onxmlcomplete="soundinterfaceonxmlcomplete();"
+          keep="true"/>
+  <action name="soundinterfaceonxmlcomplete">
+    ifnot(plugin[soundinterface].volumeinitialized,
+      div(plugin[soundinterface].volume, tour_soundsvolume, 100);
+      set(plugin[soundinterface].volumeinitialized,true);
+    );
+  </action>
+  <action name="playsound3Dwhenpossible">
+    set(really_play_sound, true);
+    if (tour_current_played_sound,
+      if (%1 == tour_current_played_sound,
+        delete(tour_current_played_sound);
+        set(tour_current_played_sound_state, 0);
+        delete(tour_current_played_sound_paused);
+        stopsound(%1);
+        set(really_play_sound, false);
+        if(%4,
+          delete(tour_current_played_sound_pausesound);
+          resumeTourSoundsActions(true,true,true,true,true);
+        );
+      );
+    );
+    if (really_play_sound,
+      if (tour_current_played_sound,
+        stopsound(get(tour_current_played_sound));
+
+        ifnot(%4,
+          if(tour_current_played_sound_pausesound,
+            delete(tour_current_played_sound_pausesound);
+            resumeTourSoundsActions(true,true,true,true,true);
+          );
+        );
+      );
+      if(%4,
+        set(tour_current_played_sound_pausesound, true);
+        pauseTourSoundsActions(true,false,true,true,true);
+      );
+      set(tour_current_played_sound, %1);
+      if(tour_current_played_video,
+        set(tour_current_played_sound_state, 2);
+      ,
+        set(tour_current_played_sound_state, 1);
+      );
+      set(tour_current_played_sound_paused, false);
+      if (%3,
+        if (device.flash,
+          div(volume, tour_soundsvolume, 100);
+          if(%9 != null,
+            playsound3D(%1,%2,%5,%6,%7,get(volume),%8,stopsound3Dwhenpossible(%1,%4));
+          ,
+            playsound3D(%1,%2,%5,%6,%7,get(volume),%8);
+          );
+        ,
+          if(%9 != null,
+            playsound(%1,%2,%8,stopsound3Dwhenpossible(%1,%4));
+          ,
+            playsound(%1,%2,%8);
+          );
+        );
+      ,
+        if(%6 != null,
+          playsound(%1,%2,%5,stopsound3Dwhenpossible(%1,%4));
+        ,
+          playsound(%1,%2,%5);
+        );
+      );
+
+      ifnot(tour_soundson,
+        set(tour_current_played_sound_paused, true);
+        pausesound(%1);
+      );
+    );
+  </action>
+  <action name="stopsound3Dwhenpossible">
+    if (%1 == tour_current_played_sound,
+      delete(tour_current_played_sound);
+      set(tour_current_played_sound_state, 0);
+      delete(tour_current_played_sound_paused);
+      stopsound(%1);
+      if(%2,
+        delete(tour_current_played_sound_pausesound);
+        resumeTourSoundsActions(true,true,true,true,true);
+      );
+    );
+  </action>
+  <action name="playbackgroundsound">
+  if(playsound,
+    if (xml.scene,
+      if (scene[get(xml.scene)].backgroundsound,
+        if (plugin[soundinterface].backgroundsound != scene[get(xml.scene)].backgroundsound,
+          copy(plugin[soundinterface].backgroundsound, scene[get(xml.scene)].backgroundsound);
+          copy(plugin[soundinterface].backgroundsoundloops, scene[get(xml.scene)].backgroundsoundloops);
+          if (tour_soundson,
+            if(plugin[soundinterface].backgroundsoundloops GT 0,
+              playsound(bgsoundname, get(plugin[soundinterface].backgroundsound), get(plugin[soundinterface].backgroundsoundloops), stopbackgroundsoundoncomplete());
+            ,
+              playsound(bgsoundname, get(plugin[soundinterface].backgroundsound), get(plugin[soundinterface].backgroundsoundloops));
+            );
+            set(plugin[soundinterface].bgsound, true);
+            set(plugin[soundinterface].bgsoundpaused, false);
+           ,
+            set(plugin[soundinterface].bgsound, false);
+          );
+        ,
+          if (tour_soundson,
+            if(plugin[soundinterface].bgsoundpaused == true,
+              resumesound(bgsoundname);
+              set(plugin[soundinterface].bgsoundpaused, false);
+            );
+          ,
+            set(plugin[soundinterface].bgsound, false);
+          );
+        );
+      );
+    );
+  ,
+    delayedcall(0.2, playbackgroundsound());
+  );
+  </action>
+  <action name="stopbackgroundsoundoncomplete">
+    if (plugin[soundinterface].backgroundsound,
+    if (plugin[soundinterface].backgroundsoundloops GT 0,
+      set(plugin[soundinterface].backgroundsound, "");
+      set(plugin[soundinterface].backgroundsoundloops, 0);
+      set(plugin[soundinterface].bgsound, false);
+      set(plugin[soundinterface].bgsoundpaused, false);
+    );
+    );
+  </action>
+  <action name="resetbackgroundsoundifneeded">
+    if (xml.scene,
+      if (scene[get(xml.scene)].backgroundsound != scene[%1].backgroundsound,
+        if (plugin[soundinterface].backgroundsound,
+          stopsound(bgsoundname);
+        );
+        set(plugin[soundinterface].backgroundsound, "");
+        set(plugin[soundinterface].backgroundsoundloops, 0);
+        set(plugin[soundinterface].bgsound, false);
+        set(plugin[soundinterface].bgsoundpaused, false);
+      );
+    );
+  </action>
+  <action name="pausebackgroundsound">
+    if(plugin[soundinterface].backgroundsound,
+      if (plugin[soundinterface].bgsound,
+        if(plugin[soundinterface].bgsoundpaused == false,
+          pausesound(bgsoundname);
+          set(plugin[soundinterface].bgsoundpaused, true);
+        );
+      );
+    );
+  </action>
+  <action name="resumebackgroundsound">
+    set(killBgSoundOnResume, true);
+    if(layer[displayedStandardVideo],
+    if(layer[displayedStandardVideo].pausebgsound AND tour_current_played_video,
+      set(killBgSoundOnResume, false);
+    ););
+    if(layer[webvideodisplay_player],
+    if(layer[webvideodisplay_player].pausebgsound AND tour_current_played_web_video,
+      set(killBgSoundOnResume, false);
+    ););
+    if(tour_current_played_sound_pausesound AND tour_current_played_sound,
+      set(killBgSoundOnResume, false);
+    );
+    ifnot(plugin[soundinterface].backgroundsound AND scene[get(xml.scene)].backgroundsound,
+      set(killBgSoundOnResume, false);
+    );
+    if(killBgSoundOnResume,
+      if (plugin[soundinterface].backgroundsound,
+        if (tour_soundson,
+          if (plugin[soundinterface].bgsound,
+            if(plugin[soundinterface].bgsoundpaused,
+              resumesound(bgsoundname);
+              set(plugin[soundinterface].bgsoundpaused, false);
+            );
+          ,
+            if(plugin[soundinterface].backgroundsoundloops GT 0,
+              playsound(bgsoundname, get(plugin[soundinterface].backgroundsound), get(plugin[soundinterface].backgroundsoundloops), stopbackgroundsoundoncomplete());
+            ,
+              playsound(bgsoundname, get(plugin[soundinterface].backgroundsound), get(plugin[soundinterface].backgroundsoundloops));
+            );
+            set(plugin[soundinterface].bgsound, true);
+            set(plugin[soundinterface].bgsoundpaused, false);
+          );
+        );
+      );
+    ,
+      playbackgroundsound();
+    );
+  </action>
+  <action name="preloadSounds">
+    preloadsound("track18.mp3");
+  </action>
+  <action name="play3DLocalSounds">
+    if (xml.scene, if (scene[get(xml.scene)].haslocalsounds, playpanolocalsounds();););
+  </action>
+  <action name="stop3DLocalSounds">
+    if (xml.scene, if (scene[get(xml.scene)].haslocalsounds, stoppanolocalsounds();););
+  </action>
+  <action name="resume3DLocalSounds">
+    if (xml.scene, if (scene[get(xml.scene)].haslocalsounds, 
+      set(kill3dSoundOnResume, true);
+      if(layer[displayedStandardVideo],
+      if(layer[displayedStandardVideo].pausebgsound,
+      if(tour_current_played_video,
+        set(kill3dSoundOnResume, false);
+      );););
+      if(layer[webvideodisplay_player],
+      if(layer[webvideodisplay_player].pausebgsound,
+      if(tour_current_played_web_video,
+        set(kill3dSoundOnResume, false);
+      );););
+      if(tour_current_played_sound_pausesound,
+      if(tour_current_played_sound,
+        set(kill3dSoundOnResume, false);
+      ););
+      if(kill3dSoundOnResume,
+        resumepanolocalsounds();
+      );
+    ););
+  </action>
+  <action name="pause3DLocalSounds">
+    if (xml.scene, if (scene[get(xml.scene)].haslocalsounds, pausepanolocalsounds();););
+  </action>
+  <action name="set3DLocalSoundsVolume">
+    if (xml.scene, if (scene[get(xml.scene)].haslocalsounds, setpanolocalsoundsvolume();););
+  </action>
+  <action name="playTourSounds">
+    set(tour_soundson, true);events.dispatch(playtoursoundsevent);
+    resumeTourSoundsActions(true,true,true,true,true);
+  </action>
+  <action name="stopTourSounds">
+    set(tour_soundson, false);events.dispatch(stoptoursoundsevent);
+    pauseTourSoundsActions(true,true,true,true,true);
+  </action>
+  <action name="setTourSoundsVolume">
+    set(tour_soundsvolume, %1);
+    div(volume, tour_soundsvolume, 100);
+    set(plugin[soundinterface].volume, get(volume));
+    set3DLocalSoundsVolume();
+  </action>
+  <action name="playTourSoundsActions">
+    if(%1,
+      if(plugin[soundinterface],
+        if(plugin[soundinterface].started,
+          play3DLocalSounds();
+        );
+      );
+    );
+    if(%2,
+      if(plugin[soundinterface],
+        if(plugin[soundinterface].started,
+          resumebackgroundsound();
+        );
+      );
+    );
+  </action>
+  <action name="stopTourSoundsActions">
+    if(%1,
+      stop3DLocalSounds();
+    );
+    if(%2,
+      stopSoundActionsSounds();
+    );
+    if(%3,
+      stopVideoActionsSounds();
+    );
+    if(%4,
+      pausebackgroundsound();
+    );
+  </action>
+  <action name="resumeTourSoundsActions">
+    if(%1,
+      if(plugin[soundinterface],
+        if(plugin[soundinterface].started,
+          resume3DLocalSounds();
+        );
+      );
+    );
+    if(%2,
+      resumeSoundActionsSounds();
+    );
+    if(%3,
+      resumeVideoActionsSounds();
+    );
+    if(%4,
+      if(%5,
+        if(plugin[soundinterface],
+          if(plugin[soundinterface].started,
+            resumebackgroundsound();
+          );
+        );
+      ,
+        pausebackgroundsound();
+      );
+    );
+  </action>
+  <action name="pauseTourSoundsActions">
+    if(%1,
+      pause3DLocalSounds();
+    );
+    if(%2,
+      pauseSoundActionsSounds();
+    );
+    if(%3,
+      pauseVideoActionsSounds();
+    );
+    if(%4,
+      if(%5,
+        pausebackgroundsound();
+      ,
+        if(plugin[soundinterface],
+          if(plugin[soundinterface].started,
+            resumebackgroundsound();
+          );
+        );
+      );
+    );
+  </action>
+  <action name="stopSoundActionsSounds">
+    if (tour_current_played_sound,
+      delete(tour_current_played_sound_paused);
+      stopsound(get(tour_current_played_sound));
+      delete(tour_current_played_sound);
+      set(tour_current_played_sound_state, 0);
+    );
+  </action>
+  <action name="stopVideoActionsSounds">
+    if(tour_current_played_video,
+      if(layer[displayedStandardVideo],
+        layer[displayedStandardVideo].stop();
+        removelayer(displayedStandardVideo);
+        if(layer[displayedStandardVideoOverlayButton], removelayer(displayedStandardVideoOverlayButton); );
+        if(layer[displayedStandardVideoOverlay], removelayer(displayedStandardVideoOverlay); );
+        delete(tour_current_played_video);
+        set(tour_current_played_video_state, 0);
+      );
+    );
+    if(tour_current_played_web_video,
+      displayWebVideoObjectClose();
+    );
+  </action>
+  <action name="resumeSoundActionsSounds">
+    if (tour_current_played_sound,
+      set(resumeSoundActionsVerification, true);
+      if(tour_current_played_video,
+        if(tour_current_played_sound_state LT tour_current_played_video_state,
+          set(resumeSoundActionsVerification, false);
+        );
+      );
+      if(resumeSoundActionsVerification,
+        if (tour_soundson,
+          if(tour_current_played_sound_paused,
+            set(tour_current_played_sound_paused, false);
+            resumesound(get(tour_current_played_sound));
+          );
+        );
+      );
+    );
+  </action>
+  <action name="resumeVideoActionsSounds">
+    if(tour_current_played_video,
+      set(resumeVideoActionsVerification, true);
+      if(tour_current_played_sound,
+        if(tour_current_played_video_state LT tour_current_played_sound_state,
+          set(resumeVideoActionsVerification, false);
+        );
+      );
+      if(resumeVideoActionsVerification,
+        if (tour_soundson,
+          div(volume, tour_soundsvolume, 100);
+          if(device.flash,
+            set(layer[displayedStandardVideo].volume, get(volume));
+          ,
+            ifnot(device.ios,
+              js(kpanotour.Sounds.startVideosSounds(get(volume)));
+            );
+          );
+        ,
+          if(device.flash,
+            set(layer[displayedStandardVideo].volume, 0);
+          ,
+            ifnot(device.ios,
+              js(kpanotour.Sounds.stopVideosSounds());
+            );
+          );
+        );
+      );
+    );
+  </action>
+  <action name="pauseSoundActionsSounds">
+    if (tour_current_played_sound,
+      ifnot(tour_current_played_sound_paused,
+        set(tour_current_played_sound_paused, true);
+        pausesound(get(tour_current_played_sound));
+      );
+    );
+  </action>
+  <action name="pauseVideoActionsSounds">
+    if(tour_current_played_video,
+      if(device.flash,
+        set(layer[displayedStandardVideo].volume, 0);
+      ,
+        ifnot(device.ios,
+          js(kpanotour.Sounds.stopVideosSounds());
+        );
+      );
+    );
+  </action>
+
+  <!-- Fullscreen Management -->
+  <action name="exitFullScreen" devices="fullscreensupport">set(tour_fullscreen,false);js(setFullscreen(false));</action>
+  <action name="enterFullScreen" devices="fullscreensupport">set(tour_fullscreen,true);js(setFullscreen(true));</action>
+  <action name="switchFullScreen">if(tour_fullscreen,exitFullScreen();,enterFullScreen(););</action>
+
+  
+  <events name="krpanoExitFullscreenEvent"
+    onexitfullscreen="if(tour_fullscreen,exitFullScreenChangeEvent(););"
+    keep="true" />
+
+  <action name="exitFullScreenChangeEvent" devices="fullscreensupport">set(tour_fullscreen,false);events.dispatch(onexitfullscreen);</action>
+  <action name="enterFullScreenChangeEvent" devices="fullscreensupport">set(tour_fullscreen,true);events.dispatch(onenterfullscreen);</action>
+  <action name="exitFullScreenFallback">set(fullscreen,false);</action>
+  <action name="enterFullScreenFallback">set(fullscreen,true);</action>
+  
+  <action name="resizeFullScreenEvent">delayedcall(0,updatescreen(););</action>
+
+</krpano>

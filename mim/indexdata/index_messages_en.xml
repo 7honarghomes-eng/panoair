@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<krpano>
+
+
+  <data name="en_project_title"><![CDATA[index]]></data>
+
+
+
+  <data name="en_pano9_title"><![CDATA[سالن آرايش]]></data>
+  <data name="en_spotpoint13_tooltip"><![CDATA[سالن ميکاپ]]></data>
+
+
+  <data name="en_pano10_title"><![CDATA[اتاق ميکاپ]]></data>
+  <data name="en_spotpoint15_tooltip"><![CDATA[سالن آرايش]]></data>
+
+
+
+
+
+
+  <data name="en_controlBar_classicprevSceneTip"><![CDATA[Previous panorama]]></data>
+  <data name="en_controlBar_classicnextSceneTip"><![CDATA[Next panorama]]></data>
+  <data name="en_controlBar_classiczoomInTip"><![CDATA[Zoom in]]></data>
+  <data name="en_controlBar_classiczoomOutTip"><![CDATA[Zoom out]]></data>
+  <data name="en_controlBar_classicopenFsTip"><![CDATA[Enter fullscreen]]></data>
+  <data name="en_controlBar_classiccloseFsTip"><![CDATA[Exit fullscreen]]></data>
+  <data name="en_controlBar_classicautotourOnTip"><![CDATA[Start automatic tour]]></data>
+  <data name="en_controlBar_classicautotourOffTip"><![CDATA[Stop automatic tour]]></data>
+  <data name="en_controlBar_classicsoundsOnTip"><![CDATA[Start sounds]]></data>
+  <data name="en_controlBar_classicsoundsOffTip"><![CDATA[Stop sounds]]></data>
+  <data name="en_controlBar_classicgyroOnTip"><![CDATA[Enable gyroscope]]></data>
+  <data name="en_controlBar_classicgyroOffTip"><![CDATA[Disable gyroscope]]></data>
+  <data name="en_controlBar_classicdisplayHelpTip"><![CDATA[Show help screen]]></data>
+  <data name="en_controlBar_classichideHelpTip"><![CDATA[Hide help screen]]></data>
+  <data name="en_controlBar_classicdisplayControlsTip"><![CDATA[Show controls]]></data>
+  <data name="en_controlBar_classichideControlsTip"><![CDATA[Hide controls]]></data>
+  <data name="en_contextmenuopenwebsitelabel1"><![CDATA[pano.ir]]></data>
+  <data name="en_contextmenuwebsiteurl1"><![CDATA[http://www.info.panoair]]></data>
+  <data name="en_contextmenuopenwebsitelabel2"><![CDATA[09128317349 - hasanhamzeh]]></data>
+  <data name="en_contextmenuwebsiteurl2"><![CDATA[https://www.instagram.com/panoair/]]></data>
+  <data name="en_contextmenuopenFsLabel"><![CDATA[Enter Fullscreen]]></data>
+  <data name="en_contextmenucloseFsLabel"><![CDATA[Exit Fullscreen]]></data>
+  <data name="en_buttontooltip"><![CDATA[]]></data>
+
+
+
+  <data name="en_pano9_description"><![CDATA[سالن زیبایی میم با کادر مجرب وباسابقه در محیط آرم وحرفه ای در خدمت شما خواهد&nbsp;<a href="http://WWW.PANOAIR.IR/" target="_blank">WWW.PANOAIR.IR</a>بود تا خاطره ایی خش وبه یاد ماندند برایتان بسازد]]></data>
+
+
+
+  <data name="en_pano10_description"><![CDATA[سالن زیبایی میم با کادر مجرب وباسابقه در محیط آرم وحرفه ای در خدمت شما خواهد&nbsp;<a href="http://WWW.PANOAIR.IR/" target="_blank">WWW.PANOAIR.IR</a>بود تا خاطره ایی خش وبه یاد ماندند برایتان بسازد]]></data>
+
+
+</krpano>

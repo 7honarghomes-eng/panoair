@@ -1,0 +1,1785 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<krpano version="1.18">
+
+    
+  <!-- Spot Style - Default Point Spot Style 1 -->
+  <style name="IconDefaultPointSpotStyle1"
+         url="%FIRSTXML%/spots/hotspot_image_sequence_user_defaultpoint0.png"
+         visible="false"
+         frame="0"
+         lastframe="19"
+         framewidth="50"
+         frameheight="50"
+         stopspotsequence="false"
+         onloaded="setdefaultanimatedspotframe();startspotanimation(0.1);"
+         onhover="onhoverIconDefaultPointSpotStyle1"
+         onover="onoverIconDefaultPointSpotStyle1"
+         onout="onoutIconDefaultPointSpotStyle1"
+         />
+  <action name="onhoverIconDefaultPointSpotStyle1">
+    showtooltip('hotspot');
+  </action>
+  <action name="onoverIconDefaultPointSpotStyle1">
+
+
+pauseautorotation(forcehotspot);
+
+  </action>
+  <action name="onoutIconDefaultPointSpotStyle1">
+    hideTooltip();
+
+
+resumeautorotation(forcehotspot);
+
+  </action>
+
+
+
+
+        
+  <!-- Video Spot Style - Default Video Spot Style 1 -->
+  <style name="RectVideoDefaultVideoSpotStyle1Loader" url="%FIRSTXML%/spots/loadanimation.png" crop="0|0|64|64" ypos="0" frame="0" distorted="true" visible="false" />
+  <style name="RectVideoDefaultVideoSpotStyle1"
+         capture="false"
+         visible="false"
+         distorted="true"
+         scale="1.0" 
+         url="%SWFPATH%/graphics/videoplayer.swf"
+         alturl="%FIRSTXML%/graphics/videoplayer.js"
+         loop="true"
+         pausedonstart="true"
+         pauseothersounds="true"
+         canstart="false"
+         onhover="onhoverRectVideoDefaultVideoSpotStyle1"
+         onout="onoutRectVideoDefaultVideoSpotStyle1"
+         onvideoready="onvideoreadyRectVideoDefaultVideoSpotStyle1"
+         />
+  <style name="RectVideoDefaultVideoSpotStyle1" 
+    directionalsound="true" 
+    range="360" 
+    devices="flash" 
+  />
+  <style name="RectVideoDefaultVideoSpotStyle1" 
+    directionalsound="false" 
+    devices="html5" 
+  />
+  <style name="RectVideoDefaultVideoSpotStyle1" 
+    stateVideo="startplaying" devices="!ios" 
+  />
+  <style name="RectVideoDefaultVideoSpotStyle1" 
+    stateVideo="startpaused" devices="ios" 
+  />
+  <action name="onhoverRectVideoDefaultVideoSpotStyle1">
+    showTooltip('hotspot');
+  </action>
+  <action name="onoutRectVideoDefaultVideoSpotStyle1">
+    hideTooltip();
+  </action>
+  <action name="onvideoreadyRectVideoDefaultVideoSpotStyle1">
+    set(isVideoReadyForPlaying, false);
+    if (isvideoready,
+      if (canstart,
+        set(isVideoReadyForPlaying, true);
+      ,
+
+        stop();
+        seek(0);
+      );
+    );
+    if(isVideoReadyForPlaying,
+    ifnot(device.ios,
+      pauseTourSoundsActions(true,true,true,true,true);
+    );
+
+    if(tour_displayspots,
+      if(ispaused,
+        if(stateVideo == "startplaying",
+          set(stateVideo, "playing");
+          play();
+        );
+      );
+    );
+    if(device.flash,
+      if (tour_soundson,
+        div(volume, tour_soundsvolume, 100);
+      ,
+        set(volume, 0);
+      );
+    ,
+      ifnot(device.ios,
+        if (tour_soundson,
+          js(kpanotour.Sounds.startVideosSounds(get(volume)));
+        ,
+          js(kpanotour.Sounds.stopVideosSounds());
+        );
+      );
+    );
+    onvideoreadyspecific();
+    ,
+
+      delayedcall(0.5,onvideoreadyRectVideoDefaultVideoSpotStyle1());
+    );
+  </action>
+  <action name="animatevideospotloaderRectVideoDefaultVideoSpotStyle1">
+    if(hotspot[%1],
+      if(hotspot[%1].activated,
+        set(hotspot[%1].visible, true);
+      );
+      inc(hotspot[%1].frame,1, 11,0);
+      mul(hotspot[%1].ypos, hotspot[%1].frame, 64);
+      txtadd(hotspot[%1].crop, '0|', get(hotspot[%1].ypos),'|64|64');
+      delayedcall(%2, 0.1, animatevideospotloaderRectVideoDefaultVideoSpotStyle1(%1, %2) );
+    ,
+      stopdelayedcall(%2);
+    );
+  </action>
+  <action name="stopvideospotloaderanimationRectVideoDefaultVideoSpotStyle1">
+    removehotspot(%1);
+  </action>
+
+
+
+  <!-- ************************************************** -->
+  <!-- Toggle Button : topleft -->
+  <!-- ************************************************** -->
+
+
+
+  <layer name="togglebutton"
+         keep="true"
+         url="%FIRSTXML%/graphics/togglebutton/d3.png" 
+         align="topleft"
+         x="10"
+         y="10"
+         zorder="0"
+         tooltip=""
+         onhover="togglebuttonOnHover"
+         state="true"
+         onclick="togglebuttonOnClick"
+         onout="hideTooltip();"
+         height="100"
+         width="100"
+         visible="false"
+         />
+
+  <action name="togglebuttonOnHover">
+    if (state,
+      set(tooltip, togglebuttonfirsttooltip);
+     ,
+      set(tooltip, togglebuttonsecondtooltip);
+    );
+    if (tooltip != "", showTooltip('plugin',togglebuttonTooltipStyle););
+  </action>
+  <action name="togglebuttonOnClick">
+    if (state,
+      set(state, false);
+          if (xml.scene != pano12,
+            mainloadscene(pano12);
+          );
+      lookat(get(panoview.h), get(panoview.v), get(panoview.fov));
+    
+
+
+      set(url,%FIRSTXML%/graphics/togglebutton/d4.png);
+     ,
+      set(state, true);
+          if (xml.scene != pano11,
+            mainloadscene(pano11);
+          );
+      lookat(get(panoview.h), get(panoview.v), get(panoview.fov));
+    
+
+
+      set(url,%FIRSTXML%/graphics/togglebutton/d3.png);
+    );
+  </action>
+
+  <events name="togglebuttonevents" 
+    onTourStart="showtogglebutton();"
+    hidetourcontrols="hidetogglebutton();" 
+    showtourcontrols="showtogglebutton();" 
+    keep="true" />
+  <action name="hidetogglebutton">set(layer[togglebutton].visible, false);</action>
+  <action name="showtogglebutton">set(layer[togglebutton].visible, true);</action>
+
+<layer name="togglebuttonTooltipStyle"
+	keep="true"
+	enabled="false"
+	capture="false"
+	url="%FIRSTXML%/graphics/textfield.swf"
+	align="center"
+	background="false"
+	border="false"
+	textshadow="1" textshadowrange="4.0" textshadowangle="45" textshadowcolor="0x000000" textshadowalpha="1"
+	css="color:#ffffff;font-family:Arial;font-weight:bold;font-size:20px;text-align:left;"
+	height="20"
+	autoheight="true"
+	autowidth="auto"
+	selectable="false"
+	zorder="0"
+	padding="2"
+	xoffset="0"
+	yoffset="0"
+	visible="false"
+	html=""
+	edge="top"
+/>
+
+
+  <!-- ******************* -->
+  <!-- Rounded Control Bar -->
+  <!-- ******************* -->
+
+  <krpano roundcornerbarbuilt="false" roundcornerbarnbbuttons="0" roundcornerbarIsOpened="false" />
+
+  <events name="roundcornerbarevents" onxmlcomplete="roundcornerbarbuildMenuBar();" keep="true"/>
+  <action name="roundcornerbarbuildMenuBar">
+    ifnot (roundcornerbarbuilt, roundcornerbarbuildMenu(); set(roundcornerbarbuilt, true););
+  </action>
+
+  <action name="roundcornerbarbuildMenu">
+    txtadd(btnbgname, "roundcornerbarbtnbg", get(roundcornerbarnbbuttons));
+
+    if (roundcornerbarnbbuttons LT 6,
+      if (scene.count GT 1,
+        set(layer[roundcornerbarbtn_prev_pano].parent, get(btnbgname));
+        set(layer[roundcornerbarbtn_prev_pano].x     , get(plugin[get(btnbgname)].childx));
+        set(layer[roundcornerbarbtn_prev_pano].y     , get(plugin[get(btnbgname)].childy));
+        inc(roundcornerbarnbbuttons);
+        txtadd(btnbgname, "roundcornerbarbtnbg", get(roundcornerbarnbbuttons));
+
+        set(layer[roundcornerbarbtn_next_pano].parent, get(btnbgname));
+        set(layer[roundcornerbarbtn_next_pano].x     , get(plugin[get(btnbgname)].childx));
+        set(layer[roundcornerbarbtn_next_pano].y     , get(plugin[get(btnbgname)].childy));
+        inc(roundcornerbarnbbuttons);
+        txtadd(btnbgname, "roundcornerbarbtnbg", get(roundcornerbarnbbuttons));
+      );
+    ,
+      set(layer[roundcornerbarbtn_next_pano].disabled, true);
+      set(layer[roundcornerbarbtn_prev_pano].disabled, true);
+    );
+
+
+
+    if (roundcornerbarnbbuttons LT 6,
+      set(layer[roundcornerbarbtn_sound_off].parent, get(btnbgname));
+      set(layer[roundcornerbarbtn_sound_off].x     , get(plugin[get(btnbgname)].childx));
+      set(layer[roundcornerbarbtn_sound_off].y     , get(plugin[get(btnbgname)].childy));
+      set(layer[roundcornerbarbtn_sound_on ].parent, get(btnbgname));
+      set(layer[roundcornerbarbtn_sound_on ].x     , get(plugin[get(btnbgname)].childx));
+      set(layer[roundcornerbarbtn_sound_on ].y     , get(plugin[get(btnbgname)].childy));
+      inc(roundcornerbarnbbuttons);
+      txtadd(btnbgname, "roundcornerbarbtnbg", get(roundcornerbarnbbuttons));
+    ,
+      set(layer[roundcornerbarbtn_sound_off].disabled, true);
+      set(layer[roundcornerbarbtn_sound_on].disabled, true);
+    );
+
+
+    if (roundcornerbarnbbuttons LT 6,
+      set(layer[roundcornerbarbtn_show_thumbnails].parent, get(btnbgname));
+      set(layer[roundcornerbarbtn_show_thumbnails].x     , get(plugin[get(btnbgname)].childx));
+      set(layer[roundcornerbarbtn_show_thumbnails].y     , get(plugin[get(btnbgname)].childy));
+      set(layer[roundcornerbarbtn_hide_thumbnails].parent, get(btnbgname));
+      set(layer[roundcornerbarbtn_hide_thumbnails].x     , get(plugin[get(btnbgname)].childx));
+      set(layer[roundcornerbarbtn_hide_thumbnails].y     , get(plugin[get(btnbgname)].childy));
+      inc(roundcornerbarnbbuttons);
+      txtadd(btnbgname, "roundcornerbarbtnbg", get(roundcornerbarnbbuttons));
+    ,
+      set(layer[roundcornerbarbtn_show_thumbnails].disabled, true);
+      set(layer[roundcornerbarbtn_hide_thumbnails].disabled, true);
+    );
+
+
+
+    if (roundcornerbarnbbuttons LT 6,
+      set(layer[roundcornerbarbtn_autorotate_on ].parent, get(btnbgname));
+      set(layer[roundcornerbarbtn_autorotate_on ].x     , get(plugin[get(btnbgname)].childx));
+      set(layer[roundcornerbarbtn_autorotate_on ].y     , get(plugin[get(btnbgname)].childy));
+      set(layer[roundcornerbarbtn_autorotate_off].parent, get(btnbgname));
+      set(layer[roundcornerbarbtn_autorotate_off].x     , get(plugin[get(btnbgname)].childx));
+      set(layer[roundcornerbarbtn_autorotate_off].y     , get(plugin[get(btnbgname)].childy));
+      inc(roundcornerbarnbbuttons);
+      txtadd(btnbgname, "roundcornerbarbtnbg", get(roundcornerbarnbbuttons));
+    ,
+      set(layer[roundcornerbarbtn_autorotate_on].disabled, true);
+      set(layer[roundcornerbarbtn_autorotate_off].disabled, true);
+    );
+
+
+
+
+
+    if (roundcornerbarnbbuttons LT 6,
+      if (device.desktop,
+        set(layer[roundcornerbarbtn_display_help].parent, get(btnbgname));
+        set(layer[roundcornerbarbtn_display_help].x     , get(plugin[get(btnbgname)].childx));
+        set(layer[roundcornerbarbtn_display_help].y     , get(plugin[get(btnbgname)].childy));
+        set(layer[roundcornerbarbtn_close_help  ].parent, get(btnbgname));
+        set(layer[roundcornerbarbtn_close_help  ].x     , get(plugin[get(btnbgname)].childx));
+        set(layer[roundcornerbarbtn_close_help  ].y     , get(plugin[get(btnbgname)].childy));
+        inc(roundcornerbarnbbuttons);
+        txtadd(btnbgname, "roundcornerbarbtnbg", get(roundcornerbarnbbuttons));
+      );
+    ,
+      set(layer[roundcornerbarbtn_display_help].disabled, true);
+      set(layer[roundcornerbarbtn_close_help].disabled, true);
+    );
+
+	
+
+  </action>
+
+<events name="roundcornerbarStartTourEvents" onTourStart="roundcornerbarCallOnStartTour();" keep="true" />
+
+<action name="roundcornerbarCallOnStartTour">
+	
+	roundcornerbarshowMenuControls();
+</action>
+
+  <layer name="roundcornerbarmenu_roundcorner_bg"
+          keep="true"
+          url="%FIRSTXML%/graphics/roundcornerbar/footer.png"
+          zorder="1"
+          align="bottomright"
+          handcursor="false"
+          edge="right"
+          x="0"
+          y="0"
+          rotate="180"
+          capture="false"
+          visible="false" />
+
+  <style name="roundcornerbar_btn_style"
+         keep="true"
+         align="bottomright"
+         onhover="roundcornerbarshowMenuTooltip();"
+         onout="hideTooltip();"
+         zorder="3"
+         />
+
+  <style name="roundcornerbarbtnbgstyle" keep="true" pixelhittest="true" align="bottomright" zorder="2" alpha="0" />
+
+  <layer name="roundcornerbarbtnbg0" url="%FIRSTXML%/graphics/roundcornerbar/btn_round_corner_1.png" style="roundcornerbarbtnbgstyle" x="144" y="0"   childx="10" childy="6"  crop="0|0|48|49" onovercrop="0|49|48|49" ondowncrop="0|98|48|49" visible="false" />
+  <layer name="roundcornerbarbtnbg1" url="%FIRSTXML%/graphics/roundcornerbar/btn_round_corner_2.png" style="roundcornerbarbtnbgstyle" x="129" y="39"  childx="14" childy="10" crop="0|0|56|56" onovercrop="0|56|56|56" ondowncrop="0|112|56|56" visible="false" />
+  <layer name="roundcornerbarbtnbg2" url="%FIRSTXML%/graphics/roundcornerbar/btn_round_corner_3.png" style="roundcornerbarbtnbgstyle" x="106" y="75"  childx="15" childy="14" crop="0|0|60|60" onovercrop="0|60|60|60" ondowncrop="0|120|60|60" visible="false" /> 
+  <layer name="roundcornerbarbtnbg3" url="%FIRSTXML%/graphics/roundcornerbar/btn_round_corner_4.png" style="roundcornerbarbtnbgstyle" x="75"  y="106" childx="14" childy="15" crop="0|0|60|60" onovercrop="0|60|60|60" ondowncrop="0|120|60|60" visible="false" />
+  <layer name="roundcornerbarbtnbg4" url="%FIRSTXML%/graphics/roundcornerbar/btn_round_corner_5.png" style="roundcornerbarbtnbgstyle" x="39"  y="129" childx="10" childy="14" crop="0|0|56|56" onovercrop="0|56|56|56" ondowncrop="0|112|56|56" visible="false" />
+  <layer name="roundcornerbarbtnbg5" url="%FIRSTXML%/graphics/roundcornerbar/btn_round_corner_6.png" style="roundcornerbarbtnbgstyle" x="0"   y="144" childx="6"  childy="10" crop="0|0|48|48" onovercrop="0|48|48|48" ondowncrop="0|96|48|48" visible="false" />
+
+
+  <layer name="roundcornerbarbtn_prev_pano"
+         url="%FIRSTXML%/graphics/roundcornerbar/btn_previous_scene.png"
+         onclick="loadPreviousScene();
+"
+         style="roundcornerbar_btn_style"
+         visible="false"
+         tooltip="controlBar_roundedprevSceneTip"
+         />
+  <layer name="roundcornerbarbtn_next_pano"
+         url="%FIRSTXML%/graphics/roundcornerbar/btn_next_scene.png"
+         onclick="loadNextScene();
+"
+         style="roundcornerbar_btn_style"
+         visible="false"
+         tooltip="controlBar_roundednextSceneTip"
+         />
+
+
+
+  <layer name="roundcornerbarbtn_sound_on"
+          url="%FIRSTXML%/graphics/roundcornerbar/btn_start_sound.png"
+          onclick="playTourSounds();
+"
+          style="roundcornerbar_btn_style"
+          visible="false"
+          tooltip="controlBar_roundedsoundsOnTip"
+          />
+  <layer name="roundcornerbarbtn_sound_off"
+          url="%FIRSTXML%/graphics/roundcornerbar/btn_stop_sound.png"
+          onclick="stopTourSounds();
+"
+          style="roundcornerbar_btn_style"
+          visible="false"
+          tooltip="controlBar_roundedsoundsOffTip"
+          />
+
+  <events name="roundcornerbarplaystopsoundsevent" playtoursoundsevent="roundcornerbarupdateSoundButtons();" stoptoursoundsevent="roundcornerbarupdateSoundButtons();" keep="true"/>
+	<action name="roundcornerbarHideSoundButtons">
+		set(layer[roundcornerbarbtn_sound_off].visible, false);
+		set(layer[roundcornerbarbtn_sound_on].visible , false);
+	</action>
+	<action name="roundcornerbarShowSoundButtons">
+		if (tour_soundson == false,
+			set(layer[roundcornerbarbtn_sound_off].visible, false);
+			set(layer[roundcornerbarbtn_sound_on].visible , true);
+		,
+			set(layer[roundcornerbarbtn_sound_off].visible, true);
+			set(layer[roundcornerbarbtn_sound_on].visible , false);
+		);
+	</action>
+	<action name="roundcornerbarupdateSoundButtons">
+		set(roundcornerbarDisplaySoundButtons, false);
+		if (roundcornerbarIsOpened, set(roundcornerbarDisplaySoundButtons, true););
+		if (roundcornerbarDisplaySoundButtons,
+			roundcornerbarShowSoundButtons();
+		,
+			roundcornerbarHideSoundButtons();
+		);
+	</action>
+
+
+  <layer name="roundcornerbarbtn_hide_thumbnails"
+          url="%FIRSTXML%/graphics/roundcornerbar/btn_hide_thumbnails.png"
+          style="roundcornerbar_btn_style"
+          onclick="hideTourThumbnails();
+"
+          tooltip="controlBar_roundedhideThumbnailsTip"
+          visible="false"
+          />
+  <layer name="roundcornerbarbtn_show_thumbnails"
+          url="%FIRSTXML%/graphics/roundcornerbar/btn_show_thumbnails.png"
+          style="roundcornerbar_btn_style"
+          onclick="showTourThumbnails();
+"
+          tooltip="controlBar_roundedshowThumbnailsTip"
+          visible="false"
+          />
+  <events name="roundcornerbarhideshowthumbnailsevent" hidetourthumbnails="roundcornerbarupdateHideShowThumbnailsButtons();" showtourthumbnails="roundcornerbarupdateHideShowThumbnailsButtons();" keep="true"/>
+	<action name="roundcornerbarHideHideShowThumbnailsButtons">
+		set(layer[roundcornerbarbtn_show_thumbnails].visible, false);
+		set(layer[roundcornerbarbtn_hide_thumbnails].visible, false);
+	</action>
+	<action name="roundcornerbarShowHideShowThumbnailsButtons">
+		if (tour_displaythumbnails,
+			set(layer[roundcornerbarbtn_hide_thumbnails].visible, true);
+			set(layer[roundcornerbarbtn_show_thumbnails].visible, false);
+		,
+			set(layer[roundcornerbarbtn_show_thumbnails].visible, true);
+			set(layer[roundcornerbarbtn_hide_thumbnails].visible, false);
+		);
+	</action>
+	<action name="roundcornerbarupdateHideShowThumbnailsButtons">
+		set(roundcornerbarDisplayHideShowThumbnailsButtons, false);
+		if (roundcornerbarIsOpened, set(roundcornerbarDisplayHideShowThumbnailsButtons, true););
+		if (roundcornerbarDisplayHideShowThumbnailsButtons,
+			roundcornerbarShowHideShowThumbnailsButtons();
+		,
+			roundcornerbarHideHideShowThumbnailsButtons();
+		);
+	</action>
+
+
+
+  <layer name="roundcornerbarbtn_autorotate_on"
+          url="%FIRSTXML%/graphics/roundcornerbar/btn_start_autorotation.png"
+          onclick="resumeautorotation();
+"
+          style="roundcornerbar_btn_style"
+          visible="false"
+          tooltip="controlBar_roundedautorotateOnTip"
+          />
+  <layer name="roundcornerbarbtn_autorotate_off"
+          url="%FIRSTXML%/graphics/roundcornerbar/btn_stop_autorotation.png"
+          onclick="pauseautorotation();
+"
+          style="roundcornerbar_btn_style"
+          visible="false"
+          tooltip="controlBar_roundedautorotateOffTip"
+          />
+
+	<events name="roundcornerbarAutorotationEvents"
+		onstartautorotation="roundcornerbarupdateAutorotationButtons();"
+		onresumeautorotation="roundcornerbarupdateAutorotationButtons();"
+		onstopautorotation="roundcornerbarupdateAutorotationButtons();"
+		onpauseautorotation="roundcornerbarupdateAutorotationButtons();"
+		keep="true"/>
+	<action name="roundcornerbarHideAutorotationButtons">
+		set(layer[roundcornerbarbtn_autorotate_off].visible, false);
+		set(layer[roundcornerbarbtn_autorotate_on].visible , false);
+	</action>
+	<action name="roundcornerbarShowAutorotationButtons">
+		if(autorotate.enabled == false,
+			set(layer[roundcornerbarbtn_autorotate_off].visible, false);
+			set(layer[roundcornerbarbtn_autorotate_on].visible , true);
+		,
+			set(layer[roundcornerbarbtn_autorotate_off].visible, true);
+			set(layer[roundcornerbarbtn_autorotate_on].visible , false);
+		);
+	</action>
+	<action name="roundcornerbarupdateAutorotationButtons">
+		set(roundcornerbarDisplayAutorotationButtons, false);
+		if (roundcornerbarIsOpened, set(roundcornerbarDisplayAutorotationButtons, true););
+		if (roundcornerbarDisplayAutorotationButtons,
+			roundcornerbarShowAutorotationButtons();
+		,
+			roundcornerbarHideAutorotationButtons();
+		);
+	</action>
+
+
+
+    <layer name="roundcornerbarbtn_display_help"
+            url="%FIRSTXML%/graphics/roundcornerbar/btn_help.png"
+            onclick="roundcornerbardisplayHelp();"
+            style="roundcornerbar_btn_style"
+            visible="false"
+            tooltip="controlBar_roundeddisplayHelpTip"
+            devices="desktop"
+            />
+    <layer name="roundcornerbarbtn_close_help"
+            url="%FIRSTXML%/graphics/roundcornerbar/btn_help.png"
+            onclick="roundcornerbarcloseHelp();"
+            style="roundcornerbar_btn_style"
+            tooltip="controlBar_roundedhideHelpTip"
+            devices="desktop"
+            visible="false"
+            />
+
+
+
+
+  <style name="roundcornerbarroundcorner_btn_nav_style"
+         keep="true"
+         pixelhittest="true"
+         onhover="roundcornerbarshowMenuTooltip();"
+         onout="hideTooltip();"
+         />
+
+  
+  <layer name="roundcornerbarmenu_navigation_bg"
+          keep="true"
+          type="container"
+          zorder="2"
+          align="bottomright"
+          edge="bottomright"
+          x="10"
+          y="10"
+          width="102"
+          height="102"
+          visible="true"
+          capture="false">
+
+    <layer name="roundcornerbarbtn_in"
+         zorder="1"
+            url="%FIRSTXML%/graphics/roundcornerbar/btn_zoom_in.png"
+            style="roundcornerbarroundcorner_btn_nav_style"
+            crop="0|0|66|33"
+            onovercrop="0|33|66|33"
+            ondown="set(fov_moveforce, -1);
+"
+            onup="set(fov_moveforce, 0);
+"
+            x="0" y="0"
+            edge="bottom"
+            align="center"
+            visible="false"
+            tooltip="controlBar_roundedzoomInTip"
+             />
+    <layer name="roundcornerbarbtn_out"
+         zorder="1"
+            url="%FIRSTXML%/graphics/roundcornerbar/btn_zoom_out.png"
+            style="roundcornerbarroundcorner_btn_nav_style"
+            crop="0|0|66|33"
+            onovercrop="0|33|66|33"
+            ondown="set(fov_moveforce, +1);
+"
+            onup="set(fov_moveforce, 0);
+"
+            x="0" y="0"
+            edge="top"
+            align="center"
+            visible="false"
+            tooltip="controlBar_roundedzoomOutTip"
+             />
+
+    <layer name="roundcornerbarbtn_left"
+           zorder="0"
+           ondown="set(hlookat_moveforce, -1);
+"
+           onup="set(hlookat_moveforce, 0);
+"
+            url="%FIRSTXML%/graphics/roundcornerbar/btn_move_left.png"
+            style="roundcornerbarroundcorner_btn_nav_style"
+            crop="0|0|29|74"
+            onovercrop="0|74|29|74"
+            x="0" y="0"
+            edge="left"
+            align="left"
+            visible="false"
+            tooltip="controlBar_roundedmoveLeftTip"
+            />
+    <layer name="roundcornerbarbtn_right"
+           zorder="0"
+           ondown="set(hlookat_moveforce, +1);
+"
+           onup="set(hlookat_moveforce, 0);
+"
+           url="%FIRSTXML%/graphics/roundcornerbar/btn_move_right.png"
+           style="roundcornerbarroundcorner_btn_nav_style"
+           crop="0|0|29|74"
+           onovercrop="0|74|29|74"
+           x="0" y="0"
+           edge="right"
+           align="right"
+           visible="false"
+           tooltip="controlBar_roundedmoveRightTip"
+           />
+
+    <layer name="roundcornerbarbtn_up"
+           zorder="0"
+           ondown="set(vlookat_moveforce, -1);
+"
+           onup="set(vlookat_moveforce, 0);
+"
+           url="%FIRSTXML%/graphics/roundcornerbar/btn_move_up.png"
+           style="roundcornerbarroundcorner_btn_nav_style"
+           crop="0|0|74|29"
+           onovercrop="0|29|74|29"
+           x="0" y="0"
+           align="top"
+           edge="top"
+           visible="false"
+           tooltip="controlBar_roundedmoveUpTip"
+           />
+    <layer name="roundcornerbarbtn_down"
+           zorder="0"
+           ondown="set(vlookat_moveforce, +1);
+"
+           onup="set(vlookat_moveforce, 0);
+"
+           url="%FIRSTXML%/graphics/roundcornerbar/btn_move_down.png"
+           style="roundcornerbarroundcorner_btn_nav_style"
+           crop="0|0|74|29"
+           onovercrop="0|29|74|29"
+           x="0" y="0"
+           edge="bottom"
+           align="bottom"
+           visible="false"
+           tooltip="controlBar_roundedmoveDownTip"
+           />
+
+    <layer name="roundcornerbarbtn_hidecontrols"
+           onclick="roundcornerbarhideMenuControls();hideTourControls();
+"
+           x="0" y="0"
+           keep="true"
+           zorder="2"
+           url="%FIRSTXML%/graphics/roundcornerbar/btn_hide_controls.png"
+                 crop="0| 0|28|28"
+           onovercrop="0|28|28|28"
+           ondowncrop="0|56|28|28"
+           style="roundcornerbarroundcorner_btn_nav_style"
+           edge="center"
+           align="center"
+           height="28"
+           width="28"
+           visible="false"
+           tooltip="controlBar_roundedhideControlsTip"
+           />
+    <layer name="roundcornerbarbtn_showcontrols"
+           onclick="roundcornerbarshowMenuControls();showTourControls();
+"
+           x="0" y="0"
+           keep="true"
+           zorder="2"
+           url="%FIRSTXML%/graphics/roundcornerbar/btn_show_controls.png"
+                 crop="0| 0|28|28"
+           onovercrop="0|28|28|28"
+           ondowncrop="0|56|28|28"
+           style="roundcornerbarroundcorner_btn_nav_style"
+           edge="center"
+           align="center"
+           visible="false"
+           height="28"
+           width="28"
+           tooltip="controlBar_roundeddisplayControlsTip"
+           />
+  </layer>
+
+  <style name="roundcornerbarbtn_fs_bg_style" keep="true"
+         url="%FIRSTXML%/graphics/roundcornerbar/btn_fs_bg.png"
+         align="topright"
+         devices="fullscreensupport"
+         zorder="1"
+         x="0" y="0"
+         crop="      0|  0|50|50"
+         onovercrop="0| 50|50|50"
+         ondowncrop="0|100|50|50"
+         onhover="roundcornerbarshowMenuTooltip();"
+         onout="hideTooltip();"
+         />
+  <style name="roundcornerbarbtn_fs_style" keep="true" align="topright"
+         devices="fullscreensupport"
+         x="5" y="5"
+         onhover="roundcornerbarshowMenuTooltip();"
+         onout="hideTooltip();"
+         />
+  <layer name="roundcornerbarbtn_openfs_bg"
+         style="roundcornerbarbtn_fs_bg_style"
+         onclick="enterFullscreen();
+"
+         visible="false"
+         alpha="0"
+         tooltip="controlBar_roundedopenFsTip"
+          >
+    <layer name="roundcornerbarbtn_openfs"
+           style="roundcornerbarbtn_fs_style"
+           url="%FIRSTXML%/graphics/roundcornerbar/btn_enter_fs.png"
+           onclick="enterFullscreen();
+"
+           tooltip="controlBar_roundedopenFsTip"
+           />
+  </layer>
+
+  <layer name="roundcornerbarbtn_closefs_bg"
+          style="roundcornerbarbtn_fs_bg_style"
+          visible="false"
+          alpha="0"
+          onclick="exitFullscreen();
+"
+          tooltip="controlBar_roundedcloseFsTip"
+         onhover="roundcornerbarshowMenuTooltip();"
+         onout="hideTooltip();"
+          >
+    <layer name="roundcornerbarbtn_closefs"
+           style="roundcornerbarbtn_fs_style"
+           url="%FIRSTXML%/graphics/roundcornerbar/btn_close_fs.png"
+           onclick="exitFullscreen();
+"
+           tooltip="controlBar_roundedcloseFsTip"
+          />
+  </layer>
+
+  <events name="roundcornerbarmenufullscreenchangeevent"
+          onenterfullscreen="roundcornerbarupdateFullscreenButtons();"
+          onexitfullscreen="roundcornerbarupdateFullscreenButtons();"
+          keep="true"/>
+	<action name="roundcornerbarHideFullscreenButtons">
+		tween(layer[roundcornerbarbtn_openfs_bg].alpha, 0, 0.5, easeOutQuad, set(layer[roundcornerbarbtn_openfs_bg].visible , false));
+		tween(layer[roundcornerbarbtn_closefs_bg].alpha, 0, 0.5, easeOutQuad, set(layer[roundcornerbarbtn_closefs_bg].visible , false));
+	</action>
+	<action name="roundcornerbarShowFullscreenButtons">
+		if (device.fullscreensupport,
+			if(tour_fullscreen,
+				if(layer[roundcornerbarbtn_openfs_bg].visible,
+					set(layer[roundcornerbarbtn_openfs_bg].visible , false);
+					set(layer[roundcornerbarbtn_closefs_bg].visible, true);
+				,
+					set(layer[roundcornerbarbtn_openfs_bg].visible , false);
+					set(layer[roundcornerbarbtn_closefs_bg].visible, true);
+					tween(layer[roundcornerbarbtn_openfs_bg].alpha, 1, 0.5);
+					tween(layer[roundcornerbarbtn_closefs_bg].alpha, 1, 0.5);
+				);
+			,
+				if(layer[roundcornerbarbtn_closefs_bg].visible,
+					set(layer[roundcornerbarbtn_openfs_bg].visible ,true);
+					set(layer[roundcornerbarbtn_closefs_bg].visible,false);
+				,
+					set(layer[roundcornerbarbtn_openfs_bg].visible , true);
+					set(layer[roundcornerbarbtn_closefs_bg].visible, false);
+					tween(layer[roundcornerbarbtn_openfs_bg].alpha, 1, 0.5);
+					tween(layer[roundcornerbarbtn_closefs_bg].alpha, 1, 0.5);
+				);
+			);
+		,
+			roundcornerbarHideFullscreenButtons();
+		);
+	</action>
+	<action name="roundcornerbarupdateFullscreenButtons">
+		set(roundcornerbarDisplayFullscreenButtons, false);
+		if (roundcornerbarIsOpened, set(roundcornerbarDisplayFullscreenButtons, true););
+		if (roundcornerbarDisplayFullscreenButtons,
+			roundcornerbarShowFullscreenButtons();
+		,
+			roundcornerbarHideFullscreenButtons();
+		);
+	</action>
+
+
+
+
+
+
+  <action name="roundcornerbarhideMenuControls">
+    set(roundcornerbarIsOpened, false);
+    if (roundcornerbarnbbuttons GT 0,
+      stoptween(layer[roundcornerbarmenu_roundcorner_bg].rotate);
+      stoptween(layer[roundcornerbarbtnbg0].alpha);
+      stoptween(layer[roundcornerbarbtnbg1].alpha);
+      stoptween(layer[roundcornerbarbtnbg2].alpha);
+      stoptween(layer[roundcornerbarbtnbg3].alpha);
+      stoptween(layer[roundcornerbarbtnbg4].alpha);
+      stoptween(layer[roundcornerbarbtnbg5].alpha);
+
+      tween(layer[roundcornerbarbtnbg0].alpha, 0, 0.5, easeOutQuad, set(layer[roundcornerbarbtnbg0].visible, false));
+      tween(layer[roundcornerbarbtnbg1].alpha, 0, 0.5, easeOutQuad, set(layer[roundcornerbarbtnbg1].visible, false));
+      tween(layer[roundcornerbarbtnbg2].alpha, 0, 0.5, easeOutQuad, set(layer[roundcornerbarbtnbg2].visible, false));
+      tween(layer[roundcornerbarbtnbg3].alpha, 0, 0.5, easeOutQuad, set(layer[roundcornerbarbtnbg3].visible, false));
+      tween(layer[roundcornerbarbtnbg4].alpha, 0, 0.5, easeOutQuad, set(layer[roundcornerbarbtnbg4].visible, false));
+      tween(layer[roundcornerbarbtnbg5].alpha, 0, 0.5, easeOutQuad, set(layer[roundcornerbarbtnbg5].visible, false));
+    );
+
+      set(layer[roundcornerbarbtn_showcontrols].visible, true);
+      set(layer[roundcornerbarbtn_hidecontrols].visible, false);
+      set(layer[roundcornerbarbtn_in].visible, false);
+      set(layer[roundcornerbarbtn_out].visible, false);
+      set(layer[roundcornerbarbtn_up].visible, false);
+      set(layer[roundcornerbarbtn_down].visible, false);
+      set(layer[roundcornerbarbtn_left].visible, false);
+      set(layer[roundcornerbarbtn_right].visible, false);
+
+
+      ifnot(layer[roundcornerbarbtn_prev_pano].disabled,
+      if (scene.count GT 1,
+        set(layer[roundcornerbarbtn_prev_pano].visible, false);
+        set(layer[roundcornerbarbtn_next_pano].visible, false);
+      );
+      );
+
+    roundcornerbarupdateFullscreenButtons();
+	ifnot(layer[roundcornerbarbtn_autorotate_on].disabled,roundcornerbarupdateAutorotationButtons(););
+
+
+
+	ifnot(layer[roundcornerbarbtn_sound_on].disabled,roundcornerbarupdateSoundButtons(););
+
+	ifnot(layer[roundcornerbarbtn_show_thumbnails].disabled,roundcornerbarupdateHideShowThumbnailsButtons(););
+
+
+
+
+	ifnot(layer[roundcornerbarbtn_display_help].disabled,roundcornerbarupdateHelpButtons(););
+
+    if (roundcornerbarnbbuttons GT 0,
+      tween(layer[roundcornerbarmenu_roundcorner_bg].rotate, 180, 0.5, easeOutQuad, set(layer[roundcornerbarmenu_roundcorner_bg].visible, false););
+    );
+  </action>
+  <action name="roundcornerbarshowMenuControls">
+    set(roundcornerbarIsOpened, true);
+    if (roundcornerbarnbbuttons GT 0,
+      stoptween(layer[roundcornerbarmenu_roundcorner_bg].rotate);
+      stoptween(layer[roundcornerbarbtnbg0].alpha);
+      stoptween(layer[roundcornerbarbtnbg1].alpha);
+      stoptween(layer[roundcornerbarbtnbg2].alpha);
+      stoptween(layer[roundcornerbarbtnbg3].alpha);
+      stoptween(layer[roundcornerbarbtnbg4].alpha);
+      stoptween(layer[roundcornerbarbtnbg5].alpha);
+    );
+
+      set(layer[roundcornerbarbtn_hidecontrols].visible, true);
+      set(layer[roundcornerbarbtn_showcontrols].visible, false);
+
+
+    set(layer[roundcornerbarmenu_roundcorner_bg].visible, true);
+    tween(layer[roundcornerbarmenu_roundcorner_bg].rotate, 0, 0.5, easeOutQuad,
+
+      if (roundcornerbarnbbuttons GT 0,
+        set(  layer[roundcornerbarbtnbg0].visible, true);
+        tween(layer[roundcornerbarbtnbg0].alpha  , 1, 0.5);
+        set(  layer[roundcornerbarbtnbg1].visible, true);
+        tween(layer[roundcornerbarbtnbg1].alpha  , 1, 0.5);
+        set(  layer[roundcornerbarbtnbg2].visible, true);
+        tween(layer[roundcornerbarbtnbg2].alpha  , 1, 0.5);
+        set(  layer[roundcornerbarbtnbg3].visible, true);
+        tween(layer[roundcornerbarbtnbg3].alpha  , 1, 0.5);
+        set(  layer[roundcornerbarbtnbg4].visible, true);
+        tween(layer[roundcornerbarbtnbg4].alpha  , 1, 0.5);
+        set(  layer[roundcornerbarbtnbg5].visible, true);
+        tween(layer[roundcornerbarbtnbg5].alpha  , 1, 0.5);
+      );
+
+      set(layer[roundcornerbarbtn_in].visible, true);
+      set(layer[roundcornerbarbtn_out].visible, true);
+      set(layer[roundcornerbarbtn_up].visible, true);
+      set(layer[roundcornerbarbtn_down].visible, true);
+      set(layer[roundcornerbarbtn_left].visible, true);
+      set(layer[roundcornerbarbtn_right].visible, true);
+
+
+    ifnot(layer[roundcornerbarbtn_prev_pano].disabled,
+      if (scene.count GT 1,
+        set(layer[roundcornerbarbtn_prev_pano].visible, true);
+        set(layer[roundcornerbarbtn_next_pano].visible, true);
+      );
+    );
+
+      roundcornerbarupdateFullscreenButtons();
+	ifnot(layer[roundcornerbarbtn_autorotate_on].disabled,roundcornerbarupdateAutorotationButtons(););
+
+
+
+	ifnot(layer[roundcornerbarbtn_sound_on].disabled,roundcornerbarupdateSoundButtons(););
+
+	ifnot(layer[roundcornerbarbtn_show_thumbnails].disabled,roundcornerbarupdateHideShowThumbnailsButtons(););
+
+
+
+	ifnot(layer[roundcornerbarbtn_display_help].disabled,roundcornerbarupdateHelpButtons(););
+
+
+    );
+  </action>
+
+
+  <layer name="roundcornerbarhelpScreenBg"
+          url="%FIRSTXML%/graphics/roundcornerbar/help_screen_bg.png"
+          keep="true"
+          align="bottomright"
+          x="0"
+          y="0"
+          rotate="-90"
+          zorder="97"
+          onclick="roundcornerbarcloseHelp();"
+          visible="false"
+          >
+  <layer name="roundcornerbarhelpScreen" 
+          keep="true"
+          align="center"
+          x="0"
+          y="0"
+          displayed="false"
+          onclick="roundcornerbarcloseHelp();"
+         url="%FIRSTXML%/graphics/roundcornerbar/help_screen.png" 
+         zorder="0"
+         />
+  <layer name="roundcornerbarbtnCloseHelpScreen"
+          url="%FIRSTXML%/graphics/roundcornerbar/btn_close_window.png"
+          keep="true"
+          align="topright"
+          onclick="roundcornerbarcloseHelp();"
+          tooltip="controlBar_roundedhideHelpTip"
+          onhover="roundcornerbarshowMenuTooltip();"
+          onout="hideTooltip();"
+          x="100"
+          y="10"
+          zorder="1"
+           />
+  </layer>
+  <action name="roundcornerbardisplayHelp">
+	if (device.desktop,
+		set(layer[roundcornerbarhelpScreen].displayed, true);
+
+	
+
+		roundcornerbarupdateHelpButtons();
+	);
+  </action>
+  <action name="roundcornerbarcloseHelp">
+	if (device.desktop,
+		set(layer[roundcornerbarhelpScreen].displayed, false);
+		roundcornerbarupdateHelpButtons();
+		
+
+	
+
+	);
+  </action>
+	<action name="roundcornerbarHideHelpButtons">
+		set(layer[roundcornerbarbtn_display_help].visible, false);
+		set(layer[roundcornerbarbtn_close_help].visible, false);
+		ifnot(layer[roundcornerbarhelpScreenBg].rotate == -90,
+			tween(layer[roundcornerbarhelpScreenBg].rotate, -90, 0.7, easeOutQuad, set(layer[roundcornerbarhelpScreenBg].visible, false););
+		);
+	</action>
+	<action name="roundcornerbarShowHelpButtons">
+		if (layer[roundcornerbarhelpScreen].displayed,
+			set(layer[roundcornerbarbtn_close_help].visible, true);
+			set(layer[roundcornerbarbtn_display_help].visible, false);
+			set(layer[roundcornerbarhelpScreenBg].visible, true);
+			ifnot(layer[roundcornerbarhelpScreenBg].rotate == 0,
+				tween(layer[roundcornerbarhelpScreenBg].rotate, 0, 0.7);
+			);
+		,
+			set(layer[roundcornerbarbtn_display_help].visible, true);
+			set(layer[roundcornerbarbtn_close_help].visible, false);
+			ifnot(layer[roundcornerbarhelpScreenBg].rotate == -90,
+				tween(layer[roundcornerbarhelpScreenBg].rotate, -90, 0.7, easeOutQuad, set(layer[roundcornerbarhelpScreenBg].visible, false););
+			);
+		);
+	</action>
+	<action name="roundcornerbarupdateHelpButtons">
+	if (device.desktop,
+		set(roundcornerbarDisplayHelpButtons, false);
+		if (roundcornerbarIsOpened, set(roundcornerbarDisplayHelpButtons, true););
+		if (roundcornerbarDisplayHelpButtons,
+			roundcornerbarShowHelpButtons();
+		,
+			roundcornerbarHideHelpButtons();
+		);
+	,
+		roundcornerbarHideHelpButtons();
+	);
+	</action>
+
+
+
+
+
+  <action name="roundcornerbarshowMenuTooltip">
+    if (tooltip !== null,
+      getmessage(tooltipmess, get(tooltip));
+      showTooltip('plugin', roundcornerbarmenuTooltipStyle, bottomright);
+    );
+  </action>
+
+  <layer name="roundcornerbarmenuTooltipStyle"
+	keep="true"
+	enabled="false"
+	capture="false"
+	url="%FIRSTXML%/graphics/textfield.swf"
+	align="center"
+	background="true"
+	backgroundcolor="0x9b8b75"
+	backgroundalpha="0.8"
+	border="true"
+	borderwidth="1.0"
+	bordercolor="0xf5e93a"
+	borderalpha="1"
+	css="color:#00062c;font-family:Times New Roman;font-weight:bold;font-size:14px;text-align:left;"
+	height="20"
+	autoheight="true"
+	autowidth="auto"
+	edge="bottomright"
+	selectable="false"
+	zorder="0"
+	padding="2"
+	xoffset="0"
+	yoffset="0"
+	visible="false"
+	html=""
+         />
+
+
+
+  <!-- **************************** -->
+  <!-- Thumbnails Stack : panoramas -->
+  <!-- **************************** -->
+
+  <krpano stackThumbsallpanoramasIsOpen="false" stackThumbsallpanoramasFirstLoad="true" />
+
+  <events name="stackThumbsallpanoramasEvents"
+          onnewpano="stackThumbsallpanoramasClose(0);"
+          onTourStart="stackThumbsallpanoramasBuild();"
+          hidetourcontrols="stackThumbsallpanoramasHide();"
+          showtourcontrols="stackThumbsallpanoramasShow();"
+          hidetourthumbnails="stackThumbsallpanoramasHide();"
+          showtourthumbnails="stackThumbsallpanoramasShow();"
+          keep="true"/>
+
+  <layer name="stackThumbsallpanoramasMainLayer" type="container" zorder="4" width="1" height="1" alpha="1" keep="true" x="0" y="0" visible="true" align="bottomleft" />
+
+  <action name="stackThumbsallpanoramasHide">
+    set(hstcstackThumbsallpanoramasi-wait,30);
+    for (set(hstcstackThumbsallpanoramasi, 0), hstcstackThumbsallpanoramasi LT scene.count, inc(hstcstackThumbsallpanoramasi),
+      if(hstcstackThumbsallpanoramasi-wait == hstcstackThumbsallpanoramasi,
+        add(hstcstackThumbsallpanoramasi-wait, 30);
+        wait(0);
+      );
+      txtadd(thumbname,'stackThumbsallpanoramas_', get(hstcstackThumbsallpanoramasi));
+      txtadd(thumbnameimg, get(thumbname), '_img');
+      set(layer[get(thumbname)].visible, false);
+      set(layer[get(thumbnameimg)].visible, false);
+    );
+  </action>
+  <action name="stackThumbsallpanoramasShow">
+  if (tour_displaythumbnails, 
+    set(sstcstackThumbsallpanoramasi-wait,30);
+    for (set(sstcstackThumbsallpanoramasi, 0), sstcstackThumbsallpanoramasi LT scene.count, inc(sstcstackThumbsallpanoramasi),
+      if(sstcstackThumbsallpanoramasi-wait == sstcstackThumbsallpanoramasi,
+        add(sstcstackThumbsallpanoramasi-wait, 30);
+        wait(0);
+      );
+      txtadd(thumbname,'stackThumbsallpanoramas_', get(sstcstackThumbsallpanoramasi));
+      txtadd(thumbnameimg, get(thumbname), '_img');
+      set(layer[get(thumbname)].visible, true);
+      set(layer[get(thumbnameimg)].visible, true);
+    );
+  );
+  </action>
+
+  <action name="stackThumbsallpanoramasMagnify">
+    tween(layer[%1].alpha,  1.0, 0.3, easeInQuad);
+    tween(layer[%1].scale, 1.05, 0.3, easeInQuad);
+    tween(layer[get(layer[%1].thumbborder)].alpha,  1.0, 0.3, easeInQuad);
+    tween(layer[get(layer[%1].thumbborder)].scale, 1.05, 0.3, easeInQuad);
+    set(layer[get(layer[%1].thumbborder)].bgborder, '2 0xffffff 1');
+  </action>
+
+  <action name="stackThumbsallpanoramasLies">
+    tween(layer[%1].alpha, 0.8, 0.3, easeInQuad);
+    tween(layer[%1].scale, 1.0, 0.3, easeInQuad);
+    tween(layer[get(layer[%1].thumbborder)].alpha, 0.8, 0.3, easeInQuad);
+    tween(layer[get(layer[%1].thumbborder)].scale, 1.0, 0.3, easeInQuad);
+    set(layer[get(layer[%1].thumbborder)].bgborder, '2 0xffffff 0.2');
+  </action>
+
+
+<krpano stackThumbsallpanoramasBuilt="false"/>
+
+  <action name="stackThumbsallpanoramasBuild">
+    ifnot (stackThumbsallpanoramasBuilt,
+    set(bststackThumbsallpanoramasi-wait,30);
+    for (set(bststackThumbsallpanoramasi, 0), bststackThumbsallpanoramasi LT scene.count, inc(bststackThumbsallpanoramasi),
+      if(bststackThumbsallpanoramasi-wait == bststackThumbsallpanoramasi,
+        add(bststackThumbsallpanoramasi-wait, 30);
+        wait(0);
+      );
+
+        copy(thumburl, scene[get(bststackThumbsallpanoramasi)].thumburl);
+        txtadd(thumbname,'stackThumbsallpanoramas_', get(bststackThumbsallpanoramasi));
+        txtadd(thumbnameimg, get(thumbname), '_img');
+
+        addplugin(get(thumbname));
+        addplugin(get(thumbnameimg));
+        set(layer[get(thumbnameimg)].parent, "stackThumbsallpanoramasMainLayer");
+        set(layer[get(thumbname)].parent, get(thumbnameimg));
+        set(layer[get(thumbnameimg)].url   , get(thumburl));
+        set(layer[get(thumbname)].type, 'container');
+        set(layer[get(thumbnameimg)].keep  , true);
+        set(layer[get(thumbname)].keep  , true);
+        set(layer[get(thumbnameimg)].align , bottomleft);
+        set(layer[get(thumbname)].align , topleft);
+        set(layer[get(thumbnameimg)].edge  , center);
+
+        set(layer[get(thumbnameimg)].width , 50);
+        set(layer[get(thumbnameimg)].height, 25);
+        set(layer[get(thumbname)].width , 50);
+        set(layer[get(thumbname)].height, 25);
+
+        set(layer[get(thumbnameimg)].alpha , 0.8);
+        set(layer[get(thumbnameimg)].visible , false);
+        set(layer[get(thumbname)].alpha , 0.8);
+        set(layer[get(thumbname)].visible , false);
+
+        if (bststackThumbsallpanoramasi GE 4, set(reali, 4), set(reali, get(bststackThumbsallpanoramasi)));
+
+        mul(layer[get(thumbnameimg)].x, get(reali),3);
+        mul(layer[get(thumbnameimg)].y, get(reali),3);
+
+        add(closedthumboffsetx, 10, 25);
+        add(layer[get(thumbnameimg)].x, get(closedthumboffsetx));
+
+        add(closedthumboffsety, 10, 12);
+        add(layer[get(thumbnameimg)].y, get(closedthumboffsety));
+
+        copy(layer[get(thumbnameimg)].xsmall, layer[get(thumbnameimg)].x);
+        copy(layer[get(thumbnameimg)].ysmall, layer[get(thumbnameimg)].y);
+
+        add(layer[get(thumbnameimg)].zorder, 0, bststackThumbsallpanoramasi);
+        add(layer[get(thumbname)].zorder, 0, bststackThumbsallpanoramasi);
+        set(layer[get(thumbname)].bgborder, '2 0xffffff 0.2');
+
+          set(layer[get(thumbnameimg)].tooltip,get(scene[get(bststackThumbsallpanoramasi)].titleid));
+        set(layer[get(thumbnameimg)].thumbborder, get(thumbname));
+        set(layer[get(thumbnameimg)].thumbpos, get(bststackThumbsallpanoramasi));
+        set(layer[get(thumbnameimg)].linkedpano, get(scene[get(bststackThumbsallpanoramasi)].name) );
+        set(layer[get(thumbnameimg)].onclick, stackThumbsallpanoramasOpen() );
+      );
+
+      set(stackThumbsallpanoramasBuilt, true);
+
+      stackThumbsallpanoramasShow();
+
+      
+    );
+  </action>
+
+  <action name="stackThumbsallpanoramasOpenThumb">
+    if(%3 != NEXT,
+      set(pos,0);
+      copy(curpos, layer[%1].thumbpos);
+      set(xdst, 0);
+      set(ydst, 0);
+    );
+    if (pos LT curpos,
+      inc(pos);
+
+        inc(ydst, 60);
+        if (ishtml5,
+          sub(ymax, stageheight, 50);
+         ,
+          sub(ymax, area.pixelheight, 50);
+        );
+        dec(ymax, 30);
+        if(ydst GT ymax,
+          inc(xdst, 110);
+          set(ydst,0);
+        );
+
+      stackThumbsallpanoramasOpenThumb(%1,%2,NEXT);
+     ,
+      set(openthumboffsetx, 50);
+      add(openthumboffsetx, 10);
+      add(xdst, get(openthumboffsetx));
+
+      set(openthumboffsety, 25);
+      add(openthumboffsety, 10);
+      add(ydst, get(openthumboffsety));
+
+      tween(layer[%1].x, get(xdst) );
+      tween(layer[%1].y, get(ydst) );
+      tween(layer[%1].width , 100);
+      tween(layer[%1].height, 50);
+      tween(layer[%2].width , 100);
+      tween(layer[%2].height, 50);
+    );
+  </action>
+
+  <action name="stackThumbsallpanoramasOpen">
+    set(oststackThumbsallpanoramasi-wait,30);
+    for (set(oststackThumbsallpanoramasi, 0), oststackThumbsallpanoramasi LT scene.count, inc(oststackThumbsallpanoramasi),
+    if(oststackThumbsallpanoramasi-wait == oststackThumbsallpanoramasi,
+      add(oststackThumbsallpanoramasi-wait, 30);
+      wait(0);
+    );
+      txtadd(thumbname,'stackThumbsallpanoramas_',get(oststackThumbsallpanoramasi));
+      txtadd(thumbnameimg, get(thumbname), '_img');
+      stackThumbsallpanoramasOpenThumb(get(thumbnameimg), get(thumbname));
+      set(layer[get(thumbnameimg)].onover, stackThumbsallpanoramasMagnify(get(name)); );
+      set(layer[get(thumbnameimg)].onout, stackThumbsallpanoramasLies(get(name)); hideTooltip(); );
+      set(layer[get(thumbnameimg)].onhover, showTooltip('plugin'); );
+      set(layer[get(thumbnameimg)].onclick, stackThumbsallpanoramasLies(get(name)); stackThumbsallpanoramasClose(0); mainloadscene(get(linkedpano)); );
+    );
+    
+    set(stackThumbsallpanoramasIsOpen, true);
+  </action>
+
+  <action name="stackThumbsallpanoramasClose">
+    if (stackThumbsallpanoramasIsOpen,
+    set(cststackThumbsallpanoramasi-wait,30);
+    for (set(cststackThumbsallpanoramasi, 0), cststackThumbsallpanoramasi LT scene.count, inc(cststackThumbsallpanoramasi),
+      if(cststackThumbsallpanoramasi-wait == cststackThumbsallpanoramasi,
+        add(cststackThumbsallpanoramasi-wait, 30);
+        wait(0);
+      );
+      txtadd(thumbname,'stackThumbsallpanoramas_', get(cststackThumbsallpanoramasi));
+      txtadd(thumbnameimg, get(thumbname), '_img');
+      stackThumbsallpanoramasCloseThumb(get(thumbnameimg), get(thumbname));
+    );
+    
+    set(stackThumbsallpanoramasIsOpen, false);
+    );
+  </action>
+  <action name="stackThumbsallpanoramasCloseThumb">
+    tween(layer[%1].x, get(layer[%1].xsmall));
+    tween(layer[%1].y, get(layer[%1].ysmall));
+    tween(layer[%1].width, 50);
+    tween(layer[%1].height, 25);
+    tween(layer[%2].width, 50);
+    tween(layer[%2].height, 25);
+    set(layer[%1].alpha, 0.8);
+    set(layer[%1].onover, '');
+    set(layer[%1].onout, '');
+    set(layer[%1].onhover, '');hideTooltip();
+    set(layer[%1].onclick, stackThumbsallpanoramasOpen() );
+  </action>
+
+
+
+<!-- ************ -->
+<!-- Context Menu -->
+<!-- ************ -->
+  <contextmenu fullscreen="false" versioninfo="false" touch="true">
+    <item name="website1" onclick="getmessage(urltoopen,contextmenuwebsiteurl1);openurl(get(urltoopen),_blank);" />
+    <item name="website2" onclick="getmessage(urltoopen,contextmenuwebsiteurl2);openurl(get(urltoopen),_blank);" />
+    <item name="normal"        onclick="setViewNormal();
+" separator="true"/>
+    <item name="fisheye"       onclick="setViewFisheye();
+"/>
+    <item name="architectural" onclick="setViewArchitectural();
+"/>
+    <item name="stereographic" onclick="setViewStereographic();
+"/>
+    <item name="pannini"       onclick="setViewPannini();
+"/>
+    <item name="littleplanet"  onclick="setViewLittlePlanet();
+"/>
+    <item name="fisheyeball"   onclick="setViewFisheyeBall();
+"/>
+    <item name="fullscreenentry" onclick="enterFullscreen();
+" separator="true"/>
+  </contextmenu>
+
+  <events name="contextmenuevents" keep="true" onenterfullscreen="updateContextMenu" onexitfullscreen="updateContextMenu" onxmlcomplete="updateContextMenu"/>
+  <action name="updateContextMenu">
+    getmessage(contextmenu.item[website1].caption, contextmenuopenwebsitelabel1);
+    getmessage(contextmenu.item[website2].caption, contextmenuopenwebsitelabel2);
+    getmessage(contextmenu.item[normal].caption, contextmenunormallabel);
+    getmessage(contextmenu.item[architectural].caption, contextmenuarchitecturallabel);
+    
+    set(sceneisfull360, false);
+    if(scene[get(xml.scene)].full360,
+      sub(viewhfov, view.hlookatmax, view.hlookatmin);
+      if (viewhfov == 360,
+        sub(viewvfov, view.vlookatmax, view.vlookatmin);
+        if (viewvfov == 180,
+          set(sceneisfull360, true);
+        );
+      );
+    );
+    if (sceneisfull360 AND (device.webgl OR device.flash),
+      set(contextmenu.item[fisheye].visible, true);
+      getmessage(contextmenu.item[fisheye].caption, contextmenufisheyelabel);
+      set(contextmenu.item[stereographic].visible, true);
+      getmessage(contextmenu.item[stereographic].caption, contextmenustereographiclabel);
+      set(contextmenu.item[pannini].visible, true);
+      getmessage(contextmenu.item[pannini].caption, contextmenupanninilabel);
+      set(contextmenu.item[littleplanet].visible, true);
+      getmessage(contextmenu.item[littleplanet].caption, contextmenulittleplanetlabel);
+      set(contextmenu.item[fisheyeball].visible, true);
+      getmessage(contextmenu.item[fisheyeball].caption, contextmenufisheyeballlabel);
+    ,
+      set(contextmenu.item[fisheye].visible, false);
+      set(contextmenu.item[stereographic].visible, false);
+      set(contextmenu.item[pannini].visible, false);
+      set(contextmenu.item[littleplanet].visible, false);
+      set(contextmenu.item[fisheyeball].visible, false);
+    );
+    if (device.fullscreensupport,
+      if(tour_fullscreen,
+        getmessage(contextmenu.item[fullscreenentry].caption, contextmenucloseFsLabel);
+        set(contextmenu.item[fullscreenentry].onclick, exitFullscreen();
+);
+       ,
+        getmessage(contextmenu.item[fullscreenentry].caption, contextmenuopenFsLabel);
+        set(contextmenu.item[fullscreenentry].onclick, enterFullscreen();
+);
+      );
+     ,
+      set(contextmenu.item[fullscreenentry].visible, false);
+    );
+  </action>
+
+
+  <!-- ************ -->
+  <!-- Logo : sphere / topleft -->
+  <!-- ************ -->
+
+  <hotspot ath="0" atv="90"
+         zorder="0"
+         name="logo"
+         keep="true"
+         visible="false"
+         capture="false"
+
+			tooltip="logotooltipText"
+			onhover="showTooltip('hotspot',logoTooltipStyle);"
+			onout="hideTooltip();"
+         url="%FIRSTXML%/graphics/logo/panoairfinal1.png" 
+         onclick="openurl(http://www.panoair.ir,_blank);
+"
+
+         height="150"
+         width="150"
+
+         />
+
+  <events name="logoevents" 
+    onTourStart="showlogo();"
+    keep="true" />
+
+  <action name="hidelogo">
+    set(hotspot[logo].visible, false);
+  </action>
+  <action name="showlogo">
+      set(hotspot[logo].visible, true);
+  </action>
+
+
+
+  <events name="logoshowevents" onremovepano="hidelogo" onPanoStart="showlogo" keep="true"/>
+
+<layer name="logoTooltipStyle"
+	keep="true"
+	enabled="false"
+	capture="false"
+	url="%FIRSTXML%/graphics/textfield.swf"
+	align="center"
+	background="false"
+	border="false"
+	css="color:#ffffff;font-family:Arial;font-weight:bold;font-size:14px;text-align:left;"
+	height="20"
+	autoheight="true"
+	autowidth="auto"
+	edge="bottom"
+	selectable="false"
+	zorder="0"
+	padding="2"
+	xoffset="0"
+	yoffset="0"
+	visible="false"
+	html=""
+/>
+
+
+<action name="setViewPannini">
+	set(sceneisfull360, false);
+	if(scene[get(xml.scene)].full360,
+		sub(viewhfov, view.hlookatmax, view.hlookatmin);
+		if (viewhfov == 360,
+			sub(viewvfov, view.vlookatmax, view.vlookatmin);
+			if (viewvfov == 180,
+				set(sceneisfull360, true);
+			);
+		);
+	);
+	if (sceneisfull360 AND (device.webgl OR device.flash),
+		stopSetViewTweens();
+		setViewPanniniComplete();
+	);
+</action>
+
+<action name="setViewPanniniComplete">
+	tween(view.architectural, 0.0, 0.25, easeoutquad,
+		tween(view.fovmax, get(panoview.fovmax), distance(179, 1.00));
+		set(backtonormalfirst,false);
+		if(view.pannini LT 1.0, set(backtonormalfirst,true); );
+		if(view.stereographic == false, set(backtonormalfirst,true); );
+		if(backtonormalfirst, tween(view.fisheye, 0.0 ,distance(1.0, 0.25), easeoutquad, WAIT); );
+		tween(view.pannini, 1.0, distance(1.0, 0.75));
+		set(view.stereographic, true);
+		set(view.fisheyefovlink, 1.5);
+		tween(view.fisheye, 1.0, distance(1.0, 0.75));
+		tween(view.vlookat, get(panoview.v), 1.25);
+		if(panoview.fov LE view.fov, tween(view.fov, get(panoview.fov), distance(50, 0.45)); );
+	);
+</action>
+
+<action name="setViewFisheye">
+	set(sceneisfull360, false);
+	if(scene[get(xml.scene)].full360,
+		sub(viewhfov, view.hlookatmax, view.hlookatmin);
+		if (viewhfov == 360,
+			sub(viewvfov, view.vlookatmax, view.vlookatmin);
+			if (viewvfov == 180,
+				set(sceneisfull360, true);
+			);
+		);
+	);
+	if (sceneisfull360 AND (device.webgl OR device.flash),
+		stopSetViewTweens();
+		setViewFisheyeComplete();
+	);
+</action>
+
+<action name="setViewFisheyeComplete">
+	tween(view.architectural, 0.0, distance(1.0, 0.30), easeoutquad, 
+		tween(view.fisheye, 0.0, distance(1.0, 0.30), easeoutquad,
+			set(view.stereographic,false);
+			tween(view.pannini, 0.0, distance(1.0, 0.75));
+			tween(view.fovmax, 179, 0.5);
+			set(view.fisheyefovlink, 1.5);
+			if(panoview.fov LE view.fov, tween(view.fov, get(panoview.fov), distance(50, 0.45)); );
+			tween(view.fisheye, 0.40, distance(1.0, 0.75));
+			tween(view.vlookat, get(panoview.v), 1.25);
+		);
+	);
+</action>
+
+<action name="setViewStereographic">
+	set(sceneisfull360, false);
+	if(scene[get(xml.scene)].full360,
+		sub(viewhfov, view.hlookatmax, view.hlookatmin);
+		if (viewhfov == 360,
+			sub(viewvfov, view.vlookatmax, view.vlookatmin);
+			if (viewvfov == 180,
+				set(sceneisfull360, true);
+			);
+		);
+	);
+	if (sceneisfull360 AND (device.webgl OR device.flash),
+		stopSetViewTweens();
+		setViewStereographicComplete();
+	);
+</action>
+
+<action name="setViewStereographicComplete">
+	tween(view.architectural, 0.0, 0.25, easeoutquad, 
+		tween(view.fovmax, get(panoview.fovmax), distance(179, 1.00));
+		set(backtonormalfirst,false);
+		if(view.pannini GE 1.0, set(backtonormalfirst,true) );
+		if(view.stereographic == false, set(backtonormalfirst,true) );
+		if(backtonormalfirst, tween(view.fisheye, 0.0 ,distance(1.0, 0.25), easeoutquad, WAIT); );
+		tween(view.pannini, 0.0, distance(1.0, 0.75));
+		set(view.stereographic, true);
+		set(view.fisheyefovlink, 1.5);
+		tween(view.fisheye, 1.0, distance(1.0, 0.75), easeoutquad);
+		tween(view.vlookat, get(panoview.v), 1.25);
+		if(panoview.fov LE view.fov, tween(view.fov, get(panoview.fov), distance(50, 0.45)); );
+	);
+</action>
+
+  <!-- Hide / Show Controls -->
+  <action name="hideTourControls">set(tour_displaycontrols, false);events.dispatch(hidetourcontrols);</action>
+  <action name="showTourControls">set(tour_displaycontrols, true); events.dispatch(showtourcontrols);</action>
+
+
+  <!-- Hide / Show Thumbnails -->
+  <action name="hideTourThumbnails">set(tour_displaythumbnails, false);events.dispatch(hidetourthumbnails);</action>
+  <action name="showTourThumbnails">set(tour_displaythumbnails, true); events.dispatch(showtourthumbnails);</action>
+
+
+  <!-- Sounds Management -->
+  <action name="play3DLocalSounds">
+    if (xml.scene, if (scene[get(xml.scene)].haslocalsounds, playpanolocalsounds();););
+  </action>
+  <action name="stop3DLocalSounds">
+    if (xml.scene, if (scene[get(xml.scene)].haslocalsounds, stoppanolocalsounds();););
+  </action>
+  <action name="resume3DLocalSounds">
+    if (xml.scene, if (scene[get(xml.scene)].haslocalsounds, 
+      set(kill3dSoundOnResume, true);
+      if(layer[displayedStandardVideo],
+      if(layer[displayedStandardVideo].pausebgsound,
+      if(tour_current_played_video,
+        set(kill3dSoundOnResume, false);
+      );););
+      if(layer[webvideodisplay_player],
+      if(layer[webvideodisplay_player].pausebgsound,
+      if(tour_current_played_web_video,
+        set(kill3dSoundOnResume, false);
+      );););
+      if(tour_current_played_sound_pausesound,
+      if(tour_current_played_sound,
+        set(kill3dSoundOnResume, false);
+      ););
+      if(kill3dSoundOnResume,
+        resumepanolocalsounds();
+      );
+    ););
+  </action>
+  <action name="pause3DLocalSounds">
+    if (xml.scene, if (scene[get(xml.scene)].haslocalsounds, pausepanolocalsounds();););
+  </action>
+  <action name="set3DLocalSoundsVolume">
+    if (xml.scene, if (scene[get(xml.scene)].haslocalsounds, setpanolocalsoundsvolume();););
+  </action>
+  <action name="playTourSounds">
+    set(tour_soundson, true);events.dispatch(playtoursoundsevent);
+    resumeTourSoundsActions(true,true,true,true,true);
+  </action>
+  <action name="stopTourSounds">
+    set(tour_soundson, false);events.dispatch(stoptoursoundsevent);
+    pauseTourSoundsActions(true,true,true,true,true);
+  </action>
+  <action name="setTourSoundsVolume">
+    set(tour_soundsvolume, %1);
+    set3DLocalSoundsVolume();
+  </action>
+  <action name="playTourSoundsActions">
+    if(%1,
+      if(plugin[soundinterface],
+        if(plugin[soundinterface].started,
+          play3DLocalSounds();
+        );
+      );
+    );
+  </action>
+  <action name="stopTourSoundsActions">
+    if(%1,
+      stop3DLocalSounds();
+    );
+    if(%3,
+      stopVideoActionsSounds();
+    );
+  </action>
+  <action name="resumeTourSoundsActions">
+    if(%1,
+      if(plugin[soundinterface],
+        if(plugin[soundinterface].started,
+          resume3DLocalSounds();
+        );
+      );
+    );
+    if(%3,
+      resumeVideoActionsSounds();
+    );
+  </action>
+  <action name="pauseTourSoundsActions">
+    if(%1,
+      pause3DLocalSounds();
+    );
+    if(%3,
+      pauseVideoActionsSounds();
+    );
+  </action>
+  <action name="stopVideoActionsSounds">
+    if(tour_current_played_video,
+      if(layer[displayedStandardVideo],
+        layer[displayedStandardVideo].stop();
+        removelayer(displayedStandardVideo);
+        if(layer[displayedStandardVideoOverlayButton], removelayer(displayedStandardVideoOverlayButton); );
+        if(layer[displayedStandardVideoOverlay], removelayer(displayedStandardVideoOverlay); );
+        delete(tour_current_played_video);
+        set(tour_current_played_video_state, 0);
+      );
+    );
+    if(tour_current_played_web_video,
+      displayWebVideoObjectClose();
+    );
+  </action>
+  <action name="resumeVideoActionsSounds">
+    if(tour_current_played_video,
+      set(resumeVideoActionsVerification, true);
+      if(tour_current_played_sound,
+        if(tour_current_played_video_state LT tour_current_played_sound_state,
+          set(resumeVideoActionsVerification, false);
+        );
+      );
+      if(resumeVideoActionsVerification,
+        if (tour_soundson,
+          div(volume, tour_soundsvolume, 100);
+          if(device.flash,
+            set(layer[displayedStandardVideo].volume, get(volume));
+          ,
+            ifnot(device.ios,
+              js(kpanotour.Sounds.startVideosSounds(get(volume)));
+            );
+          );
+        ,
+          if(device.flash,
+            set(layer[displayedStandardVideo].volume, 0);
+          ,
+            ifnot(device.ios,
+              js(kpanotour.Sounds.stopVideosSounds());
+            );
+          );
+        );
+      );
+    );
+  </action>
+  <action name="pauseVideoActionsSounds">
+    if(tour_current_played_video,
+      if(device.flash,
+        set(layer[displayedStandardVideo].volume, 0);
+      ,
+        ifnot(device.ios,
+          js(kpanotour.Sounds.stopVideosSounds());
+        );
+      );
+    );
+  </action>
+
+  <!-- Fullscreen Management -->
+  <action name="exitFullScreen" devices="fullscreensupport">set(tour_fullscreen,false);set(fullscreen,false);</action>
+  <action name="enterFullScreen" devices="fullscreensupport">set(tour_fullscreen,true);set(fullscreen,true);</action>
+  <action name="switchFullScreen">if(tour_fullscreen,exitFullScreen();,enterFullScreen(););</action>
+
+  
+  <events name="krpanoExitFullscreenEvent"
+    onexitfullscreen="if(tour_fullscreen,exitFullScreenChangeEvent(););"
+    keep="true" />
+
+  <action name="exitFullScreenChangeEvent" devices="fullscreensupport">set(tour_fullscreen,false);events.dispatch(onexitfullscreen);</action>
+
+<action name="setViewArchitectural">
+	stopSetViewTweens();
+	setViewArchitecturalComplete();
+</action>
+
+<action name="setViewArchitecturalComplete">
+	tween(view.fovmax, get(panoview.fovmax), distance(179, 1.00), easeoutquad);
+	tween(view.architectural, 1.0, distance(1.0, 0.45), easeoutquad, 
+		tween(view.pannini, 0.0, distance(1.0, 0.45));
+		tween(view.fisheye, 0.0, distance(1.0, 0.45), easeoutquad, 
+			set(view.fisheyefovlink, 0.5);
+			set(view.stereographic,false);
+			tween(view.vlookat, get(panoview.v), 1.25);
+			if(panoview.fov LE view.fov, tween(view.fov, get(panoview.fov), distance(50, 0.45)); );
+		);
+	);
+</action>
+
+<action name="setViewLittlePlanet">
+	set(sceneisfull360, false);
+	if(scene[get(xml.scene)].full360,
+		sub(viewhfov, view.hlookatmax, view.hlookatmin);
+		if (viewhfov == 360,
+			sub(viewvfov, view.vlookatmax, view.vlookatmin);
+			if (viewvfov == 180,
+				set(sceneisfull360, true);
+			);
+		);
+	);
+	if (sceneisfull360 AND (device.webgl OR device.flash),
+		stopSetViewTweens();
+		setViewLittlePlanetComplete();
+	);
+</action>
+
+<action name="setViewLittlePlanetComplete">
+	tween(view.architectural, 0.0, 0.25, easeoutquad, 
+		tween(view.vlookat, 90, distance(179, 1.50), easeoutquad);
+		set(backtonormalfirst,false);
+		if(view.pannini GE 1.0, set(backtonormalfirst,true) );
+		if(view.stereographic == false, set(backtonormalfirst,true) );
+		if(backtonormalfirst, tween(view.fisheye, 0.0 ,distance(1.0, 0.25), easeoutquad, WAIT); );
+		tween(view.pannini, 0.0, distance(1.0, 0.75));
+		if(panoview.fovmax LE 150, set(view.fovmax, 150); , set(view.fovmax, get(panoview.fovmax)); );
+		set(view.stereographic, true);
+		set(view.fisheyefovlink, 1.5);
+		tween(view.fisheye, 1.0, distance(1.0, 0.75), easeoutquad);
+		tween(view.fov, 150, distance(179, 0.75), easeoutquad);
+	);
+</action>
+
+<action name="setViewFisheyeBall">
+	set(sceneisfull360, false);
+	if(scene[get(xml.scene)].full360,
+		sub(viewhfov, view.hlookatmax, view.hlookatmin);
+		if (viewhfov == 360,
+			sub(viewvfov, view.vlookatmax, view.vlookatmin);
+			if (viewvfov == 180,
+				set(sceneisfull360, true);
+			);
+		);
+	);
+	if (sceneisfull360 AND (device.webgl OR device.flash),
+		stopSetViewTweens();
+		setViewFisheyeBallComplete();
+	);
+</action>
+
+<action name="setViewFisheyeBallComplete">
+	tween(view.architectural, 0.0, distance(1.0, 0.30), easeoutquad, 
+		set(view.fisheyefovlink, 1.5);
+		tween(view.fisheye, 1.0, distance(1.0, 0.30), easeoutquad,
+			set(view.stereographic,false);
+			tween(view.pannini, 0.0, distance(1.0, 0.45));
+			if(panoview.fovmax LE 179, set(view.fovmax, 179);, set(view.fovmax, get(panoview.fovmax)); );
+			tween(view.fov, 179, 4.0, easeInOutQuad );
+			tween(view.vlookat, get(panoview.v), 1.25);
+			set(display.details, 22);
+		);
+	);
+</action>
+
+<action name="setViewNormal">
+	stopSetViewTweens();
+	setViewNormalComplete();
+</action>
+
+<action name="setViewNormalComplete">
+	tween(view.architectural, 0.0, distance(1.0, 0.45), easeoutquad,
+		tween(view.fovmax, get(panoview.fovmax), distance(179, 1.00));
+		tween(view.vlookat, get(panoview.v), distance(90, 0.45));
+		tween(view.pannini, 0.0, distance(1.0, 0.45));
+		tween(view.fisheye, 0.0, distance(1.0, 0.45), easeoutquad,
+			set(view.stereographic,false);
+			set(view.fisheyefovlink, 0.5);
+			if(panoview.fov LE view.fov, tween(view.fov, get(panoview.fov), distance(50, 0.45)); );
+		);
+	);
+</action>
+
+<action name="stopSetViewTweens">
+	stoptween(view.fov);
+	stoptween(view.fovmax);
+	stoptween(view.vlookat);
+	stoptween(view.fisheye);
+	stoptween(view.architectural);
+	stoptween(view.pannini);
+</action>
+
+</krpano>

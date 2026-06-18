@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<krpano>
+
+<!-- ************************ -->
+<!--         Messages         -->
+<!-- ************************ -->
+
+  <data name="en_project_title"><![CDATA[ala]]></data>
+
+
+
+  <data name="en_pano46_title"><![CDATA[ورودي]]></data>
+
+
+  <data name="en_pano36_title"><![CDATA[رواق]]></data>
+
+
+  <data name="en_pano37_title"><![CDATA[چله نشين]]></data>
+
+
+  <data name="en_pano38_title"><![CDATA[ورودي غربي]]></data>
+
+
+  <data name="en_pano39_title"><![CDATA[انتظامات]]></data>
+
+
+  <data name="en_pano42_title"><![CDATA[ورودي شرقي]]></data>
+  <data name="en_spotpicture149_tooltip"><![CDATA[تاريخچه بنا]]></data>
+
+
+  <data name="en_pano43_title"><![CDATA[مرکز]]></data>
+
+
+  <data name="en_pano44_title"><![CDATA[صحن ]]></data>
+
+
+  <data name="en_pano45_title"><![CDATA[مقبره شيخ علاالدوله ]]></data>
+
+
+
+
+	<data name="en_project_floor_title"><![CDATA[نقشه ]]></data>
+	<data name="en_spotmap155_tooltip"><![CDATA[]]></data>
+	<data name="en_spotmap156_tooltip"><![CDATA[]]></data>
+	<data name="en_spotmap157_tooltip"><![CDATA[]]></data>
+	<data name="en_spotmap158_tooltip"><![CDATA[]]></data>
+	<data name="en_spotmap159_tooltip"><![CDATA[]]></data>
+	<data name="en_spotmap160_tooltip"><![CDATA[]]></data>
+	<data name="en_spotmap161_tooltip"><![CDATA[]]></data>
+	<data name="en_spotmap162_tooltip"><![CDATA[]]></data>
+
+
+  <data name="en_controlBar_classicprevSceneTip"><![CDATA[Previous panorama]]></data>
+  <data name="en_controlBar_classicnextSceneTip"><![CDATA[Next panorama]]></data>
+  <data name="en_controlBar_classiczoomInTip"><![CDATA[Zoom in]]></data>
+  <data name="en_controlBar_classiczoomOutTip"><![CDATA[Zoom out]]></data>
+  <data name="en_controlBar_classicmoveLeftTip"><![CDATA[Move left]]></data>
+  <data name="en_controlBar_classicmoveRightTip"><![CDATA[Move right]]></data>
+  <data name="en_controlBar_classicmoveUpTip"><![CDATA[Move up]]></data>
+  <data name="en_controlBar_classicmoveDownTip"><![CDATA[Move down]]></data>
+  <data name="en_controlBar_classicopenFsTip"><![CDATA[Enter fullscreen]]></data>
+  <data name="en_controlBar_classiccloseFsTip"><![CDATA[Exit fullscreen]]></data>
+  <data name="en_controlBar_classicautorotateOnTip"><![CDATA[Start autorotation]]></data>
+  <data name="en_controlBar_classicautorotateOffTip"><![CDATA[Stop autorotation]]></data>
+  <data name="en_controlBar_classicsoundsOnTip"><![CDATA[Start sounds]]></data>
+  <data name="en_controlBar_classicsoundsOffTip"><![CDATA[Stop sounds]]></data>
+  <data name="en_controlBar_classicdisplayFloorplanTip"><![CDATA[Show floorplan]]></data>
+  <data name="en_controlBar_classichideFloorplanTip"><![CDATA[Hide floorplan]]></data>
+  <data name="en_controlBar_classicdisplayHelpTip"><![CDATA[Show help screen]]></data>
+  <data name="en_controlBar_classichideHelpTip"><![CDATA[Hide help screen]]></data>
+  <data name="en_controlBar_classicdisplayControlsTip"><![CDATA[Show controls]]></data>
+  <data name="en_controlBar_classichideControlsTip"><![CDATA[Hide controls]]></data>
+  <data name="en_controlBar_classicctrlmodeDragTip"><![CDATA[Change control mode]]></data>
+  <data name="en_controlBar_classicctrlmodeMoveTip"><![CDATA[Change control mode]]></data>
+  <data name="en_contextmenuopenwebsitelabel1"><![CDATA[panoair.ir]]></data>
+  <data name="en_contextmenuwebsiteurl1"><![CDATA[http://www.info.panoair.ir]]></data>
+  <data name="en_contextmenuopenwebsitelabel2"><![CDATA[hasanhamzeh-09128317349]]></data>
+  <data name="en_contextmenuwebsiteurl2"><![CDATA[http://www.instagram.com/panoair/]]></data>
+  <data name="en_contextmenuopenFsLabel"><![CDATA[Enter Fullscreen]]></data>
+  <data name="en_contextmenucloseFsLabel"><![CDATA[Exit Fullscreen]]></data>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</krpano>

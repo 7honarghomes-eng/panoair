@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<krpano>
+
+<!-- ************************ -->
+<!--         Messages         -->
+<!-- ************************ -->
+
+  <data name="en_project_title"><![CDATA[ershad sorkheh]]></data>
+
+
+
+  <data name="en_pano11_title"><![CDATA[سالن]]></data>
+  <data name="en_spotpoint22_tooltip"><![CDATA[اتاق کنترل]]></data>
+
+
+  <data name="en_pano9_title"><![CDATA[ورودي]]></data>
+
+
+  <data name="en_pano12_title"><![CDATA[سالن 2]]></data>
+
+
+  <data name="en_pano13_title"><![CDATA[ اتاق کنترل]]></data>
+  <data name="en_spotpoint23_tooltip"><![CDATA[سالن]]></data>
+
+
+
+
+
+
+  <data name="en_togglebuttonfirsttooltip"><![CDATA[تغيير نور ]]></data>
+  <data name="en_togglebuttonsecondtooltip"><![CDATA[تغيير نور]]></data>
+  <data name="en_controlBar_roundedprevSceneTip"><![CDATA[فضاي بعدي ]]></data>
+  <data name="en_controlBar_roundednextSceneTip"><![CDATA[فضاي قبلي]]></data>
+  <data name="en_controlBar_roundedzoomInTip"><![CDATA[بزرگنمايي]]></data>
+  <data name="en_controlBar_roundedzoomOutTip"><![CDATA[کوچکنمايي]]></data>
+  <data name="en_controlBar_roundedmoveLeftTip"><![CDATA[حرکت به چپ]]></data>
+  <data name="en_controlBar_roundedmoveRightTip"><![CDATA[حرکت به راست]]></data>
+  <data name="en_controlBar_roundedmoveUpTip"><![CDATA[حرکت به بالا ]]></data>
+  <data name="en_controlBar_roundedmoveDownTip"><![CDATA[حرکت به پايين]]></data>
+  <data name="en_controlBar_roundedopenFsTip"><![CDATA[تمام صفحه]]></data>
+  <data name="en_controlBar_roundedcloseFsTip"><![CDATA[خروج از تمام صفحه]]></data>
+  <data name="en_controlBar_roundedautorotateOnTip"><![CDATA[چرخش خودکار ]]></data>
+  <data name="en_controlBar_roundedautorotateOffTip"><![CDATA[توقف چرخش]]></data>
+  <data name="en_controlBar_roundedsoundsOnTip"><![CDATA[پخش موسيقي]]></data>
+  <data name="en_controlBar_roundedsoundsOffTip"><![CDATA[توقف موسيقي]]></data>
+  <data name="en_controlBar_roundedshowThumbnailsTip"><![CDATA[نمايش ليست فضاها ]]></data>
+  <data name="en_controlBar_roundedhideThumbnailsTip"><![CDATA[مخفي کردن ليست فضاها]]></data>
+  <data name="en_controlBar_roundeddisplayHelpTip"><![CDATA[راهنما]]></data>
+  <data name="en_controlBar_roundedhideHelpTip"><![CDATA[راهنما]]></data>
+  <data name="en_controlBar_roundeddisplayControlsTip"><![CDATA[نمايش کنترل]]></data>
+  <data name="en_controlBar_roundedhideControlsTip"><![CDATA[پنهان کردن کنترل]]></data>
+  <data name="en_contextmenuopenwebsitelabel1"><![CDATA[www.panoair.ir]]></data>
+  <data name="en_contextmenuwebsiteurl1"><![CDATA[http://www.panoair.ir]]></data>
+  <data name="en_contextmenuopenwebsitelabel2"><![CDATA[حسن حمزه  09128317349]]></data>
+  <data name="en_contextmenuwebsiteurl2"><![CDATA[http://www.panoair.ir]]></data>
+  <data name="en_contextmenuopenFsLabel"><![CDATA[Enter Fullscreen]]></data>
+  <data name="en_contextmenucloseFsLabel"><![CDATA[Exit Fullscreen]]></data>
+  <data name="en_contextmenunormallabel"><![CDATA[ديد نرمال ]]></data>
+  <data name="en_contextmenufisheyelabel"><![CDATA[ديد چشم ماهي]]></data>
+  <data name="en_contextmenuarchitecturallabel"><![CDATA[ديد ساختاري]]></data>
+  <data name="en_contextmenustereographiclabel"><![CDATA[Stereographic View]]></data>
+  <data name="en_contextmenupanninilabel"><![CDATA[Pannini View]]></data>
+  <data name="en_contextmenulittleplanetlabel"><![CDATA[Little Planet View]]></data>
+  <data name="en_contextmenufisheyeballlabel"><![CDATA[Fisheye Ball View]]></data>
+  <data name="en_logowebsiteurl"><![CDATA[http://www.panoair.ir]]></data>
+  <data name="en_logotooltipText"><![CDATA[Open website]]></data>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</krpano>
